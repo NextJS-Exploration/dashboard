@@ -122,59 +122,70 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.ClassScalarFieldEnum = {
   id: 'id',
-  syllabus_id: 'syllabus_id',
-  company_id: 'company_id',
-  type_id: 'type_id',
+  syllabusId: 'syllabusId',
+  companyId: 'companyId',
+  typeId: 'typeId',
   name: 'name',
   description: 'description',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  company_id: 'company_id',
-  first_name: 'first_name',
-  last_name: 'last_name',
+  companyId: 'companyId',
+  firstName: 'firstName',
+  lastName: 'lastName',
   email: 'email',
+  phone: 'phone',
+  password: 'password',
   photo: 'photo',
   gender: 'gender',
   address: 'address',
   role: 'role',
-  is_email_verified: 'is_email_verified',
-  is_phone_verified: 'is_phone_verified',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  isEmailVerified: 'isEmailVerified',
+  isPhoneVerified: 'isPhoneVerified',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ActivateTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  activatedAt: 'activatedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SyllabusScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ModuleScalarFieldEnum = {
   id: 'id',
-  syllabus_id: 'syllabus_id',
+  syllabusId: 'syllabusId',
   position: 'position',
   title: 'title',
   description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.TopicScalarFieldEnum = {
   id: 'id',
-  module_id: 'module_id',
+  moduleId: 'moduleId',
   position: 'position',
   title: 'title',
   content: 'content',
   goal: 'goal',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ResourceScalarFieldEnum = {
@@ -182,47 +193,47 @@ exports.Prisma.ResourceScalarFieldEnum = {
   title: 'title',
   description: 'description',
   url: 'url',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.TopicResourceScalarFieldEnum = {
   id: 'id',
-  topic_id: 'topic_id',
-  resource_id: 'resource_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  topicId: 'topicId',
+  resourceId: 'resourceId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {
   id: 'id',
-  topic_id: 'topic_id',
-  session_start: 'session_start',
-  session_end: 'session_end',
-  meeting_id: 'meeting_id',
-  meeting_password: 'meeting_password',
-  meeting_url: 'meeting_url',
-  meeting_recording: 'meeting_recording',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  topicId: 'topicId',
+  sessionStart: 'sessionStart',
+  sessionEnd: 'sessionEnd',
+  meetingId: 'meetingId',
+  meetingPassword: 'meetingPassword',
+  meetingUrl: 'meetingUrl',
+  meetingRecording: 'meetingRecording',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ClassStudentScalarFieldEnum = {
   id: 'id',
-  user_id: 'user_id',
-  class_id: 'class_id',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  userId: 'userId',
+  classId: 'classId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ClassTeacherScalarFieldEnum = {
   id: 'id',
-  user_id: 'user_id',
-  class_id: 'class_id',
-  is_active: 'is_active',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  userId: 'userId',
+  classId: 'classId',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.CompanyScalarFieldEnum = {
@@ -231,23 +242,37 @@ exports.Prisma.CompanyScalarFieldEnum = {
   address: 'address',
   website: 'website',
   logo: 'logo',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ClassTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.AttendanceScalarFieldEnum = {
   id: 'id',
-  class_student_id: 'class_student_id',
+  classStudentId: 'classStudentId',
   description: 'description',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  jti: 'jti',
+  familyId: 'familyId',
+  hashedToken: 'hashedToken',
+  userAgent: 'userAgent',
+  ip: 'ip',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  replacedById: 'replacedById'
 };
 
 exports.Prisma.SortOrder = {
@@ -265,26 +290,28 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 exports.Gender = exports.$Enums.Gender = {
-  Male: 'Male',
-  Female: 'Female'
+  male: 'male',
+  female: 'female',
+  other: 'other'
 };
 
 exports.Role = exports.$Enums.Role = {
-  Student: 'Student',
-  Teacher: 'Teacher',
-  Admin: 'Admin',
-  Company: 'Company'
+  student: 'student',
+  teacher: 'teacher',
+  admin: 'admin',
+  company: 'company'
 };
 
 exports.AttendanceStatus = exports.$Enums.AttendanceStatus = {
-  Present: 'Present',
-  Not_present: 'Not_present',
-  Unknown: 'Unknown'
+  present: 'present',
+  notPresent: 'notPresent',
+  unknown: 'unknown'
 };
 
 exports.Prisma.ModelName = {
   Class: 'Class',
   User: 'User',
+  ActivateToken: 'ActivateToken',
   Syllabus: 'Syllabus',
   Module: 'Module',
   Topic: 'Topic',
@@ -295,7 +322,8 @@ exports.Prisma.ModelName = {
   ClassTeacher: 'ClassTeacher',
   Company: 'Company',
   ClassType: 'ClassType',
-  Attendance: 'Attendance'
+  Attendance: 'Attendance',
+  RefreshToken: 'RefreshToken'
 };
 
 /**

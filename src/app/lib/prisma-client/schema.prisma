@@ -5,195 +5,259 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // use connection
-  directUrl = env("DIRECT_POSTGRES_PRISMA_URL") // uses a direct connection
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("DIRECT_POSTGRES_PRISMA_URL")
 }
 
 model Class {
-  id          String   @id @default(uuid())
-  syllabus_id String   @unique
-  company_id  String
-  type_id     String
-  name        String
-  description String?
-  is_active   Boolean  @default(true)
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  id          String   @id @default(uuid()) @map("id")
+  syllabusId  String   @unique @map("syllabus_id")
+  companyId   String   @map("company_id")
+  typeId      String   @map("type_id")
+  name        String   @map("name")
+  description String?  @map("description")
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
-  syllabus Syllabus       @relation(fields: [syllabus_id], references: [id])
-  company  Company        @relation(fields: [company_id], references: [id])
-  type     ClassType      @relation(fields: [type_id], references: [id])
+  syllabus Syllabus       @relation(fields: [syllabusId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  company  Company        @relation(fields: [companyId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  type     ClassType      @relation(fields: [typeId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   students ClassStudent[]
   teachers ClassTeacher[]
+
+  @@map("class")
 }
 
 model User {
-  id                String   @id @default(uuid())
-  company_id        String?
-  first_name        String
-  last_name         String
-  email             String   @unique
-  photo             String?
-  gender            Gender
-  address           String
-  role              Role
-  is_email_verified Boolean  @default(true)
-  is_phone_verified Boolean  @default(true)
-  created_at        DateTime @default(now())
-  updated_at        DateTime @updatedAt
+  id              String   @id @default(uuid()) @map("id")
+  companyId       String?  @map("company_id")
+  firstName       String   @map("first_name")
+  lastName        String   @map("last_name")
+  email           String   @unique @map("email")
+  phone           String   @unique @map("phone")
+  password        String   @map("password")
+  photo           String?  @map("photo")
+  gender          Gender   @map("gender")
+  address         String   @map("address")
+  role            Role     @map("role")
+  isEmailVerified Boolean  @default(false) @map("is_email_verified")
+  isPhoneVerified Boolean  @default(true) @map("is_phone_verified")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
 
-  company       Company?       @relation(fields: [company_id], references: [id])
-  classStudents ClassStudent[]
-  classTeachers ClassTeacher[]
+  company        Company?        @relation(fields: [companyId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  classStudents  ClassStudent[]
+  classTeachers  ClassTeacher[]
+  activateTokens ActivateToken[]
+  refreshTokens  RefreshToken[]
+
+  @@map("user")
+}
+
+model ActivateToken {
+  id          String    @id @default(uuid()) @map("id")
+  userId      String    @map("user_id")
+  token       String    @unique
+  activatedAt DateTime?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("activate_token")
 }
 
 model Syllabus {
-  id          String   @id @default(uuid())
-  title       String
-  description String?
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  id          String   @id @default(uuid()) @map("id")
+  title       String   @map("title")
+  description String?  @map("description")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   class   Class?
   modules Module[]
+
+  @@map("syllabus")
 }
 
 model Module {
-  id          String   @id @default(uuid())
-  syllabus_id String
-  position    Float
-  title       String
-  description String?
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  id          String   @id @default(uuid()) @map("id")
+  syllabusId  String   @map("syllabus_id")
+  position    Float    @map("position")
+  title       String   @map("title")
+  description String?  @map("description")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
-  syllabus Syllabus @relation(fields: [syllabus_id], references: [id])
+  syllabus Syllabus @relation(fields: [syllabusId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   topics   Topic[]
+
+  @@map("module")
 }
 
 model Topic {
-  id         String   @id @default(uuid())
-  module_id  String
-  position   Float
-  title      String
-  content    String?
-  goal       String?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id        String   @id @default(uuid()) @map("id")
+  moduleId  String   @map("module_id")
+  position  Float    @map("position")
+  title     String   @map("title")
+  content   String?  @map("content")
+  goal      String?  @map("goal")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  module    Module          @relation(fields: [module_id], references: [id])
+  module    Module          @relation(fields: [moduleId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   resources TopicResource[]
   sessions  Session[]
+
+  @@map("topic")
 }
 
 model Resource {
-  id          String   @id @default(uuid())
-  title       String
-  description String?
-  url         String
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  id          String   @id @default(uuid()) @map("id")
+  title       String   @map("title")
+  description String?  @map("description")
+  url         String   @map("url")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   topicResources TopicResource[]
+
+  @@map("resource")
 }
 
 model TopicResource {
-  id          String   @id @default(uuid())
-  topic_id    String
-  resource_id String?
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  id         String   @id @default(uuid()) @map("id")
+  topicId    String   @map("topic_id")
+  resourceId String?  @map("resource_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
 
-  topic    Topic     @relation(fields: [topic_id], references: [id])
-  resource Resource? @relation(fields: [resource_id], references: [id])
+  topic    Topic     @relation(fields: [topicId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  resource Resource? @relation(fields: [resourceId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("topic_resource")
 }
 
 model Session {
-  id                String   @id @default(uuid())
-  topic_id          String
-  session_start     DateTime
-  session_end       DateTime
-  meeting_id        String
-  meeting_password  String
-  meeting_url       String
-  meeting_recording String?
-  created_at        DateTime @default(now())
-  updated_at        DateTime @updatedAt
+  id               String   @id @default(uuid()) @map("id")
+  topicId          String   @map("topic_id")
+  sessionStart     DateTime @map("session_start")
+  sessionEnd       DateTime @map("session_end")
+  meetingId        String   @map("meeting_id")
+  meetingPassword  String   @map("meeting_password")
+  meetingUrl       String   @map("meeting_url")
+  meetingRecording String?  @map("meeting_recording")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
 
-  topic Topic @relation(fields: [topic_id], references: [id])
+  topic Topic @relation(fields: [topicId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("session")
 }
 
 model ClassStudent {
-  id         String   @id @default(uuid())
-  user_id    String
-  class_id   String
-  is_active  Boolean  @default(true)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id        String   @id @default(uuid()) @map("id")
+  userId    String   @map("user_id")
+  classId   String   @map("class_id")
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  user       User         @relation(fields: [user_id], references: [id])
-  class      Class        @relation(fields: [class_id], references: [id])
+  user       User         @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  class      Class        @relation(fields: [classId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   attendance Attendance[]
+
+  @@map("class_student")
 }
 
 model ClassTeacher {
-  id         String   @id @default(uuid())
-  user_id    String
-  class_id   String
-  is_active  Boolean  @default(true)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id        String   @id @default(uuid()) @map("id")
+  userId    String   @map("user_id")
+  classId   String   @map("class_id")
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  user  User  @relation(fields: [user_id], references: [id])
-  class Class @relation(fields: [class_id], references: [id])
+  user  User  @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  class Class @relation(fields: [classId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("class_teacher")
 }
 
 model Company {
-  id         String   @id @default(uuid())
-  name       String
-  address    String?
-  website    String?
-  logo       String?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id        String   @id @default(uuid()) @map("id")
+  name      String   @map("name")
+  address   String?  @map("address")
+  website   String?  @map("website")
+  logo      String?  @map("logo")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   users   User[]
   classes Class[]
+
+  @@map("company")
 }
 
 model ClassType {
-  id         String   @id @default(uuid())
-  name       String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id        String   @id @default(uuid()) @map("id")
+  name      String   @map("name")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   classes Class[]
+
+  @@map("class_type")
 }
 
 model Attendance {
-  id               String           @id @default(uuid())
-  class_student_id String
-  description      AttendanceStatus
-  created_at       DateTime         @default(now())
-  updated_at       DateTime         @updatedAt
+  id             String           @id @default(uuid()) @map("id")
+  classStudentId String           @map("class_student_id")
+  description    AttendanceStatus @map("description")
+  createdAt      DateTime         @default(now()) @map("created_at")
+  updatedAt      DateTime         @updatedAt @map("updated_at")
 
-  classStudent ClassStudent @relation(fields: [class_student_id], references: [id])
+  classStudent ClassStudent @relation(fields: [classStudentId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("attendance")
+}
+
+model RefreshToken {
+  id           String    @id @default(cuid())
+  userId       String    @map("user_id")
+  jti          String    @unique
+  familyId     String    @map("family_id") // all tokens belonging to the same login family
+  hashedToken  String    @map("hashed_token") // hash of the refresh token
+  userAgent    String?   @map("user_agent")
+  ip           String?   @map("ip")
+  createdAt    DateTime  @default(now())
+  expiresAt    DateTime  @map("expires_at")
+  revokedAt    DateTime? @map("revoked_at")
+  replacedById String?   @map("replaced_by_id") // next token's id when rotated
+
+  user User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@index([userId])
+  @@index([familyId])
+  @@map("refresh_token")
 }
 
 enum Gender {
-  Male
-  Female
+  male   @map("Male")
+  female @map("Female")
+  other  @map("Other")
 }
 
 enum Role {
-  Student
-  Teacher
-  Admin
-  Company
+  student @map("Student")
+  teacher @map("Teacher")
+  admin   @map("Admin")
+  company @map("Company")
 }
 
 enum AttendanceStatus {
-  Present
-  Not_present
-  Unknown
+  present    @map("Present")
+  notPresent @map("Not Present")
+  unknown    @map("Unknown")
 }

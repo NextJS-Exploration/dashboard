@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { Gender, Role } from "@/app/lib/prisma-client";
 import { randomUUID } from "crypto";
 import { sendActivationEmail } from "./email.service";
-import { RegisterSchema } from "../lib/validation/auth.schema";
+import { RegisterSchema } from "../app/lib/validation/auth.schema";
 
 export async function signUpUserToDB(body: unknown) {
 
@@ -113,4 +113,80 @@ export async function signUpUserToDB(body: unknown) {
       error: err
     }
   }
+}
+
+export async function emailVerification(token: string) {
+    let user;
+
+    try {
+        user = await db.user.findFirst({
+            where: {
+                activateTokens: {
+                    some: {
+                        AND: [
+                            {
+                                activatedAt: null,
+                            },
+                            {
+                                createdAt: {
+                                    gt: new Date(Date.now() - 24 * 60 * 60 * 1000)
+                                },
+                            },
+                            {
+                                token: token
+                            }
+                        ]
+                    }
+                }
+            }
+        })
+    } catch(err) {
+        throw {
+            status: 500,
+            message: "Token expired",
+            error: err
+        }
+    }
+
+    if (user == null) {
+        throw {
+            status: 401,
+            message: "Invalid token"
+        }
+    }
+
+    console.log("Token:", token);
+    console.log("User ID:", user?.id);
+
+    try {
+        await db.$transaction([
+            db.activateToken.update({
+                where: {
+                    token,
+                },
+                data: {
+                    activatedAt: new Date()
+                }
+            }),
+            db.user.update({
+                where: {
+                    id: user.id
+                },
+                data: {
+                    isEmailVerified: true,
+                },
+            })
+        ])
+    } catch(err) {
+        throw {
+            status: 500,
+            message: "Internal Server Error",
+            error: err
+        }
+    }
+
+    return {
+        message: "Email verified",
+        data: user.email
+    }
 }

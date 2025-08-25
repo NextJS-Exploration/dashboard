@@ -1,5 +1,5 @@
 import { errorResponse, successResponse } from "@/app/lib/apiResponse";
-import { signUpUserToDB } from "@/app/services/auth.service";
+import { signUpUserToDB } from "@/services/auth.service";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {

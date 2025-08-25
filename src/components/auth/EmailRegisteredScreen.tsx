@@ -18,7 +18,7 @@ export default function EmailRegisteredScreen() {
           Sign in
         </Link><br/><br />
         <Link
-          href="/account-verification/resend"
+          href="/activate/resend"
           className="inline-flex underline items-center text-sm text-bold text-gray-800 transition-colors hover:text-blue-800 dark:text-gray-400 dark:hover:text-gray-300"
         >
           Resend verification email

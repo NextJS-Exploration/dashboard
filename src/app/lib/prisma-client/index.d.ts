@@ -24,6 +24,11 @@ export type Class = $Result.DefaultSelection<Prisma.$ClassPayload>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model ActivateToken
+ * 
+ */
+export type ActivateToken = $Result.DefaultSelection<Prisma.$ActivateTokenPayload>
+/**
  * Model Syllabus
  * 
  */
@@ -78,33 +83,39 @@ export type ClassType = $Result.DefaultSelection<Prisma.$ClassTypePayload>
  * 
  */
 export type Attendance = $Result.DefaultSelection<Prisma.$AttendancePayload>
+/**
+ * Model RefreshToken
+ * 
+ */
+export type RefreshToken = $Result.DefaultSelection<Prisma.$RefreshTokenPayload>
 
 /**
  * Enums
  */
 export namespace $Enums {
   export const Gender: {
-  Male: 'Male',
-  Female: 'Female'
+  male: 'male',
+  female: 'female',
+  other: 'other'
 };
 
 export type Gender = (typeof Gender)[keyof typeof Gender]
 
 
 export const Role: {
-  Student: 'Student',
-  Teacher: 'Teacher',
-  Admin: 'Admin',
-  Company: 'Company'
+  student: 'student',
+  teacher: 'teacher',
+  admin: 'admin',
+  company: 'company'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
 
 
 export const AttendanceStatus: {
-  Present: 'Present',
-  Not_present: 'Not_present',
-  Unknown: 'Unknown'
+  present: 'present',
+  notPresent: 'notPresent',
+  unknown: 'unknown'
 };
 
 export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
@@ -262,6 +273,16 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.activateToken`: Exposes CRUD operations for the **ActivateToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ActivateTokens
+    * const activateTokens = await prisma.activateToken.findMany()
+    * ```
+    */
+  get activateToken(): Prisma.ActivateTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.syllabus`: Exposes CRUD operations for the **Syllabus** model.
     * Example usage:
     * ```ts
@@ -370,6 +391,16 @@ export class PrismaClient<
     * ```
     */
   get attendance(): Prisma.AttendanceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.refreshToken`: Exposes CRUD operations for the **RefreshToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RefreshTokens
+    * const refreshTokens = await prisma.refreshToken.findMany()
+    * ```
+    */
+  get refreshToken(): Prisma.RefreshTokenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -812,6 +843,7 @@ export namespace Prisma {
   export const ModelName: {
     Class: 'Class',
     User: 'User',
+    ActivateToken: 'ActivateToken',
     Syllabus: 'Syllabus',
     Module: 'Module',
     Topic: 'Topic',
@@ -822,7 +854,8 @@ export namespace Prisma {
     ClassTeacher: 'ClassTeacher',
     Company: 'Company',
     ClassType: 'ClassType',
-    Attendance: 'Attendance'
+    Attendance: 'Attendance',
+    RefreshToken: 'RefreshToken'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -841,7 +874,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "class" | "user" | "syllabus" | "module" | "topic" | "resource" | "topicResource" | "session" | "classStudent" | "classTeacher" | "company" | "classType" | "attendance"
+      modelProps: "class" | "user" | "activateToken" | "syllabus" | "module" | "topic" | "resource" | "topicResource" | "session" | "classStudent" | "classTeacher" | "company" | "classType" | "attendance" | "refreshToken"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -990,6 +1023,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      ActivateToken: {
+        payload: Prisma.$ActivateTokenPayload<ExtArgs>
+        fields: Prisma.ActivateTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ActivateTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ActivateTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.ActivateTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ActivateTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload>
+          }
+          findMany: {
+            args: Prisma.ActivateTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload>[]
+          }
+          create: {
+            args: Prisma.ActivateTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload>
+          }
+          createMany: {
+            args: Prisma.ActivateTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ActivateTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.ActivateTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload>
+          }
+          update: {
+            args: Prisma.ActivateTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.ActivateTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ActivateTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ActivateTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.ActivateTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ActivateTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.ActivateTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateActivateToken>
+          }
+          groupBy: {
+            args: Prisma.ActivateTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ActivateTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ActivateTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<ActivateTokenCountAggregateOutputType> | number
           }
         }
       }
@@ -1807,6 +1914,80 @@ export namespace Prisma {
           }
         }
       }
+      RefreshToken: {
+        payload: Prisma.$RefreshTokenPayload<ExtArgs>
+        fields: Prisma.RefreshTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RefreshTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RefreshTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.RefreshTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RefreshTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          findMany: {
+            args: Prisma.RefreshTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+          }
+          create: {
+            args: Prisma.RefreshTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          createMany: {
+            args: Prisma.RefreshTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RefreshTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.RefreshTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          update: {
+            args: Prisma.RefreshTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.RefreshTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RefreshTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RefreshTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.RefreshTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.RefreshTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRefreshToken>
+          }
+          groupBy: {
+            args: Prisma.RefreshTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RefreshTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RefreshTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<RefreshTokenCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1901,6 +2082,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     class?: ClassOmit
     user?: UserOmit
+    activateToken?: ActivateTokenOmit
     syllabus?: SyllabusOmit
     module?: ModuleOmit
     topic?: TopicOmit
@@ -1912,6 +2094,7 @@ export namespace Prisma {
     company?: CompanyOmit
     classType?: ClassTypeOmit
     attendance?: AttendanceOmit
+    refreshToken?: RefreshTokenOmit
   }
 
   /* Types for Logging */
@@ -2034,11 +2217,15 @@ export namespace Prisma {
   export type UserCountOutputType = {
     classStudents: number
     classTeachers: number
+    activateTokens: number
+    refreshTokens: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     classStudents?: boolean | UserCountOutputTypeCountClassStudentsArgs
     classTeachers?: boolean | UserCountOutputTypeCountClassTeachersArgs
+    activateTokens?: boolean | UserCountOutputTypeCountActivateTokensArgs
+    refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs
   }
 
   // Custom InputTypes
@@ -2064,6 +2251,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountClassTeachersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ClassTeacherWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountActivateTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ActivateTokenWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountRefreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RefreshTokenWhereInput
   }
 
 
@@ -2318,76 +2519,76 @@ export namespace Prisma {
 
   export type ClassMinAggregateOutputType = {
     id: string | null
-    syllabus_id: string | null
-    company_id: string | null
-    type_id: string | null
+    syllabusId: string | null
+    companyId: string | null
+    typeId: string | null
     name: string | null
     description: string | null
-    is_active: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ClassMaxAggregateOutputType = {
     id: string | null
-    syllabus_id: string | null
-    company_id: string | null
-    type_id: string | null
+    syllabusId: string | null
+    companyId: string | null
+    typeId: string | null
     name: string | null
     description: string | null
-    is_active: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ClassCountAggregateOutputType = {
     id: number
-    syllabus_id: number
-    company_id: number
-    type_id: number
+    syllabusId: number
+    companyId: number
+    typeId: number
     name: number
     description: number
-    is_active: number
-    created_at: number
-    updated_at: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type ClassMinAggregateInputType = {
     id?: true
-    syllabus_id?: true
-    company_id?: true
-    type_id?: true
+    syllabusId?: true
+    companyId?: true
+    typeId?: true
     name?: true
     description?: true
-    is_active?: true
-    created_at?: true
-    updated_at?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ClassMaxAggregateInputType = {
     id?: true
-    syllabus_id?: true
-    company_id?: true
-    type_id?: true
+    syllabusId?: true
+    companyId?: true
+    typeId?: true
     name?: true
     description?: true
-    is_active?: true
-    created_at?: true
-    updated_at?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ClassCountAggregateInputType = {
     id?: true
-    syllabus_id?: true
-    company_id?: true
-    type_id?: true
+    syllabusId?: true
+    companyId?: true
+    typeId?: true
     name?: true
     description?: true
-    is_active?: true
-    created_at?: true
-    updated_at?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -2465,14 +2666,14 @@ export namespace Prisma {
 
   export type ClassGroupByOutputType = {
     id: string
-    syllabus_id: string
-    company_id: string
-    type_id: string
+    syllabusId: string
+    companyId: string
+    typeId: string
     name: string
     description: string | null
-    is_active: boolean
-    created_at: Date
-    updated_at: Date
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
     _count: ClassCountAggregateOutputType | null
     _min: ClassMinAggregateOutputType | null
     _max: ClassMaxAggregateOutputType | null
@@ -2494,14 +2695,14 @@ export namespace Prisma {
 
   export type ClassSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    syllabus_id?: boolean
-    company_id?: boolean
-    type_id?: boolean
+    syllabusId?: boolean
+    companyId?: boolean
+    typeId?: boolean
     name?: boolean
     description?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     syllabus?: boolean | SyllabusDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     type?: boolean | ClassTypeDefaultArgs<ExtArgs>
@@ -2512,14 +2713,14 @@ export namespace Prisma {
 
   export type ClassSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    syllabus_id?: boolean
-    company_id?: boolean
-    type_id?: boolean
+    syllabusId?: boolean
+    companyId?: boolean
+    typeId?: boolean
     name?: boolean
     description?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     syllabus?: boolean | SyllabusDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     type?: boolean | ClassTypeDefaultArgs<ExtArgs>
@@ -2527,14 +2728,14 @@ export namespace Prisma {
 
   export type ClassSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    syllabus_id?: boolean
-    company_id?: boolean
-    type_id?: boolean
+    syllabusId?: boolean
+    companyId?: boolean
+    typeId?: boolean
     name?: boolean
     description?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     syllabus?: boolean | SyllabusDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     type?: boolean | ClassTypeDefaultArgs<ExtArgs>
@@ -2542,17 +2743,17 @@ export namespace Prisma {
 
   export type ClassSelectScalar = {
     id?: boolean
-    syllabus_id?: boolean
-    company_id?: boolean
-    type_id?: boolean
+    syllabusId?: boolean
+    companyId?: boolean
+    typeId?: boolean
     name?: boolean
     description?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ClassOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "syllabus_id" | "company_id" | "type_id" | "name" | "description" | "is_active" | "created_at" | "updated_at", ExtArgs["result"]["class"]>
+  export type ClassOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "syllabusId" | "companyId" | "typeId" | "name" | "description" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["class"]>
   export type ClassInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     syllabus?: boolean | SyllabusDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
@@ -2583,14 +2784,14 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      syllabus_id: string
-      company_id: string
-      type_id: string
+      syllabusId: string
+      companyId: string
+      typeId: string
       name: string
       description: string | null
-      is_active: boolean
-      created_at: Date
-      updated_at: Date
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["class"]>
     composites: {}
   }
@@ -3020,14 +3221,14 @@ export namespace Prisma {
    */
   interface ClassFieldRefs {
     readonly id: FieldRef<"Class", 'String'>
-    readonly syllabus_id: FieldRef<"Class", 'String'>
-    readonly company_id: FieldRef<"Class", 'String'>
-    readonly type_id: FieldRef<"Class", 'String'>
+    readonly syllabusId: FieldRef<"Class", 'String'>
+    readonly companyId: FieldRef<"Class", 'String'>
+    readonly typeId: FieldRef<"Class", 'String'>
     readonly name: FieldRef<"Class", 'String'>
     readonly description: FieldRef<"Class", 'String'>
-    readonly is_active: FieldRef<"Class", 'Boolean'>
-    readonly created_at: FieldRef<"Class", 'DateTime'>
-    readonly updated_at: FieldRef<"Class", 'DateTime'>
+    readonly isActive: FieldRef<"Class", 'Boolean'>
+    readonly createdAt: FieldRef<"Class", 'DateTime'>
+    readonly updatedAt: FieldRef<"Class", 'DateTime'>
   }
     
 
@@ -3502,100 +3703,112 @@ export namespace Prisma {
 
   export type UserMinAggregateOutputType = {
     id: string | null
-    company_id: string | null
-    first_name: string | null
-    last_name: string | null
+    companyId: string | null
+    firstName: string | null
+    lastName: string | null
     email: string | null
+    phone: string | null
+    password: string | null
     photo: string | null
     gender: $Enums.Gender | null
     address: string | null
     role: $Enums.Role | null
-    is_email_verified: boolean | null
-    is_phone_verified: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
+    isEmailVerified: boolean | null
+    isPhoneVerified: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
-    company_id: string | null
-    first_name: string | null
-    last_name: string | null
+    companyId: string | null
+    firstName: string | null
+    lastName: string | null
     email: string | null
+    phone: string | null
+    password: string | null
     photo: string | null
     gender: $Enums.Gender | null
     address: string | null
     role: $Enums.Role | null
-    is_email_verified: boolean | null
-    is_phone_verified: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
+    isEmailVerified: boolean | null
+    isPhoneVerified: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
-    company_id: number
-    first_name: number
-    last_name: number
+    companyId: number
+    firstName: number
+    lastName: number
     email: number
+    phone: number
+    password: number
     photo: number
     gender: number
     address: number
     role: number
-    is_email_verified: number
-    is_phone_verified: number
-    created_at: number
-    updated_at: number
+    isEmailVerified: number
+    isPhoneVerified: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type UserMinAggregateInputType = {
     id?: true
-    company_id?: true
-    first_name?: true
-    last_name?: true
+    companyId?: true
+    firstName?: true
+    lastName?: true
     email?: true
+    phone?: true
+    password?: true
     photo?: true
     gender?: true
     address?: true
     role?: true
-    is_email_verified?: true
-    is_phone_verified?: true
-    created_at?: true
-    updated_at?: true
+    isEmailVerified?: true
+    isPhoneVerified?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
-    company_id?: true
-    first_name?: true
-    last_name?: true
+    companyId?: true
+    firstName?: true
+    lastName?: true
     email?: true
+    phone?: true
+    password?: true
     photo?: true
     gender?: true
     address?: true
     role?: true
-    is_email_verified?: true
-    is_phone_verified?: true
-    created_at?: true
-    updated_at?: true
+    isEmailVerified?: true
+    isPhoneVerified?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
-    company_id?: true
-    first_name?: true
-    last_name?: true
+    companyId?: true
+    firstName?: true
+    lastName?: true
     email?: true
+    phone?: true
+    password?: true
     photo?: true
     gender?: true
     address?: true
     role?: true
-    is_email_verified?: true
-    is_phone_verified?: true
-    created_at?: true
-    updated_at?: true
+    isEmailVerified?: true
+    isPhoneVerified?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -3673,18 +3886,20 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
-    company_id: string | null
-    first_name: string
-    last_name: string
+    companyId: string | null
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified: boolean
-    is_phone_verified: boolean
-    created_at: Date
-    updated_at: Date
+    isEmailVerified: boolean
+    isPhoneVerified: boolean
+    createdAt: Date
+    updatedAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -3706,79 +3921,91 @@ export namespace Prisma {
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    company_id?: boolean
-    first_name?: boolean
-    last_name?: boolean
+    companyId?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
+    phone?: boolean
+    password?: boolean
     photo?: boolean
     gender?: boolean
     address?: boolean
     role?: boolean
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     company?: boolean | User$companyArgs<ExtArgs>
     classStudents?: boolean | User$classStudentsArgs<ExtArgs>
     classTeachers?: boolean | User$classTeachersArgs<ExtArgs>
+    activateTokens?: boolean | User$activateTokensArgs<ExtArgs>
+    refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    company_id?: boolean
-    first_name?: boolean
-    last_name?: boolean
+    companyId?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
+    phone?: boolean
+    password?: boolean
     photo?: boolean
     gender?: boolean
     address?: boolean
     role?: boolean
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     company?: boolean | User$companyArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    company_id?: boolean
-    first_name?: boolean
-    last_name?: boolean
+    companyId?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
+    phone?: boolean
+    password?: boolean
     photo?: boolean
     gender?: boolean
     address?: boolean
     role?: boolean
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     company?: boolean | User$companyArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
-    company_id?: boolean
-    first_name?: boolean
-    last_name?: boolean
+    companyId?: boolean
+    firstName?: boolean
+    lastName?: boolean
     email?: boolean
+    phone?: boolean
+    password?: boolean
     photo?: boolean
     gender?: boolean
     address?: boolean
     role?: boolean
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "company_id" | "first_name" | "last_name" | "email" | "photo" | "gender" | "address" | "role" | "is_email_verified" | "is_phone_verified" | "created_at" | "updated_at", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyId" | "firstName" | "lastName" | "email" | "phone" | "password" | "photo" | "gender" | "address" | "role" | "isEmailVerified" | "isPhoneVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     company?: boolean | User$companyArgs<ExtArgs>
     classStudents?: boolean | User$classStudentsArgs<ExtArgs>
     classTeachers?: boolean | User$classTeachersArgs<ExtArgs>
+    activateTokens?: boolean | User$activateTokensArgs<ExtArgs>
+    refreshTokens?: boolean | User$refreshTokensArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3794,21 +4021,25 @@ export namespace Prisma {
       company: Prisma.$CompanyPayload<ExtArgs> | null
       classStudents: Prisma.$ClassStudentPayload<ExtArgs>[]
       classTeachers: Prisma.$ClassTeacherPayload<ExtArgs>[]
+      activateTokens: Prisma.$ActivateTokenPayload<ExtArgs>[]
+      refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      company_id: string | null
-      first_name: string
-      last_name: string
+      companyId: string | null
+      firstName: string
+      lastName: string
       email: string
+      phone: string
+      password: string
       photo: string | null
       gender: $Enums.Gender
       address: string
       role: $Enums.Role
-      is_email_verified: boolean
-      is_phone_verified: boolean
-      created_at: Date
-      updated_at: Date
+      isEmailVerified: boolean
+      isPhoneVerified: boolean
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -4206,6 +4437,8 @@ export namespace Prisma {
     company<T extends User$companyArgs<ExtArgs> = {}>(args?: Subset<T, User$companyArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     classStudents<T extends User$classStudentsArgs<ExtArgs> = {}>(args?: Subset<T, User$classStudentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     classTeachers<T extends User$classTeachersArgs<ExtArgs> = {}>(args?: Subset<T, User$classTeachersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassTeacherPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    activateTokens<T extends User$activateTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$activateTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    refreshTokens<T extends User$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4236,18 +4469,20 @@ export namespace Prisma {
    */
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
-    readonly company_id: FieldRef<"User", 'String'>
-    readonly first_name: FieldRef<"User", 'String'>
-    readonly last_name: FieldRef<"User", 'String'>
+    readonly companyId: FieldRef<"User", 'String'>
+    readonly firstName: FieldRef<"User", 'String'>
+    readonly lastName: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
+    readonly phone: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
     readonly photo: FieldRef<"User", 'String'>
     readonly gender: FieldRef<"User", 'Gender'>
     readonly address: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
-    readonly is_email_verified: FieldRef<"User", 'Boolean'>
-    readonly is_phone_verified: FieldRef<"User", 'Boolean'>
-    readonly created_at: FieldRef<"User", 'DateTime'>
-    readonly updated_at: FieldRef<"User", 'DateTime'>
+    readonly isEmailVerified: FieldRef<"User", 'Boolean'>
+    readonly isPhoneVerified: FieldRef<"User", 'Boolean'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -4711,6 +4946,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.activateTokens
+   */
+  export type User$activateTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    where?: ActivateTokenWhereInput
+    orderBy?: ActivateTokenOrderByWithRelationInput | ActivateTokenOrderByWithRelationInput[]
+    cursor?: ActivateTokenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ActivateTokenScalarFieldEnum | ActivateTokenScalarFieldEnum[]
+  }
+
+  /**
+   * User.refreshTokens
+   */
+  export type User$refreshTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    where?: RefreshTokenWhereInput
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    cursor?: RefreshTokenWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4730,6 +5013,1077 @@ export namespace Prisma {
 
 
   /**
+   * Model ActivateToken
+   */
+
+  export type AggregateActivateToken = {
+    _count: ActivateTokenCountAggregateOutputType | null
+    _min: ActivateTokenMinAggregateOutputType | null
+    _max: ActivateTokenMaxAggregateOutputType | null
+  }
+
+  export type ActivateTokenMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    token: string | null
+    activatedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ActivateTokenMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    token: string | null
+    activatedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ActivateTokenCountAggregateOutputType = {
+    id: number
+    userId: number
+    token: number
+    activatedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ActivateTokenMinAggregateInputType = {
+    id?: true
+    userId?: true
+    token?: true
+    activatedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ActivateTokenMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    token?: true
+    activatedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ActivateTokenCountAggregateInputType = {
+    id?: true
+    userId?: true
+    token?: true
+    activatedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ActivateTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ActivateToken to aggregate.
+     */
+    where?: ActivateTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivateTokens to fetch.
+     */
+    orderBy?: ActivateTokenOrderByWithRelationInput | ActivateTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ActivateTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivateTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivateTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ActivateTokens
+    **/
+    _count?: true | ActivateTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ActivateTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ActivateTokenMaxAggregateInputType
+  }
+
+  export type GetActivateTokenAggregateType<T extends ActivateTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateActivateToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateActivateToken[P]>
+      : GetScalarType<T[P], AggregateActivateToken[P]>
+  }
+
+
+
+
+  export type ActivateTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ActivateTokenWhereInput
+    orderBy?: ActivateTokenOrderByWithAggregationInput | ActivateTokenOrderByWithAggregationInput[]
+    by: ActivateTokenScalarFieldEnum[] | ActivateTokenScalarFieldEnum
+    having?: ActivateTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ActivateTokenCountAggregateInputType | true
+    _min?: ActivateTokenMinAggregateInputType
+    _max?: ActivateTokenMaxAggregateInputType
+  }
+
+  export type ActivateTokenGroupByOutputType = {
+    id: string
+    userId: string
+    token: string
+    activatedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ActivateTokenCountAggregateOutputType | null
+    _min: ActivateTokenMinAggregateOutputType | null
+    _max: ActivateTokenMaxAggregateOutputType | null
+  }
+
+  type GetActivateTokenGroupByPayload<T extends ActivateTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ActivateTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ActivateTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ActivateTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], ActivateTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ActivateTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    token?: boolean
+    activatedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["activateToken"]>
+
+  export type ActivateTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    token?: boolean
+    activatedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["activateToken"]>
+
+  export type ActivateTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    token?: boolean
+    activatedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["activateToken"]>
+
+  export type ActivateTokenSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    token?: boolean
+    activatedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ActivateTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "token" | "activatedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["activateToken"]>
+  export type ActivateTokenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ActivateTokenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ActivateTokenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ActivateTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ActivateToken"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      token: string
+      activatedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["activateToken"]>
+    composites: {}
+  }
+
+  type ActivateTokenGetPayload<S extends boolean | null | undefined | ActivateTokenDefaultArgs> = $Result.GetResult<Prisma.$ActivateTokenPayload, S>
+
+  type ActivateTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ActivateTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ActivateTokenCountAggregateInputType | true
+    }
+
+  export interface ActivateTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ActivateToken'], meta: { name: 'ActivateToken' } }
+    /**
+     * Find zero or one ActivateToken that matches the filter.
+     * @param {ActivateTokenFindUniqueArgs} args - Arguments to find a ActivateToken
+     * @example
+     * // Get one ActivateToken
+     * const activateToken = await prisma.activateToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ActivateTokenFindUniqueArgs>(args: SelectSubset<T, ActivateTokenFindUniqueArgs<ExtArgs>>): Prisma__ActivateTokenClient<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ActivateToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ActivateTokenFindUniqueOrThrowArgs} args - Arguments to find a ActivateToken
+     * @example
+     * // Get one ActivateToken
+     * const activateToken = await prisma.activateToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ActivateTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, ActivateTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ActivateTokenClient<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ActivateToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivateTokenFindFirstArgs} args - Arguments to find a ActivateToken
+     * @example
+     * // Get one ActivateToken
+     * const activateToken = await prisma.activateToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ActivateTokenFindFirstArgs>(args?: SelectSubset<T, ActivateTokenFindFirstArgs<ExtArgs>>): Prisma__ActivateTokenClient<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ActivateToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivateTokenFindFirstOrThrowArgs} args - Arguments to find a ActivateToken
+     * @example
+     * // Get one ActivateToken
+     * const activateToken = await prisma.activateToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ActivateTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, ActivateTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__ActivateTokenClient<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ActivateTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivateTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ActivateTokens
+     * const activateTokens = await prisma.activateToken.findMany()
+     * 
+     * // Get first 10 ActivateTokens
+     * const activateTokens = await prisma.activateToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const activateTokenWithIdOnly = await prisma.activateToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ActivateTokenFindManyArgs>(args?: SelectSubset<T, ActivateTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ActivateToken.
+     * @param {ActivateTokenCreateArgs} args - Arguments to create a ActivateToken.
+     * @example
+     * // Create one ActivateToken
+     * const ActivateToken = await prisma.activateToken.create({
+     *   data: {
+     *     // ... data to create a ActivateToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends ActivateTokenCreateArgs>(args: SelectSubset<T, ActivateTokenCreateArgs<ExtArgs>>): Prisma__ActivateTokenClient<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ActivateTokens.
+     * @param {ActivateTokenCreateManyArgs} args - Arguments to create many ActivateTokens.
+     * @example
+     * // Create many ActivateTokens
+     * const activateToken = await prisma.activateToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ActivateTokenCreateManyArgs>(args?: SelectSubset<T, ActivateTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ActivateTokens and returns the data saved in the database.
+     * @param {ActivateTokenCreateManyAndReturnArgs} args - Arguments to create many ActivateTokens.
+     * @example
+     * // Create many ActivateTokens
+     * const activateToken = await prisma.activateToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ActivateTokens and only return the `id`
+     * const activateTokenWithIdOnly = await prisma.activateToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ActivateTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, ActivateTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ActivateToken.
+     * @param {ActivateTokenDeleteArgs} args - Arguments to delete one ActivateToken.
+     * @example
+     * // Delete one ActivateToken
+     * const ActivateToken = await prisma.activateToken.delete({
+     *   where: {
+     *     // ... filter to delete one ActivateToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ActivateTokenDeleteArgs>(args: SelectSubset<T, ActivateTokenDeleteArgs<ExtArgs>>): Prisma__ActivateTokenClient<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ActivateToken.
+     * @param {ActivateTokenUpdateArgs} args - Arguments to update one ActivateToken.
+     * @example
+     * // Update one ActivateToken
+     * const activateToken = await prisma.activateToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ActivateTokenUpdateArgs>(args: SelectSubset<T, ActivateTokenUpdateArgs<ExtArgs>>): Prisma__ActivateTokenClient<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ActivateTokens.
+     * @param {ActivateTokenDeleteManyArgs} args - Arguments to filter ActivateTokens to delete.
+     * @example
+     * // Delete a few ActivateTokens
+     * const { count } = await prisma.activateToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ActivateTokenDeleteManyArgs>(args?: SelectSubset<T, ActivateTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ActivateTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivateTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ActivateTokens
+     * const activateToken = await prisma.activateToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ActivateTokenUpdateManyArgs>(args: SelectSubset<T, ActivateTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ActivateTokens and returns the data updated in the database.
+     * @param {ActivateTokenUpdateManyAndReturnArgs} args - Arguments to update many ActivateTokens.
+     * @example
+     * // Update many ActivateTokens
+     * const activateToken = await prisma.activateToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ActivateTokens and only return the `id`
+     * const activateTokenWithIdOnly = await prisma.activateToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ActivateTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, ActivateTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ActivateToken.
+     * @param {ActivateTokenUpsertArgs} args - Arguments to update or create a ActivateToken.
+     * @example
+     * // Update or create a ActivateToken
+     * const activateToken = await prisma.activateToken.upsert({
+     *   create: {
+     *     // ... data to create a ActivateToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ActivateToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ActivateTokenUpsertArgs>(args: SelectSubset<T, ActivateTokenUpsertArgs<ExtArgs>>): Prisma__ActivateTokenClient<$Result.GetResult<Prisma.$ActivateTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ActivateTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivateTokenCountArgs} args - Arguments to filter ActivateTokens to count.
+     * @example
+     * // Count the number of ActivateTokens
+     * const count = await prisma.activateToken.count({
+     *   where: {
+     *     // ... the filter for the ActivateTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends ActivateTokenCountArgs>(
+      args?: Subset<T, ActivateTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ActivateTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ActivateToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivateTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ActivateTokenAggregateArgs>(args: Subset<T, ActivateTokenAggregateArgs>): Prisma.PrismaPromise<GetActivateTokenAggregateType<T>>
+
+    /**
+     * Group by ActivateToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ActivateTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ActivateTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ActivateTokenGroupByArgs['orderBy'] }
+        : { orderBy?: ActivateTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ActivateTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetActivateTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ActivateToken model
+   */
+  readonly fields: ActivateTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ActivateToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ActivateTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ActivateToken model
+   */
+  interface ActivateTokenFieldRefs {
+    readonly id: FieldRef<"ActivateToken", 'String'>
+    readonly userId: FieldRef<"ActivateToken", 'String'>
+    readonly token: FieldRef<"ActivateToken", 'String'>
+    readonly activatedAt: FieldRef<"ActivateToken", 'DateTime'>
+    readonly createdAt: FieldRef<"ActivateToken", 'DateTime'>
+    readonly updatedAt: FieldRef<"ActivateToken", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ActivateToken findUnique
+   */
+  export type ActivateTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivateToken to fetch.
+     */
+    where: ActivateTokenWhereUniqueInput
+  }
+
+  /**
+   * ActivateToken findUniqueOrThrow
+   */
+  export type ActivateTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivateToken to fetch.
+     */
+    where: ActivateTokenWhereUniqueInput
+  }
+
+  /**
+   * ActivateToken findFirst
+   */
+  export type ActivateTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivateToken to fetch.
+     */
+    where?: ActivateTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivateTokens to fetch.
+     */
+    orderBy?: ActivateTokenOrderByWithRelationInput | ActivateTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ActivateTokens.
+     */
+    cursor?: ActivateTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivateTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivateTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ActivateTokens.
+     */
+    distinct?: ActivateTokenScalarFieldEnum | ActivateTokenScalarFieldEnum[]
+  }
+
+  /**
+   * ActivateToken findFirstOrThrow
+   */
+  export type ActivateTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivateToken to fetch.
+     */
+    where?: ActivateTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivateTokens to fetch.
+     */
+    orderBy?: ActivateTokenOrderByWithRelationInput | ActivateTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ActivateTokens.
+     */
+    cursor?: ActivateTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivateTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivateTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ActivateTokens.
+     */
+    distinct?: ActivateTokenScalarFieldEnum | ActivateTokenScalarFieldEnum[]
+  }
+
+  /**
+   * ActivateToken findMany
+   */
+  export type ActivateTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which ActivateTokens to fetch.
+     */
+    where?: ActivateTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ActivateTokens to fetch.
+     */
+    orderBy?: ActivateTokenOrderByWithRelationInput | ActivateTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ActivateTokens.
+     */
+    cursor?: ActivateTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ActivateTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ActivateTokens.
+     */
+    skip?: number
+    distinct?: ActivateTokenScalarFieldEnum | ActivateTokenScalarFieldEnum[]
+  }
+
+  /**
+   * ActivateToken create
+   */
+  export type ActivateTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ActivateToken.
+     */
+    data: XOR<ActivateTokenCreateInput, ActivateTokenUncheckedCreateInput>
+  }
+
+  /**
+   * ActivateToken createMany
+   */
+  export type ActivateTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ActivateTokens.
+     */
+    data: ActivateTokenCreateManyInput | ActivateTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ActivateToken createManyAndReturn
+   */
+  export type ActivateTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many ActivateTokens.
+     */
+    data: ActivateTokenCreateManyInput | ActivateTokenCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ActivateToken update
+   */
+  export type ActivateTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ActivateToken.
+     */
+    data: XOR<ActivateTokenUpdateInput, ActivateTokenUncheckedUpdateInput>
+    /**
+     * Choose, which ActivateToken to update.
+     */
+    where: ActivateTokenWhereUniqueInput
+  }
+
+  /**
+   * ActivateToken updateMany
+   */
+  export type ActivateTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ActivateTokens.
+     */
+    data: XOR<ActivateTokenUpdateManyMutationInput, ActivateTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which ActivateTokens to update
+     */
+    where?: ActivateTokenWhereInput
+    /**
+     * Limit how many ActivateTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ActivateToken updateManyAndReturn
+   */
+  export type ActivateTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update ActivateTokens.
+     */
+    data: XOR<ActivateTokenUpdateManyMutationInput, ActivateTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which ActivateTokens to update
+     */
+    where?: ActivateTokenWhereInput
+    /**
+     * Limit how many ActivateTokens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ActivateToken upsert
+   */
+  export type ActivateTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ActivateToken to update in case it exists.
+     */
+    where: ActivateTokenWhereUniqueInput
+    /**
+     * In case the ActivateToken found by the `where` argument doesn't exist, create a new ActivateToken with this data.
+     */
+    create: XOR<ActivateTokenCreateInput, ActivateTokenUncheckedCreateInput>
+    /**
+     * In case the ActivateToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ActivateTokenUpdateInput, ActivateTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * ActivateToken delete
+   */
+  export type ActivateTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+    /**
+     * Filter which ActivateToken to delete.
+     */
+    where: ActivateTokenWhereUniqueInput
+  }
+
+  /**
+   * ActivateToken deleteMany
+   */
+  export type ActivateTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ActivateTokens to delete
+     */
+    where?: ActivateTokenWhereInput
+    /**
+     * Limit how many ActivateTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ActivateToken without action
+   */
+  export type ActivateTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ActivateToken
+     */
+    select?: ActivateTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ActivateToken
+     */
+    omit?: ActivateTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ActivateTokenInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Syllabus
    */
 
@@ -4743,24 +6097,24 @@ export namespace Prisma {
     id: string | null
     title: string | null
     description: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SyllabusMaxAggregateOutputType = {
     id: string | null
     title: string | null
     description: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SyllabusCountAggregateOutputType = {
     id: number
     title: number
     description: number
-    created_at: number
-    updated_at: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -4769,24 +6123,24 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SyllabusMaxAggregateInputType = {
     id?: true
     title?: true
     description?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SyllabusCountAggregateInputType = {
     id?: true
     title?: true
     description?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -4866,8 +6220,8 @@ export namespace Prisma {
     id: string
     title: string
     description: string | null
-    created_at: Date
-    updated_at: Date
+    createdAt: Date
+    updatedAt: Date
     _count: SyllabusCountAggregateOutputType | null
     _min: SyllabusMinAggregateOutputType | null
     _max: SyllabusMaxAggregateOutputType | null
@@ -4891,8 +6245,8 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     class?: boolean | Syllabus$classArgs<ExtArgs>
     modules?: boolean | Syllabus$modulesArgs<ExtArgs>
     _count?: boolean | SyllabusCountOutputTypeDefaultArgs<ExtArgs>
@@ -4902,27 +6256,27 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["syllabus"]>
 
   export type SyllabusSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["syllabus"]>
 
   export type SyllabusSelectScalar = {
     id?: boolean
     title?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type SyllabusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "created_at" | "updated_at", ExtArgs["result"]["syllabus"]>
+  export type SyllabusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["syllabus"]>
   export type SyllabusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     class?: boolean | Syllabus$classArgs<ExtArgs>
     modules?: boolean | Syllabus$modulesArgs<ExtArgs>
@@ -4941,8 +6295,8 @@ export namespace Prisma {
       id: string
       title: string
       description: string | null
-      created_at: Date
-      updated_at: Date
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["syllabus"]>
     composites: {}
   }
@@ -5371,8 +6725,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Syllabus", 'String'>
     readonly title: FieldRef<"Syllabus", 'String'>
     readonly description: FieldRef<"Syllabus", 'String'>
-    readonly created_at: FieldRef<"Syllabus", 'DateTime'>
-    readonly updated_at: FieldRef<"Syllabus", 'DateTime'>
+    readonly createdAt: FieldRef<"Syllabus", 'DateTime'>
+    readonly updatedAt: FieldRef<"Syllabus", 'DateTime'>
   }
     
 
@@ -5844,32 +7198,32 @@ export namespace Prisma {
 
   export type ModuleMinAggregateOutputType = {
     id: string | null
-    syllabus_id: string | null
+    syllabusId: string | null
     position: number | null
     title: string | null
     description: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ModuleMaxAggregateOutputType = {
     id: string | null
-    syllabus_id: string | null
+    syllabusId: string | null
     position: number | null
     title: string | null
     description: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ModuleCountAggregateOutputType = {
     id: number
-    syllabus_id: number
+    syllabusId: number
     position: number
     title: number
     description: number
-    created_at: number
-    updated_at: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -5884,32 +7238,32 @@ export namespace Prisma {
 
   export type ModuleMinAggregateInputType = {
     id?: true
-    syllabus_id?: true
+    syllabusId?: true
     position?: true
     title?: true
     description?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ModuleMaxAggregateInputType = {
     id?: true
-    syllabus_id?: true
+    syllabusId?: true
     position?: true
     title?: true
     description?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ModuleCountAggregateInputType = {
     id?: true
-    syllabus_id?: true
+    syllabusId?: true
     position?: true
     title?: true
     description?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -6001,12 +7355,12 @@ export namespace Prisma {
 
   export type ModuleGroupByOutputType = {
     id: string
-    syllabus_id: string
+    syllabusId: string
     position: number
     title: string
     description: string | null
-    created_at: Date
-    updated_at: Date
+    createdAt: Date
+    updatedAt: Date
     _count: ModuleCountAggregateOutputType | null
     _avg: ModuleAvgAggregateOutputType | null
     _sum: ModuleSumAggregateOutputType | null
@@ -6030,12 +7384,12 @@ export namespace Prisma {
 
   export type ModuleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    syllabus_id?: boolean
+    syllabusId?: boolean
     position?: boolean
     title?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     syllabus?: boolean | SyllabusDefaultArgs<ExtArgs>
     topics?: boolean | Module$topicsArgs<ExtArgs>
     _count?: boolean | ModuleCountOutputTypeDefaultArgs<ExtArgs>
@@ -6043,37 +7397,37 @@ export namespace Prisma {
 
   export type ModuleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    syllabus_id?: boolean
+    syllabusId?: boolean
     position?: boolean
     title?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     syllabus?: boolean | SyllabusDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["module"]>
 
   export type ModuleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    syllabus_id?: boolean
+    syllabusId?: boolean
     position?: boolean
     title?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     syllabus?: boolean | SyllabusDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["module"]>
 
   export type ModuleSelectScalar = {
     id?: boolean
-    syllabus_id?: boolean
+    syllabusId?: boolean
     position?: boolean
     title?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ModuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "syllabus_id" | "position" | "title" | "description" | "created_at" | "updated_at", ExtArgs["result"]["module"]>
+  export type ModuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "syllabusId" | "position" | "title" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["module"]>
   export type ModuleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     syllabus?: boolean | SyllabusDefaultArgs<ExtArgs>
     topics?: boolean | Module$topicsArgs<ExtArgs>
@@ -6094,12 +7448,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      syllabus_id: string
+      syllabusId: string
       position: number
       title: string
       description: string | null
-      created_at: Date
-      updated_at: Date
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["module"]>
     composites: {}
   }
@@ -6526,12 +7880,12 @@ export namespace Prisma {
    */
   interface ModuleFieldRefs {
     readonly id: FieldRef<"Module", 'String'>
-    readonly syllabus_id: FieldRef<"Module", 'String'>
+    readonly syllabusId: FieldRef<"Module", 'String'>
     readonly position: FieldRef<"Module", 'Float'>
     readonly title: FieldRef<"Module", 'String'>
     readonly description: FieldRef<"Module", 'String'>
-    readonly created_at: FieldRef<"Module", 'DateTime'>
-    readonly updated_at: FieldRef<"Module", 'DateTime'>
+    readonly createdAt: FieldRef<"Module", 'DateTime'>
+    readonly updatedAt: FieldRef<"Module", 'DateTime'>
   }
     
 
@@ -6992,35 +8346,35 @@ export namespace Prisma {
 
   export type TopicMinAggregateOutputType = {
     id: string | null
-    module_id: string | null
+    moduleId: string | null
     position: number | null
     title: string | null
     content: string | null
     goal: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type TopicMaxAggregateOutputType = {
     id: string | null
-    module_id: string | null
+    moduleId: string | null
     position: number | null
     title: string | null
     content: string | null
     goal: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type TopicCountAggregateOutputType = {
     id: number
-    module_id: number
+    moduleId: number
     position: number
     title: number
     content: number
     goal: number
-    created_at: number
-    updated_at: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -7035,35 +8389,35 @@ export namespace Prisma {
 
   export type TopicMinAggregateInputType = {
     id?: true
-    module_id?: true
+    moduleId?: true
     position?: true
     title?: true
     content?: true
     goal?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type TopicMaxAggregateInputType = {
     id?: true
-    module_id?: true
+    moduleId?: true
     position?: true
     title?: true
     content?: true
     goal?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type TopicCountAggregateInputType = {
     id?: true
-    module_id?: true
+    moduleId?: true
     position?: true
     title?: true
     content?: true
     goal?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -7155,13 +8509,13 @@ export namespace Prisma {
 
   export type TopicGroupByOutputType = {
     id: string
-    module_id: string
+    moduleId: string
     position: number
     title: string
     content: string | null
     goal: string | null
-    created_at: Date
-    updated_at: Date
+    createdAt: Date
+    updatedAt: Date
     _count: TopicCountAggregateOutputType | null
     _avg: TopicAvgAggregateOutputType | null
     _sum: TopicSumAggregateOutputType | null
@@ -7185,13 +8539,13 @@ export namespace Prisma {
 
   export type TopicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    module_id?: boolean
+    moduleId?: boolean
     position?: boolean
     title?: boolean
     content?: boolean
     goal?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     module?: boolean | ModuleDefaultArgs<ExtArgs>
     resources?: boolean | Topic$resourcesArgs<ExtArgs>
     sessions?: boolean | Topic$sessionsArgs<ExtArgs>
@@ -7200,40 +8554,40 @@ export namespace Prisma {
 
   export type TopicSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    module_id?: boolean
+    moduleId?: boolean
     position?: boolean
     title?: boolean
     content?: boolean
     goal?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     module?: boolean | ModuleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["topic"]>
 
   export type TopicSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    module_id?: boolean
+    moduleId?: boolean
     position?: boolean
     title?: boolean
     content?: boolean
     goal?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     module?: boolean | ModuleDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["topic"]>
 
   export type TopicSelectScalar = {
     id?: boolean
-    module_id?: boolean
+    moduleId?: boolean
     position?: boolean
     title?: boolean
     content?: boolean
     goal?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type TopicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "module_id" | "position" | "title" | "content" | "goal" | "created_at" | "updated_at", ExtArgs["result"]["topic"]>
+  export type TopicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "moduleId" | "position" | "title" | "content" | "goal" | "createdAt" | "updatedAt", ExtArgs["result"]["topic"]>
   export type TopicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     module?: boolean | ModuleDefaultArgs<ExtArgs>
     resources?: boolean | Topic$resourcesArgs<ExtArgs>
@@ -7256,13 +8610,13 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      module_id: string
+      moduleId: string
       position: number
       title: string
       content: string | null
       goal: string | null
-      created_at: Date
-      updated_at: Date
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["topic"]>
     composites: {}
   }
@@ -7690,13 +9044,13 @@ export namespace Prisma {
    */
   interface TopicFieldRefs {
     readonly id: FieldRef<"Topic", 'String'>
-    readonly module_id: FieldRef<"Topic", 'String'>
+    readonly moduleId: FieldRef<"Topic", 'String'>
     readonly position: FieldRef<"Topic", 'Float'>
     readonly title: FieldRef<"Topic", 'String'>
     readonly content: FieldRef<"Topic", 'String'>
     readonly goal: FieldRef<"Topic", 'String'>
-    readonly created_at: FieldRef<"Topic", 'DateTime'>
-    readonly updated_at: FieldRef<"Topic", 'DateTime'>
+    readonly createdAt: FieldRef<"Topic", 'DateTime'>
+    readonly updatedAt: FieldRef<"Topic", 'DateTime'>
   }
     
 
@@ -8174,8 +9528,8 @@ export namespace Prisma {
     title: string | null
     description: string | null
     url: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ResourceMaxAggregateOutputType = {
@@ -8183,8 +9537,8 @@ export namespace Prisma {
     title: string | null
     description: string | null
     url: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ResourceCountAggregateOutputType = {
@@ -8192,8 +9546,8 @@ export namespace Prisma {
     title: number
     description: number
     url: number
-    created_at: number
-    updated_at: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -8203,8 +9557,8 @@ export namespace Prisma {
     title?: true
     description?: true
     url?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ResourceMaxAggregateInputType = {
@@ -8212,8 +9566,8 @@ export namespace Prisma {
     title?: true
     description?: true
     url?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ResourceCountAggregateInputType = {
@@ -8221,8 +9575,8 @@ export namespace Prisma {
     title?: true
     description?: true
     url?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -8303,8 +9657,8 @@ export namespace Prisma {
     title: string
     description: string | null
     url: string
-    created_at: Date
-    updated_at: Date
+    createdAt: Date
+    updatedAt: Date
     _count: ResourceCountAggregateOutputType | null
     _min: ResourceMinAggregateOutputType | null
     _max: ResourceMaxAggregateOutputType | null
@@ -8329,8 +9683,8 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     url?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     topicResources?: boolean | Resource$topicResourcesArgs<ExtArgs>
     _count?: boolean | ResourceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["resource"]>
@@ -8340,8 +9694,8 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     url?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["resource"]>
 
   export type ResourceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8349,8 +9703,8 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     url?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["resource"]>
 
   export type ResourceSelectScalar = {
@@ -8358,11 +9712,11 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     url?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ResourceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "url" | "created_at" | "updated_at", ExtArgs["result"]["resource"]>
+  export type ResourceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "url" | "createdAt" | "updatedAt", ExtArgs["result"]["resource"]>
   export type ResourceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     topicResources?: boolean | Resource$topicResourcesArgs<ExtArgs>
     _count?: boolean | ResourceCountOutputTypeDefaultArgs<ExtArgs>
@@ -8380,8 +9734,8 @@ export namespace Prisma {
       title: string
       description: string | null
       url: string
-      created_at: Date
-      updated_at: Date
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["resource"]>
     composites: {}
   }
@@ -8810,8 +10164,8 @@ export namespace Prisma {
     readonly title: FieldRef<"Resource", 'String'>
     readonly description: FieldRef<"Resource", 'String'>
     readonly url: FieldRef<"Resource", 'String'>
-    readonly created_at: FieldRef<"Resource", 'DateTime'>
-    readonly updated_at: FieldRef<"Resource", 'DateTime'>
+    readonly createdAt: FieldRef<"Resource", 'DateTime'>
+    readonly updatedAt: FieldRef<"Resource", 'DateTime'>
   }
     
 
@@ -9254,52 +10608,52 @@ export namespace Prisma {
 
   export type TopicResourceMinAggregateOutputType = {
     id: string | null
-    topic_id: string | null
-    resource_id: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    topicId: string | null
+    resourceId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type TopicResourceMaxAggregateOutputType = {
     id: string | null
-    topic_id: string | null
-    resource_id: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    topicId: string | null
+    resourceId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type TopicResourceCountAggregateOutputType = {
     id: number
-    topic_id: number
-    resource_id: number
-    created_at: number
-    updated_at: number
+    topicId: number
+    resourceId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type TopicResourceMinAggregateInputType = {
     id?: true
-    topic_id?: true
-    resource_id?: true
-    created_at?: true
-    updated_at?: true
+    topicId?: true
+    resourceId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type TopicResourceMaxAggregateInputType = {
     id?: true
-    topic_id?: true
-    resource_id?: true
-    created_at?: true
-    updated_at?: true
+    topicId?: true
+    resourceId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type TopicResourceCountAggregateInputType = {
     id?: true
-    topic_id?: true
-    resource_id?: true
-    created_at?: true
-    updated_at?: true
+    topicId?: true
+    resourceId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -9377,10 +10731,10 @@ export namespace Prisma {
 
   export type TopicResourceGroupByOutputType = {
     id: string
-    topic_id: string
-    resource_id: string | null
-    created_at: Date
-    updated_at: Date
+    topicId: string
+    resourceId: string | null
+    createdAt: Date
+    updatedAt: Date
     _count: TopicResourceCountAggregateOutputType | null
     _min: TopicResourceMinAggregateOutputType | null
     _max: TopicResourceMaxAggregateOutputType | null
@@ -9402,43 +10756,43 @@ export namespace Prisma {
 
   export type TopicResourceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    topic_id?: boolean
-    resource_id?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    topicId?: boolean
+    resourceId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     topic?: boolean | TopicDefaultArgs<ExtArgs>
     resource?: boolean | TopicResource$resourceArgs<ExtArgs>
   }, ExtArgs["result"]["topicResource"]>
 
   export type TopicResourceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    topic_id?: boolean
-    resource_id?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    topicId?: boolean
+    resourceId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     topic?: boolean | TopicDefaultArgs<ExtArgs>
     resource?: boolean | TopicResource$resourceArgs<ExtArgs>
   }, ExtArgs["result"]["topicResource"]>
 
   export type TopicResourceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    topic_id?: boolean
-    resource_id?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    topicId?: boolean
+    resourceId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     topic?: boolean | TopicDefaultArgs<ExtArgs>
     resource?: boolean | TopicResource$resourceArgs<ExtArgs>
   }, ExtArgs["result"]["topicResource"]>
 
   export type TopicResourceSelectScalar = {
     id?: boolean
-    topic_id?: boolean
-    resource_id?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    topicId?: boolean
+    resourceId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type TopicResourceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "topic_id" | "resource_id" | "created_at" | "updated_at", ExtArgs["result"]["topicResource"]>
+  export type TopicResourceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "topicId" | "resourceId" | "createdAt" | "updatedAt", ExtArgs["result"]["topicResource"]>
   export type TopicResourceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     topic?: boolean | TopicDefaultArgs<ExtArgs>
     resource?: boolean | TopicResource$resourceArgs<ExtArgs>
@@ -9460,10 +10814,10 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      topic_id: string
-      resource_id: string | null
-      created_at: Date
-      updated_at: Date
+      topicId: string
+      resourceId: string | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["topicResource"]>
     composites: {}
   }
@@ -9890,10 +11244,10 @@ export namespace Prisma {
    */
   interface TopicResourceFieldRefs {
     readonly id: FieldRef<"TopicResource", 'String'>
-    readonly topic_id: FieldRef<"TopicResource", 'String'>
-    readonly resource_id: FieldRef<"TopicResource", 'String'>
-    readonly created_at: FieldRef<"TopicResource", 'DateTime'>
-    readonly updated_at: FieldRef<"TopicResource", 'DateTime'>
+    readonly topicId: FieldRef<"TopicResource", 'String'>
+    readonly resourceId: FieldRef<"TopicResource", 'String'>
+    readonly createdAt: FieldRef<"TopicResource", 'DateTime'>
+    readonly updatedAt: FieldRef<"TopicResource", 'DateTime'>
   }
     
 
@@ -10339,82 +11693,82 @@ export namespace Prisma {
 
   export type SessionMinAggregateOutputType = {
     id: string | null
-    topic_id: string | null
-    session_start: Date | null
-    session_end: Date | null
-    meeting_id: string | null
-    meeting_password: string | null
-    meeting_url: string | null
-    meeting_recording: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    topicId: string | null
+    sessionStart: Date | null
+    sessionEnd: Date | null
+    meetingId: string | null
+    meetingPassword: string | null
+    meetingUrl: string | null
+    meetingRecording: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SessionMaxAggregateOutputType = {
     id: string | null
-    topic_id: string | null
-    session_start: Date | null
-    session_end: Date | null
-    meeting_id: string | null
-    meeting_password: string | null
-    meeting_url: string | null
-    meeting_recording: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    topicId: string | null
+    sessionStart: Date | null
+    sessionEnd: Date | null
+    meetingId: string | null
+    meetingPassword: string | null
+    meetingUrl: string | null
+    meetingRecording: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type SessionCountAggregateOutputType = {
     id: number
-    topic_id: number
-    session_start: number
-    session_end: number
-    meeting_id: number
-    meeting_password: number
-    meeting_url: number
-    meeting_recording: number
-    created_at: number
-    updated_at: number
+    topicId: number
+    sessionStart: number
+    sessionEnd: number
+    meetingId: number
+    meetingPassword: number
+    meetingUrl: number
+    meetingRecording: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type SessionMinAggregateInputType = {
     id?: true
-    topic_id?: true
-    session_start?: true
-    session_end?: true
-    meeting_id?: true
-    meeting_password?: true
-    meeting_url?: true
-    meeting_recording?: true
-    created_at?: true
-    updated_at?: true
+    topicId?: true
+    sessionStart?: true
+    sessionEnd?: true
+    meetingId?: true
+    meetingPassword?: true
+    meetingUrl?: true
+    meetingRecording?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SessionMaxAggregateInputType = {
     id?: true
-    topic_id?: true
-    session_start?: true
-    session_end?: true
-    meeting_id?: true
-    meeting_password?: true
-    meeting_url?: true
-    meeting_recording?: true
-    created_at?: true
-    updated_at?: true
+    topicId?: true
+    sessionStart?: true
+    sessionEnd?: true
+    meetingId?: true
+    meetingPassword?: true
+    meetingUrl?: true
+    meetingRecording?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type SessionCountAggregateInputType = {
     id?: true
-    topic_id?: true
-    session_start?: true
-    session_end?: true
-    meeting_id?: true
-    meeting_password?: true
-    meeting_url?: true
-    meeting_recording?: true
-    created_at?: true
-    updated_at?: true
+    topicId?: true
+    sessionStart?: true
+    sessionEnd?: true
+    meetingId?: true
+    meetingPassword?: true
+    meetingUrl?: true
+    meetingRecording?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -10492,15 +11846,15 @@ export namespace Prisma {
 
   export type SessionGroupByOutputType = {
     id: string
-    topic_id: string
-    session_start: Date
-    session_end: Date
-    meeting_id: string
-    meeting_password: string
-    meeting_url: string
-    meeting_recording: string | null
-    created_at: Date
-    updated_at: Date
+    topicId: string
+    sessionStart: Date
+    sessionEnd: Date
+    meetingId: string
+    meetingPassword: string
+    meetingUrl: string
+    meetingRecording: string | null
+    createdAt: Date
+    updatedAt: Date
     _count: SessionCountAggregateOutputType | null
     _min: SessionMinAggregateOutputType | null
     _max: SessionMaxAggregateOutputType | null
@@ -10522,60 +11876,60 @@ export namespace Prisma {
 
   export type SessionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    topic_id?: boolean
-    session_start?: boolean
-    session_end?: boolean
-    meeting_id?: boolean
-    meeting_password?: boolean
-    meeting_url?: boolean
-    meeting_recording?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    topicId?: boolean
+    sessionStart?: boolean
+    sessionEnd?: boolean
+    meetingId?: boolean
+    meetingPassword?: boolean
+    meetingUrl?: boolean
+    meetingRecording?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     topic?: boolean | TopicDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    topic_id?: boolean
-    session_start?: boolean
-    session_end?: boolean
-    meeting_id?: boolean
-    meeting_password?: boolean
-    meeting_url?: boolean
-    meeting_recording?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    topicId?: boolean
+    sessionStart?: boolean
+    sessionEnd?: boolean
+    meetingId?: boolean
+    meetingPassword?: boolean
+    meetingUrl?: boolean
+    meetingRecording?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     topic?: boolean | TopicDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    topic_id?: boolean
-    session_start?: boolean
-    session_end?: boolean
-    meeting_id?: boolean
-    meeting_password?: boolean
-    meeting_url?: boolean
-    meeting_recording?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    topicId?: boolean
+    sessionStart?: boolean
+    sessionEnd?: boolean
+    meetingId?: boolean
+    meetingPassword?: boolean
+    meetingUrl?: boolean
+    meetingRecording?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     topic?: boolean | TopicDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["session"]>
 
   export type SessionSelectScalar = {
     id?: boolean
-    topic_id?: boolean
-    session_start?: boolean
-    session_end?: boolean
-    meeting_id?: boolean
-    meeting_password?: boolean
-    meeting_url?: boolean
-    meeting_recording?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    topicId?: boolean
+    sessionStart?: boolean
+    sessionEnd?: boolean
+    meetingId?: boolean
+    meetingPassword?: boolean
+    meetingUrl?: boolean
+    meetingRecording?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "topic_id" | "session_start" | "session_end" | "meeting_id" | "meeting_password" | "meeting_url" | "meeting_recording" | "created_at" | "updated_at", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "topicId" | "sessionStart" | "sessionEnd" | "meetingId" | "meetingPassword" | "meetingUrl" | "meetingRecording" | "createdAt" | "updatedAt", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     topic?: boolean | TopicDefaultArgs<ExtArgs>
   }
@@ -10593,15 +11947,15 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      topic_id: string
-      session_start: Date
-      session_end: Date
-      meeting_id: string
-      meeting_password: string
-      meeting_url: string
-      meeting_recording: string | null
-      created_at: Date
-      updated_at: Date
+      topicId: string
+      sessionStart: Date
+      sessionEnd: Date
+      meetingId: string
+      meetingPassword: string
+      meetingUrl: string
+      meetingRecording: string | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["session"]>
     composites: {}
   }
@@ -11027,15 +12381,15 @@ export namespace Prisma {
    */
   interface SessionFieldRefs {
     readonly id: FieldRef<"Session", 'String'>
-    readonly topic_id: FieldRef<"Session", 'String'>
-    readonly session_start: FieldRef<"Session", 'DateTime'>
-    readonly session_end: FieldRef<"Session", 'DateTime'>
-    readonly meeting_id: FieldRef<"Session", 'String'>
-    readonly meeting_password: FieldRef<"Session", 'String'>
-    readonly meeting_url: FieldRef<"Session", 'String'>
-    readonly meeting_recording: FieldRef<"Session", 'String'>
-    readonly created_at: FieldRef<"Session", 'DateTime'>
-    readonly updated_at: FieldRef<"Session", 'DateTime'>
+    readonly topicId: FieldRef<"Session", 'String'>
+    readonly sessionStart: FieldRef<"Session", 'DateTime'>
+    readonly sessionEnd: FieldRef<"Session", 'DateTime'>
+    readonly meetingId: FieldRef<"Session", 'String'>
+    readonly meetingPassword: FieldRef<"Session", 'String'>
+    readonly meetingUrl: FieldRef<"Session", 'String'>
+    readonly meetingRecording: FieldRef<"Session", 'String'>
+    readonly createdAt: FieldRef<"Session", 'DateTime'>
+    readonly updatedAt: FieldRef<"Session", 'DateTime'>
   }
     
 
@@ -11462,58 +12816,58 @@ export namespace Prisma {
 
   export type ClassStudentMinAggregateOutputType = {
     id: string | null
-    user_id: string | null
-    class_id: string | null
-    is_active: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
+    userId: string | null
+    classId: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ClassStudentMaxAggregateOutputType = {
     id: string | null
-    user_id: string | null
-    class_id: string | null
-    is_active: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
+    userId: string | null
+    classId: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ClassStudentCountAggregateOutputType = {
     id: number
-    user_id: number
-    class_id: number
-    is_active: number
-    created_at: number
-    updated_at: number
+    userId: number
+    classId: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type ClassStudentMinAggregateInputType = {
     id?: true
-    user_id?: true
-    class_id?: true
-    is_active?: true
-    created_at?: true
-    updated_at?: true
+    userId?: true
+    classId?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ClassStudentMaxAggregateInputType = {
     id?: true
-    user_id?: true
-    class_id?: true
-    is_active?: true
-    created_at?: true
-    updated_at?: true
+    userId?: true
+    classId?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ClassStudentCountAggregateInputType = {
     id?: true
-    user_id?: true
-    class_id?: true
-    is_active?: true
-    created_at?: true
-    updated_at?: true
+    userId?: true
+    classId?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -11591,11 +12945,11 @@ export namespace Prisma {
 
   export type ClassStudentGroupByOutputType = {
     id: string
-    user_id: string
-    class_id: string
-    is_active: boolean
-    created_at: Date
-    updated_at: Date
+    userId: string
+    classId: string
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
     _count: ClassStudentCountAggregateOutputType | null
     _min: ClassStudentMinAggregateOutputType | null
     _max: ClassStudentMaxAggregateOutputType | null
@@ -11617,11 +12971,11 @@ export namespace Prisma {
 
   export type ClassStudentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_id?: boolean
-    class_id?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    userId?: boolean
+    classId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
     attendance?: boolean | ClassStudent$attendanceArgs<ExtArgs>
@@ -11630,36 +12984,36 @@ export namespace Prisma {
 
   export type ClassStudentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_id?: boolean
-    class_id?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    userId?: boolean
+    classId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classStudent"]>
 
   export type ClassStudentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_id?: boolean
-    class_id?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    userId?: boolean
+    classId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classStudent"]>
 
   export type ClassStudentSelectScalar = {
     id?: boolean
-    user_id?: boolean
-    class_id?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    userId?: boolean
+    classId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ClassStudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "class_id" | "is_active" | "created_at" | "updated_at", ExtArgs["result"]["classStudent"]>
+  export type ClassStudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "classId" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["classStudent"]>
   export type ClassStudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
@@ -11684,11 +13038,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      user_id: string
-      class_id: string
-      is_active: boolean
-      created_at: Date
-      updated_at: Date
+      userId: string
+      classId: string
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["classStudent"]>
     composites: {}
   }
@@ -12116,11 +13470,11 @@ export namespace Prisma {
    */
   interface ClassStudentFieldRefs {
     readonly id: FieldRef<"ClassStudent", 'String'>
-    readonly user_id: FieldRef<"ClassStudent", 'String'>
-    readonly class_id: FieldRef<"ClassStudent", 'String'>
-    readonly is_active: FieldRef<"ClassStudent", 'Boolean'>
-    readonly created_at: FieldRef<"ClassStudent", 'DateTime'>
-    readonly updated_at: FieldRef<"ClassStudent", 'DateTime'>
+    readonly userId: FieldRef<"ClassStudent", 'String'>
+    readonly classId: FieldRef<"ClassStudent", 'String'>
+    readonly isActive: FieldRef<"ClassStudent", 'Boolean'>
+    readonly createdAt: FieldRef<"ClassStudent", 'DateTime'>
+    readonly updatedAt: FieldRef<"ClassStudent", 'DateTime'>
   }
     
 
@@ -12571,58 +13925,58 @@ export namespace Prisma {
 
   export type ClassTeacherMinAggregateOutputType = {
     id: string | null
-    user_id: string | null
-    class_id: string | null
-    is_active: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
+    userId: string | null
+    classId: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ClassTeacherMaxAggregateOutputType = {
     id: string | null
-    user_id: string | null
-    class_id: string | null
-    is_active: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
+    userId: string | null
+    classId: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ClassTeacherCountAggregateOutputType = {
     id: number
-    user_id: number
-    class_id: number
-    is_active: number
-    created_at: number
-    updated_at: number
+    userId: number
+    classId: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type ClassTeacherMinAggregateInputType = {
     id?: true
-    user_id?: true
-    class_id?: true
-    is_active?: true
-    created_at?: true
-    updated_at?: true
+    userId?: true
+    classId?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ClassTeacherMaxAggregateInputType = {
     id?: true
-    user_id?: true
-    class_id?: true
-    is_active?: true
-    created_at?: true
-    updated_at?: true
+    userId?: true
+    classId?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ClassTeacherCountAggregateInputType = {
     id?: true
-    user_id?: true
-    class_id?: true
-    is_active?: true
-    created_at?: true
-    updated_at?: true
+    userId?: true
+    classId?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -12700,11 +14054,11 @@ export namespace Prisma {
 
   export type ClassTeacherGroupByOutputType = {
     id: string
-    user_id: string
-    class_id: string
-    is_active: boolean
-    created_at: Date
-    updated_at: Date
+    userId: string
+    classId: string
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
     _count: ClassTeacherCountAggregateOutputType | null
     _min: ClassTeacherMinAggregateOutputType | null
     _max: ClassTeacherMaxAggregateOutputType | null
@@ -12726,47 +14080,47 @@ export namespace Prisma {
 
   export type ClassTeacherSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_id?: boolean
-    class_id?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    userId?: boolean
+    classId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classTeacher"]>
 
   export type ClassTeacherSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_id?: boolean
-    class_id?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    userId?: boolean
+    classId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classTeacher"]>
 
   export type ClassTeacherSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    user_id?: boolean
-    class_id?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    userId?: boolean
+    classId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classTeacher"]>
 
   export type ClassTeacherSelectScalar = {
     id?: boolean
-    user_id?: boolean
-    class_id?: boolean
-    is_active?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    userId?: boolean
+    classId?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ClassTeacherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "class_id" | "is_active" | "created_at" | "updated_at", ExtArgs["result"]["classTeacher"]>
+  export type ClassTeacherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "classId" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["classTeacher"]>
   export type ClassTeacherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
@@ -12788,11 +14142,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      user_id: string
-      class_id: string
-      is_active: boolean
-      created_at: Date
-      updated_at: Date
+      userId: string
+      classId: string
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["classTeacher"]>
     composites: {}
   }
@@ -13219,11 +14573,11 @@ export namespace Prisma {
    */
   interface ClassTeacherFieldRefs {
     readonly id: FieldRef<"ClassTeacher", 'String'>
-    readonly user_id: FieldRef<"ClassTeacher", 'String'>
-    readonly class_id: FieldRef<"ClassTeacher", 'String'>
-    readonly is_active: FieldRef<"ClassTeacher", 'Boolean'>
-    readonly created_at: FieldRef<"ClassTeacher", 'DateTime'>
-    readonly updated_at: FieldRef<"ClassTeacher", 'DateTime'>
+    readonly userId: FieldRef<"ClassTeacher", 'String'>
+    readonly classId: FieldRef<"ClassTeacher", 'String'>
+    readonly isActive: FieldRef<"ClassTeacher", 'Boolean'>
+    readonly createdAt: FieldRef<"ClassTeacher", 'DateTime'>
+    readonly updatedAt: FieldRef<"ClassTeacher", 'DateTime'>
   }
     
 
@@ -13654,8 +15008,8 @@ export namespace Prisma {
     address: string | null
     website: string | null
     logo: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type CompanyMaxAggregateOutputType = {
@@ -13664,8 +15018,8 @@ export namespace Prisma {
     address: string | null
     website: string | null
     logo: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type CompanyCountAggregateOutputType = {
@@ -13674,8 +15028,8 @@ export namespace Prisma {
     address: number
     website: number
     logo: number
-    created_at: number
-    updated_at: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -13686,8 +15040,8 @@ export namespace Prisma {
     address?: true
     website?: true
     logo?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type CompanyMaxAggregateInputType = {
@@ -13696,8 +15050,8 @@ export namespace Prisma {
     address?: true
     website?: true
     logo?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type CompanyCountAggregateInputType = {
@@ -13706,8 +15060,8 @@ export namespace Prisma {
     address?: true
     website?: true
     logo?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -13789,8 +15143,8 @@ export namespace Prisma {
     address: string | null
     website: string | null
     logo: string | null
-    created_at: Date
-    updated_at: Date
+    createdAt: Date
+    updatedAt: Date
     _count: CompanyCountAggregateOutputType | null
     _min: CompanyMinAggregateOutputType | null
     _max: CompanyMaxAggregateOutputType | null
@@ -13816,8 +15170,8 @@ export namespace Prisma {
     address?: boolean
     website?: boolean
     logo?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     users?: boolean | Company$usersArgs<ExtArgs>
     classes?: boolean | Company$classesArgs<ExtArgs>
     _count?: boolean | CompanyCountOutputTypeDefaultArgs<ExtArgs>
@@ -13829,8 +15183,8 @@ export namespace Prisma {
     address?: boolean
     website?: boolean
     logo?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["company"]>
 
   export type CompanySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -13839,8 +15193,8 @@ export namespace Prisma {
     address?: boolean
     website?: boolean
     logo?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["company"]>
 
   export type CompanySelectScalar = {
@@ -13849,11 +15203,11 @@ export namespace Prisma {
     address?: boolean
     website?: boolean
     logo?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type CompanyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "address" | "website" | "logo" | "created_at" | "updated_at", ExtArgs["result"]["company"]>
+  export type CompanyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "address" | "website" | "logo" | "createdAt" | "updatedAt", ExtArgs["result"]["company"]>
   export type CompanyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | Company$usersArgs<ExtArgs>
     classes?: boolean | Company$classesArgs<ExtArgs>
@@ -13874,8 +15228,8 @@ export namespace Prisma {
       address: string | null
       website: string | null
       logo: string | null
-      created_at: Date
-      updated_at: Date
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["company"]>
     composites: {}
   }
@@ -14306,8 +15660,8 @@ export namespace Prisma {
     readonly address: FieldRef<"Company", 'String'>
     readonly website: FieldRef<"Company", 'String'>
     readonly logo: FieldRef<"Company", 'String'>
-    readonly created_at: FieldRef<"Company", 'DateTime'>
-    readonly updated_at: FieldRef<"Company", 'DateTime'>
+    readonly createdAt: FieldRef<"Company", 'DateTime'>
+    readonly updatedAt: FieldRef<"Company", 'DateTime'>
   }
     
 
@@ -14775,22 +16129,22 @@ export namespace Prisma {
   export type ClassTypeMinAggregateOutputType = {
     id: string | null
     name: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ClassTypeMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type ClassTypeCountAggregateOutputType = {
     id: number
     name: number
-    created_at: number
-    updated_at: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -14798,22 +16152,22 @@ export namespace Prisma {
   export type ClassTypeMinAggregateInputType = {
     id?: true
     name?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ClassTypeMaxAggregateInputType = {
     id?: true
     name?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type ClassTypeCountAggregateInputType = {
     id?: true
     name?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -14892,8 +16246,8 @@ export namespace Prisma {
   export type ClassTypeGroupByOutputType = {
     id: string
     name: string
-    created_at: Date
-    updated_at: Date
+    createdAt: Date
+    updatedAt: Date
     _count: ClassTypeCountAggregateOutputType | null
     _min: ClassTypeMinAggregateOutputType | null
     _max: ClassTypeMaxAggregateOutputType | null
@@ -14916,8 +16270,8 @@ export namespace Prisma {
   export type ClassTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     classes?: boolean | ClassType$classesArgs<ExtArgs>
     _count?: boolean | ClassTypeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classType"]>
@@ -14925,25 +16279,25 @@ export namespace Prisma {
   export type ClassTypeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["classType"]>
 
   export type ClassTypeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["classType"]>
 
   export type ClassTypeSelectScalar = {
     id?: boolean
     name?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type ClassTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "created_at" | "updated_at", ExtArgs["result"]["classType"]>
+  export type ClassTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["classType"]>
   export type ClassTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     classes?: boolean | ClassType$classesArgs<ExtArgs>
     _count?: boolean | ClassTypeCountOutputTypeDefaultArgs<ExtArgs>
@@ -14959,8 +16313,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
-      created_at: Date
-      updated_at: Date
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["classType"]>
     composites: {}
   }
@@ -15387,8 +16741,8 @@ export namespace Prisma {
   interface ClassTypeFieldRefs {
     readonly id: FieldRef<"ClassType", 'String'>
     readonly name: FieldRef<"ClassType", 'String'>
-    readonly created_at: FieldRef<"ClassType", 'DateTime'>
-    readonly updated_at: FieldRef<"ClassType", 'DateTime'>
+    readonly createdAt: FieldRef<"ClassType", 'DateTime'>
+    readonly updatedAt: FieldRef<"ClassType", 'DateTime'>
   }
     
 
@@ -15831,52 +17185,52 @@ export namespace Prisma {
 
   export type AttendanceMinAggregateOutputType = {
     id: string | null
-    class_student_id: string | null
+    classStudentId: string | null
     description: $Enums.AttendanceStatus | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type AttendanceMaxAggregateOutputType = {
     id: string | null
-    class_student_id: string | null
+    classStudentId: string | null
     description: $Enums.AttendanceStatus | null
-    created_at: Date | null
-    updated_at: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type AttendanceCountAggregateOutputType = {
     id: number
-    class_student_id: number
+    classStudentId: number
     description: number
-    created_at: number
-    updated_at: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type AttendanceMinAggregateInputType = {
     id?: true
-    class_student_id?: true
+    classStudentId?: true
     description?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type AttendanceMaxAggregateInputType = {
     id?: true
-    class_student_id?: true
+    classStudentId?: true
     description?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type AttendanceCountAggregateInputType = {
     id?: true
-    class_student_id?: true
+    classStudentId?: true
     description?: true
-    created_at?: true
-    updated_at?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -15954,10 +17308,10 @@ export namespace Prisma {
 
   export type AttendanceGroupByOutputType = {
     id: string
-    class_student_id: string
+    classStudentId: string
     description: $Enums.AttendanceStatus
-    created_at: Date
-    updated_at: Date
+    createdAt: Date
+    updatedAt: Date
     _count: AttendanceCountAggregateOutputType | null
     _min: AttendanceMinAggregateOutputType | null
     _max: AttendanceMaxAggregateOutputType | null
@@ -15979,40 +17333,40 @@ export namespace Prisma {
 
   export type AttendanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_student_id?: boolean
+    classStudentId?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     classStudent?: boolean | ClassStudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["attendance"]>
 
   export type AttendanceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_student_id?: boolean
+    classStudentId?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     classStudent?: boolean | ClassStudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["attendance"]>
 
   export type AttendanceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    class_student_id?: boolean
+    classStudentId?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     classStudent?: boolean | ClassStudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["attendance"]>
 
   export type AttendanceSelectScalar = {
     id?: boolean
-    class_student_id?: boolean
+    classStudentId?: boolean
     description?: boolean
-    created_at?: boolean
-    updated_at?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type AttendanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "class_student_id" | "description" | "created_at" | "updated_at", ExtArgs["result"]["attendance"]>
+  export type AttendanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classStudentId" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["attendance"]>
   export type AttendanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     classStudent?: boolean | ClassStudentDefaultArgs<ExtArgs>
   }
@@ -16030,10 +17384,10 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      class_student_id: string
+      classStudentId: string
       description: $Enums.AttendanceStatus
-      created_at: Date
-      updated_at: Date
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["attendance"]>
     composites: {}
   }
@@ -16459,10 +17813,10 @@ export namespace Prisma {
    */
   interface AttendanceFieldRefs {
     readonly id: FieldRef<"Attendance", 'String'>
-    readonly class_student_id: FieldRef<"Attendance", 'String'>
+    readonly classStudentId: FieldRef<"Attendance", 'String'>
     readonly description: FieldRef<"Attendance", 'AttendanceStatus'>
-    readonly created_at: FieldRef<"Attendance", 'DateTime'>
-    readonly updated_at: FieldRef<"Attendance", 'DateTime'>
+    readonly createdAt: FieldRef<"Attendance", 'DateTime'>
+    readonly updatedAt: FieldRef<"Attendance", 'DateTime'>
   }
     
 
@@ -16878,6 +18232,1142 @@ export namespace Prisma {
 
 
   /**
+   * Model RefreshToken
+   */
+
+  export type AggregateRefreshToken = {
+    _count: RefreshTokenCountAggregateOutputType | null
+    _min: RefreshTokenMinAggregateOutputType | null
+    _max: RefreshTokenMaxAggregateOutputType | null
+  }
+
+  export type RefreshTokenMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    jti: string | null
+    familyId: string | null
+    hashedToken: string | null
+    userAgent: string | null
+    ip: string | null
+    createdAt: Date | null
+    expiresAt: Date | null
+    revokedAt: Date | null
+    replacedById: string | null
+  }
+
+  export type RefreshTokenMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    jti: string | null
+    familyId: string | null
+    hashedToken: string | null
+    userAgent: string | null
+    ip: string | null
+    createdAt: Date | null
+    expiresAt: Date | null
+    revokedAt: Date | null
+    replacedById: string | null
+  }
+
+  export type RefreshTokenCountAggregateOutputType = {
+    id: number
+    userId: number
+    jti: number
+    familyId: number
+    hashedToken: number
+    userAgent: number
+    ip: number
+    createdAt: number
+    expiresAt: number
+    revokedAt: number
+    replacedById: number
+    _all: number
+  }
+
+
+  export type RefreshTokenMinAggregateInputType = {
+    id?: true
+    userId?: true
+    jti?: true
+    familyId?: true
+    hashedToken?: true
+    userAgent?: true
+    ip?: true
+    createdAt?: true
+    expiresAt?: true
+    revokedAt?: true
+    replacedById?: true
+  }
+
+  export type RefreshTokenMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    jti?: true
+    familyId?: true
+    hashedToken?: true
+    userAgent?: true
+    ip?: true
+    createdAt?: true
+    expiresAt?: true
+    revokedAt?: true
+    replacedById?: true
+  }
+
+  export type RefreshTokenCountAggregateInputType = {
+    id?: true
+    userId?: true
+    jti?: true
+    familyId?: true
+    hashedToken?: true
+    userAgent?: true
+    ip?: true
+    createdAt?: true
+    expiresAt?: true
+    revokedAt?: true
+    replacedById?: true
+    _all?: true
+  }
+
+  export type RefreshTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RefreshToken to aggregate.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RefreshTokens
+    **/
+    _count?: true | RefreshTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RefreshTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RefreshTokenMaxAggregateInputType
+  }
+
+  export type GetRefreshTokenAggregateType<T extends RefreshTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateRefreshToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRefreshToken[P]>
+      : GetScalarType<T[P], AggregateRefreshToken[P]>
+  }
+
+
+
+
+  export type RefreshTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RefreshTokenWhereInput
+    orderBy?: RefreshTokenOrderByWithAggregationInput | RefreshTokenOrderByWithAggregationInput[]
+    by: RefreshTokenScalarFieldEnum[] | RefreshTokenScalarFieldEnum
+    having?: RefreshTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RefreshTokenCountAggregateInputType | true
+    _min?: RefreshTokenMinAggregateInputType
+    _max?: RefreshTokenMaxAggregateInputType
+  }
+
+  export type RefreshTokenGroupByOutputType = {
+    id: string
+    userId: string
+    jti: string
+    familyId: string
+    hashedToken: string
+    userAgent: string | null
+    ip: string | null
+    createdAt: Date
+    expiresAt: Date
+    revokedAt: Date | null
+    replacedById: string | null
+    _count: RefreshTokenCountAggregateOutputType | null
+    _min: RefreshTokenMinAggregateOutputType | null
+    _max: RefreshTokenMaxAggregateOutputType | null
+  }
+
+  type GetRefreshTokenGroupByPayload<T extends RefreshTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RefreshTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RefreshTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RefreshTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], RefreshTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RefreshTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    jti?: boolean
+    familyId?: boolean
+    hashedToken?: boolean
+    userAgent?: boolean
+    ip?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    replacedById?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["refreshToken"]>
+
+  export type RefreshTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    jti?: boolean
+    familyId?: boolean
+    hashedToken?: boolean
+    userAgent?: boolean
+    ip?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    replacedById?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["refreshToken"]>
+
+  export type RefreshTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    jti?: boolean
+    familyId?: boolean
+    hashedToken?: boolean
+    userAgent?: boolean
+    ip?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    replacedById?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["refreshToken"]>
+
+  export type RefreshTokenSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    jti?: boolean
+    familyId?: boolean
+    hashedToken?: boolean
+    userAgent?: boolean
+    ip?: boolean
+    createdAt?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    replacedById?: boolean
+  }
+
+  export type RefreshTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "jti" | "familyId" | "hashedToken" | "userAgent" | "ip" | "createdAt" | "expiresAt" | "revokedAt" | "replacedById", ExtArgs["result"]["refreshToken"]>
+  export type RefreshTokenInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RefreshTokenIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type RefreshTokenIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $RefreshTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RefreshToken"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      jti: string
+      familyId: string
+      hashedToken: string
+      userAgent: string | null
+      ip: string | null
+      createdAt: Date
+      expiresAt: Date
+      revokedAt: Date | null
+      replacedById: string | null
+    }, ExtArgs["result"]["refreshToken"]>
+    composites: {}
+  }
+
+  type RefreshTokenGetPayload<S extends boolean | null | undefined | RefreshTokenDefaultArgs> = $Result.GetResult<Prisma.$RefreshTokenPayload, S>
+
+  type RefreshTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RefreshTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RefreshTokenCountAggregateInputType | true
+    }
+
+  export interface RefreshTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RefreshToken'], meta: { name: 'RefreshToken' } }
+    /**
+     * Find zero or one RefreshToken that matches the filter.
+     * @param {RefreshTokenFindUniqueArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RefreshTokenFindUniqueArgs>(args: SelectSubset<T, RefreshTokenFindUniqueArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RefreshToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RefreshTokenFindUniqueOrThrowArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RefreshTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, RefreshTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RefreshToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenFindFirstArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RefreshTokenFindFirstArgs>(args?: SelectSubset<T, RefreshTokenFindFirstArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RefreshToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenFindFirstOrThrowArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RefreshTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, RefreshTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RefreshTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RefreshTokens
+     * const refreshTokens = await prisma.refreshToken.findMany()
+     * 
+     * // Get first 10 RefreshTokens
+     * const refreshTokens = await prisma.refreshToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const refreshTokenWithIdOnly = await prisma.refreshToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RefreshTokenFindManyArgs>(args?: SelectSubset<T, RefreshTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RefreshToken.
+     * @param {RefreshTokenCreateArgs} args - Arguments to create a RefreshToken.
+     * @example
+     * // Create one RefreshToken
+     * const RefreshToken = await prisma.refreshToken.create({
+     *   data: {
+     *     // ... data to create a RefreshToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends RefreshTokenCreateArgs>(args: SelectSubset<T, RefreshTokenCreateArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RefreshTokens.
+     * @param {RefreshTokenCreateManyArgs} args - Arguments to create many RefreshTokens.
+     * @example
+     * // Create many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RefreshTokenCreateManyArgs>(args?: SelectSubset<T, RefreshTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RefreshTokens and returns the data saved in the database.
+     * @param {RefreshTokenCreateManyAndReturnArgs} args - Arguments to create many RefreshTokens.
+     * @example
+     * // Create many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RefreshTokens and only return the `id`
+     * const refreshTokenWithIdOnly = await prisma.refreshToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RefreshTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, RefreshTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RefreshToken.
+     * @param {RefreshTokenDeleteArgs} args - Arguments to delete one RefreshToken.
+     * @example
+     * // Delete one RefreshToken
+     * const RefreshToken = await prisma.refreshToken.delete({
+     *   where: {
+     *     // ... filter to delete one RefreshToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RefreshTokenDeleteArgs>(args: SelectSubset<T, RefreshTokenDeleteArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RefreshToken.
+     * @param {RefreshTokenUpdateArgs} args - Arguments to update one RefreshToken.
+     * @example
+     * // Update one RefreshToken
+     * const refreshToken = await prisma.refreshToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RefreshTokenUpdateArgs>(args: SelectSubset<T, RefreshTokenUpdateArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RefreshTokens.
+     * @param {RefreshTokenDeleteManyArgs} args - Arguments to filter RefreshTokens to delete.
+     * @example
+     * // Delete a few RefreshTokens
+     * const { count } = await prisma.refreshToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RefreshTokenDeleteManyArgs>(args?: SelectSubset<T, RefreshTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RefreshTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RefreshTokenUpdateManyArgs>(args: SelectSubset<T, RefreshTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RefreshTokens and returns the data updated in the database.
+     * @param {RefreshTokenUpdateManyAndReturnArgs} args - Arguments to update many RefreshTokens.
+     * @example
+     * // Update many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RefreshTokens and only return the `id`
+     * const refreshTokenWithIdOnly = await prisma.refreshToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RefreshTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, RefreshTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RefreshToken.
+     * @param {RefreshTokenUpsertArgs} args - Arguments to update or create a RefreshToken.
+     * @example
+     * // Update or create a RefreshToken
+     * const refreshToken = await prisma.refreshToken.upsert({
+     *   create: {
+     *     // ... data to create a RefreshToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RefreshToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RefreshTokenUpsertArgs>(args: SelectSubset<T, RefreshTokenUpsertArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RefreshTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenCountArgs} args - Arguments to filter RefreshTokens to count.
+     * @example
+     * // Count the number of RefreshTokens
+     * const count = await prisma.refreshToken.count({
+     *   where: {
+     *     // ... the filter for the RefreshTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends RefreshTokenCountArgs>(
+      args?: Subset<T, RefreshTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RefreshTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RefreshToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RefreshTokenAggregateArgs>(args: Subset<T, RefreshTokenAggregateArgs>): Prisma.PrismaPromise<GetRefreshTokenAggregateType<T>>
+
+    /**
+     * Group by RefreshToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RefreshTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RefreshTokenGroupByArgs['orderBy'] }
+        : { orderBy?: RefreshTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RefreshTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRefreshTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RefreshToken model
+   */
+  readonly fields: RefreshTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RefreshToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RefreshTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RefreshToken model
+   */
+  interface RefreshTokenFieldRefs {
+    readonly id: FieldRef<"RefreshToken", 'String'>
+    readonly userId: FieldRef<"RefreshToken", 'String'>
+    readonly jti: FieldRef<"RefreshToken", 'String'>
+    readonly familyId: FieldRef<"RefreshToken", 'String'>
+    readonly hashedToken: FieldRef<"RefreshToken", 'String'>
+    readonly userAgent: FieldRef<"RefreshToken", 'String'>
+    readonly ip: FieldRef<"RefreshToken", 'String'>
+    readonly createdAt: FieldRef<"RefreshToken", 'DateTime'>
+    readonly expiresAt: FieldRef<"RefreshToken", 'DateTime'>
+    readonly revokedAt: FieldRef<"RefreshToken", 'DateTime'>
+    readonly replacedById: FieldRef<"RefreshToken", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RefreshToken findUnique
+   */
+  export type RefreshTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken findUniqueOrThrow
+   */
+  export type RefreshTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken findFirst
+   */
+  export type RefreshTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RefreshTokens.
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RefreshTokens.
+     */
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * RefreshToken findFirstOrThrow
+   */
+  export type RefreshTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RefreshTokens.
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RefreshTokens.
+     */
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * RefreshToken findMany
+   */
+  export type RefreshTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter, which RefreshTokens to fetch.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RefreshTokens.
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * RefreshToken create
+   */
+  export type RefreshTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RefreshToken.
+     */
+    data: XOR<RefreshTokenCreateInput, RefreshTokenUncheckedCreateInput>
+  }
+
+  /**
+   * RefreshToken createMany
+   */
+  export type RefreshTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RefreshTokens.
+     */
+    data: RefreshTokenCreateManyInput | RefreshTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RefreshToken createManyAndReturn
+   */
+  export type RefreshTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many RefreshTokens.
+     */
+    data: RefreshTokenCreateManyInput | RefreshTokenCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RefreshToken update
+   */
+  export type RefreshTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RefreshToken.
+     */
+    data: XOR<RefreshTokenUpdateInput, RefreshTokenUncheckedUpdateInput>
+    /**
+     * Choose, which RefreshToken to update.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken updateMany
+   */
+  export type RefreshTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RefreshTokens.
+     */
+    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which RefreshTokens to update
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * Limit how many RefreshTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RefreshToken updateManyAndReturn
+   */
+  export type RefreshTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update RefreshTokens.
+     */
+    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which RefreshTokens to update
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * Limit how many RefreshTokens to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RefreshToken upsert
+   */
+  export type RefreshTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RefreshToken to update in case it exists.
+     */
+    where: RefreshTokenWhereUniqueInput
+    /**
+     * In case the RefreshToken found by the `where` argument doesn't exist, create a new RefreshToken with this data.
+     */
+    create: XOR<RefreshTokenCreateInput, RefreshTokenUncheckedCreateInput>
+    /**
+     * In case the RefreshToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RefreshTokenUpdateInput, RefreshTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * RefreshToken delete
+   */
+  export type RefreshTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+    /**
+     * Filter which RefreshToken to delete.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken deleteMany
+   */
+  export type RefreshTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RefreshTokens to delete
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * Limit how many RefreshTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RefreshToken without action
+   */
+  export type RefreshTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RefreshTokenInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -16893,14 +19383,14 @@ export namespace Prisma {
 
   export const ClassScalarFieldEnum: {
     id: 'id',
-    syllabus_id: 'syllabus_id',
-    company_id: 'company_id',
-    type_id: 'type_id',
+    syllabusId: 'syllabusId',
+    companyId: 'companyId',
+    typeId: 'typeId',
     name: 'name',
     description: 'description',
-    is_active: 'is_active',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
@@ -16908,29 +19398,43 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
-    company_id: 'company_id',
-    first_name: 'first_name',
-    last_name: 'last_name',
+    companyId: 'companyId',
+    firstName: 'firstName',
+    lastName: 'lastName',
     email: 'email',
+    phone: 'phone',
+    password: 'password',
     photo: 'photo',
     gender: 'gender',
     address: 'address',
     role: 'role',
-    is_email_verified: 'is_email_verified',
-    is_phone_verified: 'is_phone_verified',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    isEmailVerified: 'isEmailVerified',
+    isPhoneVerified: 'isPhoneVerified',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const ActivateTokenScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    token: 'token',
+    activatedAt: 'activatedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ActivateTokenScalarFieldEnum = (typeof ActivateTokenScalarFieldEnum)[keyof typeof ActivateTokenScalarFieldEnum]
 
 
   export const SyllabusScalarFieldEnum: {
     id: 'id',
     title: 'title',
     description: 'description',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type SyllabusScalarFieldEnum = (typeof SyllabusScalarFieldEnum)[keyof typeof SyllabusScalarFieldEnum]
@@ -16938,12 +19442,12 @@ export namespace Prisma {
 
   export const ModuleScalarFieldEnum: {
     id: 'id',
-    syllabus_id: 'syllabus_id',
+    syllabusId: 'syllabusId',
     position: 'position',
     title: 'title',
     description: 'description',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ModuleScalarFieldEnum = (typeof ModuleScalarFieldEnum)[keyof typeof ModuleScalarFieldEnum]
@@ -16951,13 +19455,13 @@ export namespace Prisma {
 
   export const TopicScalarFieldEnum: {
     id: 'id',
-    module_id: 'module_id',
+    moduleId: 'moduleId',
     position: 'position',
     title: 'title',
     content: 'content',
     goal: 'goal',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type TopicScalarFieldEnum = (typeof TopicScalarFieldEnum)[keyof typeof TopicScalarFieldEnum]
@@ -16968,8 +19472,8 @@ export namespace Prisma {
     title: 'title',
     description: 'description',
     url: 'url',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ResourceScalarFieldEnum = (typeof ResourceScalarFieldEnum)[keyof typeof ResourceScalarFieldEnum]
@@ -16977,10 +19481,10 @@ export namespace Prisma {
 
   export const TopicResourceScalarFieldEnum: {
     id: 'id',
-    topic_id: 'topic_id',
-    resource_id: 'resource_id',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    topicId: 'topicId',
+    resourceId: 'resourceId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type TopicResourceScalarFieldEnum = (typeof TopicResourceScalarFieldEnum)[keyof typeof TopicResourceScalarFieldEnum]
@@ -16988,15 +19492,15 @@ export namespace Prisma {
 
   export const SessionScalarFieldEnum: {
     id: 'id',
-    topic_id: 'topic_id',
-    session_start: 'session_start',
-    session_end: 'session_end',
-    meeting_id: 'meeting_id',
-    meeting_password: 'meeting_password',
-    meeting_url: 'meeting_url',
-    meeting_recording: 'meeting_recording',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    topicId: 'topicId',
+    sessionStart: 'sessionStart',
+    sessionEnd: 'sessionEnd',
+    meetingId: 'meetingId',
+    meetingPassword: 'meetingPassword',
+    meetingUrl: 'meetingUrl',
+    meetingRecording: 'meetingRecording',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
@@ -17004,11 +19508,11 @@ export namespace Prisma {
 
   export const ClassStudentScalarFieldEnum: {
     id: 'id',
-    user_id: 'user_id',
-    class_id: 'class_id',
-    is_active: 'is_active',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    userId: 'userId',
+    classId: 'classId',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ClassStudentScalarFieldEnum = (typeof ClassStudentScalarFieldEnum)[keyof typeof ClassStudentScalarFieldEnum]
@@ -17016,11 +19520,11 @@ export namespace Prisma {
 
   export const ClassTeacherScalarFieldEnum: {
     id: 'id',
-    user_id: 'user_id',
-    class_id: 'class_id',
-    is_active: 'is_active',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    userId: 'userId',
+    classId: 'classId',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ClassTeacherScalarFieldEnum = (typeof ClassTeacherScalarFieldEnum)[keyof typeof ClassTeacherScalarFieldEnum]
@@ -17032,8 +19536,8 @@ export namespace Prisma {
     address: 'address',
     website: 'website',
     logo: 'logo',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
@@ -17042,8 +19546,8 @@ export namespace Prisma {
   export const ClassTypeScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type ClassTypeScalarFieldEnum = (typeof ClassTypeScalarFieldEnum)[keyof typeof ClassTypeScalarFieldEnum]
@@ -17051,13 +19555,30 @@ export namespace Prisma {
 
   export const AttendanceScalarFieldEnum: {
     id: 'id',
-    class_student_id: 'class_student_id',
+    classStudentId: 'classStudentId',
     description: 'description',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+  export const RefreshTokenScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    jti: 'jti',
+    familyId: 'familyId',
+    hashedToken: 'hashedToken',
+    userAgent: 'userAgent',
+    ip: 'ip',
+    createdAt: 'createdAt',
+    expiresAt: 'expiresAt',
+    revokedAt: 'revokedAt',
+    replacedById: 'replacedById'
+  };
+
+  export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -17202,14 +19723,14 @@ export namespace Prisma {
     OR?: ClassWhereInput[]
     NOT?: ClassWhereInput | ClassWhereInput[]
     id?: StringFilter<"Class"> | string
-    syllabus_id?: StringFilter<"Class"> | string
-    company_id?: StringFilter<"Class"> | string
-    type_id?: StringFilter<"Class"> | string
+    syllabusId?: StringFilter<"Class"> | string
+    companyId?: StringFilter<"Class"> | string
+    typeId?: StringFilter<"Class"> | string
     name?: StringFilter<"Class"> | string
     description?: StringNullableFilter<"Class"> | string | null
-    is_active?: BoolFilter<"Class"> | boolean
-    created_at?: DateTimeFilter<"Class"> | Date | string
-    updated_at?: DateTimeFilter<"Class"> | Date | string
+    isActive?: BoolFilter<"Class"> | boolean
+    createdAt?: DateTimeFilter<"Class"> | Date | string
+    updatedAt?: DateTimeFilter<"Class"> | Date | string
     syllabus?: XOR<SyllabusScalarRelationFilter, SyllabusWhereInput>
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     type?: XOR<ClassTypeScalarRelationFilter, ClassTypeWhereInput>
@@ -17219,14 +19740,14 @@ export namespace Prisma {
 
   export type ClassOrderByWithRelationInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
-    company_id?: SortOrder
-    type_id?: SortOrder
+    syllabusId?: SortOrder
+    companyId?: SortOrder
+    typeId?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     syllabus?: SyllabusOrderByWithRelationInput
     company?: CompanyOrderByWithRelationInput
     type?: ClassTypeOrderByWithRelationInput
@@ -17236,34 +19757,34 @@ export namespace Prisma {
 
   export type ClassWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    syllabus_id?: string
+    syllabusId?: string
     AND?: ClassWhereInput | ClassWhereInput[]
     OR?: ClassWhereInput[]
     NOT?: ClassWhereInput | ClassWhereInput[]
-    company_id?: StringFilter<"Class"> | string
-    type_id?: StringFilter<"Class"> | string
+    companyId?: StringFilter<"Class"> | string
+    typeId?: StringFilter<"Class"> | string
     name?: StringFilter<"Class"> | string
     description?: StringNullableFilter<"Class"> | string | null
-    is_active?: BoolFilter<"Class"> | boolean
-    created_at?: DateTimeFilter<"Class"> | Date | string
-    updated_at?: DateTimeFilter<"Class"> | Date | string
+    isActive?: BoolFilter<"Class"> | boolean
+    createdAt?: DateTimeFilter<"Class"> | Date | string
+    updatedAt?: DateTimeFilter<"Class"> | Date | string
     syllabus?: XOR<SyllabusScalarRelationFilter, SyllabusWhereInput>
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     type?: XOR<ClassTypeScalarRelationFilter, ClassTypeWhereInput>
     students?: ClassStudentListRelationFilter
     teachers?: ClassTeacherListRelationFilter
-  }, "id" | "syllabus_id">
+  }, "id" | "syllabusId">
 
   export type ClassOrderByWithAggregationInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
-    company_id?: SortOrder
-    type_id?: SortOrder
+    syllabusId?: SortOrder
+    companyId?: SortOrder
+    typeId?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ClassCountOrderByAggregateInput
     _max?: ClassMaxOrderByAggregateInput
     _min?: ClassMinOrderByAggregateInput
@@ -17274,14 +19795,14 @@ export namespace Prisma {
     OR?: ClassScalarWhereWithAggregatesInput[]
     NOT?: ClassScalarWhereWithAggregatesInput | ClassScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Class"> | string
-    syllabus_id?: StringWithAggregatesFilter<"Class"> | string
-    company_id?: StringWithAggregatesFilter<"Class"> | string
-    type_id?: StringWithAggregatesFilter<"Class"> | string
+    syllabusId?: StringWithAggregatesFilter<"Class"> | string
+    companyId?: StringWithAggregatesFilter<"Class"> | string
+    typeId?: StringWithAggregatesFilter<"Class"> | string
     name?: StringWithAggregatesFilter<"Class"> | string
     description?: StringNullableWithAggregatesFilter<"Class"> | string | null
-    is_active?: BoolWithAggregatesFilter<"Class"> | boolean
-    created_at?: DateTimeWithAggregatesFilter<"Class"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Class"> | Date | string
+    isActive?: BoolWithAggregatesFilter<"Class"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Class"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Class"> | Date | string
   }
 
   export type UserWhereInput = {
@@ -17289,78 +19810,92 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
-    company_id?: StringNullableFilter<"User"> | string | null
-    first_name?: StringFilter<"User"> | string
-    last_name?: StringFilter<"User"> | string
+    companyId?: StringNullableFilter<"User"> | string | null
+    firstName?: StringFilter<"User"> | string
+    lastName?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
+    phone?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
     photo?: StringNullableFilter<"User"> | string | null
     gender?: EnumGenderFilter<"User"> | $Enums.Gender
     address?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
-    is_email_verified?: BoolFilter<"User"> | boolean
-    is_phone_verified?: BoolFilter<"User"> | boolean
-    created_at?: DateTimeFilter<"User"> | Date | string
-    updated_at?: DateTimeFilter<"User"> | Date | string
+    isEmailVerified?: BoolFilter<"User"> | boolean
+    isPhoneVerified?: BoolFilter<"User"> | boolean
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     company?: XOR<CompanyNullableScalarRelationFilter, CompanyWhereInput> | null
     classStudents?: ClassStudentListRelationFilter
     classTeachers?: ClassTeacherListRelationFilter
+    activateTokens?: ActivateTokenListRelationFilter
+    refreshTokens?: RefreshTokenListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    company_id?: SortOrderInput | SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    companyId?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
+    password?: SortOrder
     photo?: SortOrderInput | SortOrder
     gender?: SortOrder
     address?: SortOrder
     role?: SortOrder
-    is_email_verified?: SortOrder
-    is_phone_verified?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isEmailVerified?: SortOrder
+    isPhoneVerified?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     company?: CompanyOrderByWithRelationInput
     classStudents?: ClassStudentOrderByRelationAggregateInput
     classTeachers?: ClassTeacherOrderByRelationAggregateInput
+    activateTokens?: ActivateTokenOrderByRelationAggregateInput
+    refreshTokens?: RefreshTokenOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    phone?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    company_id?: StringNullableFilter<"User"> | string | null
-    first_name?: StringFilter<"User"> | string
-    last_name?: StringFilter<"User"> | string
+    companyId?: StringNullableFilter<"User"> | string | null
+    firstName?: StringFilter<"User"> | string
+    lastName?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
     photo?: StringNullableFilter<"User"> | string | null
     gender?: EnumGenderFilter<"User"> | $Enums.Gender
     address?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
-    is_email_verified?: BoolFilter<"User"> | boolean
-    is_phone_verified?: BoolFilter<"User"> | boolean
-    created_at?: DateTimeFilter<"User"> | Date | string
-    updated_at?: DateTimeFilter<"User"> | Date | string
+    isEmailVerified?: BoolFilter<"User"> | boolean
+    isPhoneVerified?: BoolFilter<"User"> | boolean
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     company?: XOR<CompanyNullableScalarRelationFilter, CompanyWhereInput> | null
     classStudents?: ClassStudentListRelationFilter
     classTeachers?: ClassTeacherListRelationFilter
-  }, "id" | "email">
+    activateTokens?: ActivateTokenListRelationFilter
+    refreshTokens?: RefreshTokenListRelationFilter
+  }, "id" | "email" | "phone">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    company_id?: SortOrderInput | SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    companyId?: SortOrderInput | SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
+    password?: SortOrder
     photo?: SortOrderInput | SortOrder
     gender?: SortOrder
     address?: SortOrder
     role?: SortOrder
-    is_email_verified?: SortOrder
-    is_phone_verified?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isEmailVerified?: SortOrder
+    isPhoneVerified?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -17371,18 +19906,80 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
-    company_id?: StringNullableWithAggregatesFilter<"User"> | string | null
-    first_name?: StringWithAggregatesFilter<"User"> | string
-    last_name?: StringWithAggregatesFilter<"User"> | string
+    companyId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    firstName?: StringWithAggregatesFilter<"User"> | string
+    lastName?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
+    phone?: StringWithAggregatesFilter<"User"> | string
+    password?: StringWithAggregatesFilter<"User"> | string
     photo?: StringNullableWithAggregatesFilter<"User"> | string | null
     gender?: EnumGenderWithAggregatesFilter<"User"> | $Enums.Gender
     address?: StringWithAggregatesFilter<"User"> | string
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
-    is_email_verified?: BoolWithAggregatesFilter<"User"> | boolean
-    is_phone_verified?: BoolWithAggregatesFilter<"User"> | boolean
-    created_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    isEmailVerified?: BoolWithAggregatesFilter<"User"> | boolean
+    isPhoneVerified?: BoolWithAggregatesFilter<"User"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type ActivateTokenWhereInput = {
+    AND?: ActivateTokenWhereInput | ActivateTokenWhereInput[]
+    OR?: ActivateTokenWhereInput[]
+    NOT?: ActivateTokenWhereInput | ActivateTokenWhereInput[]
+    id?: StringFilter<"ActivateToken"> | string
+    userId?: StringFilter<"ActivateToken"> | string
+    token?: StringFilter<"ActivateToken"> | string
+    activatedAt?: DateTimeNullableFilter<"ActivateToken"> | Date | string | null
+    createdAt?: DateTimeFilter<"ActivateToken"> | Date | string
+    updatedAt?: DateTimeFilter<"ActivateToken"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ActivateTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    token?: SortOrder
+    activatedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ActivateTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    token?: string
+    AND?: ActivateTokenWhereInput | ActivateTokenWhereInput[]
+    OR?: ActivateTokenWhereInput[]
+    NOT?: ActivateTokenWhereInput | ActivateTokenWhereInput[]
+    userId?: StringFilter<"ActivateToken"> | string
+    activatedAt?: DateTimeNullableFilter<"ActivateToken"> | Date | string | null
+    createdAt?: DateTimeFilter<"ActivateToken"> | Date | string
+    updatedAt?: DateTimeFilter<"ActivateToken"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "token">
+
+  export type ActivateTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    token?: SortOrder
+    activatedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ActivateTokenCountOrderByAggregateInput
+    _max?: ActivateTokenMaxOrderByAggregateInput
+    _min?: ActivateTokenMinOrderByAggregateInput
+  }
+
+  export type ActivateTokenScalarWhereWithAggregatesInput = {
+    AND?: ActivateTokenScalarWhereWithAggregatesInput | ActivateTokenScalarWhereWithAggregatesInput[]
+    OR?: ActivateTokenScalarWhereWithAggregatesInput[]
+    NOT?: ActivateTokenScalarWhereWithAggregatesInput | ActivateTokenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ActivateToken"> | string
+    userId?: StringWithAggregatesFilter<"ActivateToken"> | string
+    token?: StringWithAggregatesFilter<"ActivateToken"> | string
+    activatedAt?: DateTimeNullableWithAggregatesFilter<"ActivateToken"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ActivateToken"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ActivateToken"> | Date | string
   }
 
   export type SyllabusWhereInput = {
@@ -17392,8 +19989,8 @@ export namespace Prisma {
     id?: StringFilter<"Syllabus"> | string
     title?: StringFilter<"Syllabus"> | string
     description?: StringNullableFilter<"Syllabus"> | string | null
-    created_at?: DateTimeFilter<"Syllabus"> | Date | string
-    updated_at?: DateTimeFilter<"Syllabus"> | Date | string
+    createdAt?: DateTimeFilter<"Syllabus"> | Date | string
+    updatedAt?: DateTimeFilter<"Syllabus"> | Date | string
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
     modules?: ModuleListRelationFilter
   }
@@ -17402,8 +19999,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     class?: ClassOrderByWithRelationInput
     modules?: ModuleOrderByRelationAggregateInput
   }
@@ -17415,8 +20012,8 @@ export namespace Prisma {
     NOT?: SyllabusWhereInput | SyllabusWhereInput[]
     title?: StringFilter<"Syllabus"> | string
     description?: StringNullableFilter<"Syllabus"> | string | null
-    created_at?: DateTimeFilter<"Syllabus"> | Date | string
-    updated_at?: DateTimeFilter<"Syllabus"> | Date | string
+    createdAt?: DateTimeFilter<"Syllabus"> | Date | string
+    updatedAt?: DateTimeFilter<"Syllabus"> | Date | string
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
     modules?: ModuleListRelationFilter
   }, "id">
@@ -17425,8 +20022,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: SyllabusCountOrderByAggregateInput
     _max?: SyllabusMaxOrderByAggregateInput
     _min?: SyllabusMinOrderByAggregateInput
@@ -17439,8 +20036,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Syllabus"> | string
     title?: StringWithAggregatesFilter<"Syllabus"> | string
     description?: StringNullableWithAggregatesFilter<"Syllabus"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"Syllabus"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Syllabus"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Syllabus"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Syllabus"> | Date | string
   }
 
   export type ModuleWhereInput = {
@@ -17448,24 +20045,24 @@ export namespace Prisma {
     OR?: ModuleWhereInput[]
     NOT?: ModuleWhereInput | ModuleWhereInput[]
     id?: StringFilter<"Module"> | string
-    syllabus_id?: StringFilter<"Module"> | string
+    syllabusId?: StringFilter<"Module"> | string
     position?: FloatFilter<"Module"> | number
     title?: StringFilter<"Module"> | string
     description?: StringNullableFilter<"Module"> | string | null
-    created_at?: DateTimeFilter<"Module"> | Date | string
-    updated_at?: DateTimeFilter<"Module"> | Date | string
+    createdAt?: DateTimeFilter<"Module"> | Date | string
+    updatedAt?: DateTimeFilter<"Module"> | Date | string
     syllabus?: XOR<SyllabusScalarRelationFilter, SyllabusWhereInput>
     topics?: TopicListRelationFilter
   }
 
   export type ModuleOrderByWithRelationInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
+    syllabusId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     syllabus?: SyllabusOrderByWithRelationInput
     topics?: TopicOrderByRelationAggregateInput
   }
@@ -17475,24 +20072,24 @@ export namespace Prisma {
     AND?: ModuleWhereInput | ModuleWhereInput[]
     OR?: ModuleWhereInput[]
     NOT?: ModuleWhereInput | ModuleWhereInput[]
-    syllabus_id?: StringFilter<"Module"> | string
+    syllabusId?: StringFilter<"Module"> | string
     position?: FloatFilter<"Module"> | number
     title?: StringFilter<"Module"> | string
     description?: StringNullableFilter<"Module"> | string | null
-    created_at?: DateTimeFilter<"Module"> | Date | string
-    updated_at?: DateTimeFilter<"Module"> | Date | string
+    createdAt?: DateTimeFilter<"Module"> | Date | string
+    updatedAt?: DateTimeFilter<"Module"> | Date | string
     syllabus?: XOR<SyllabusScalarRelationFilter, SyllabusWhereInput>
     topics?: TopicListRelationFilter
   }, "id">
 
   export type ModuleOrderByWithAggregationInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
+    syllabusId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ModuleCountOrderByAggregateInput
     _avg?: ModuleAvgOrderByAggregateInput
     _max?: ModuleMaxOrderByAggregateInput
@@ -17505,12 +20102,12 @@ export namespace Prisma {
     OR?: ModuleScalarWhereWithAggregatesInput[]
     NOT?: ModuleScalarWhereWithAggregatesInput | ModuleScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Module"> | string
-    syllabus_id?: StringWithAggregatesFilter<"Module"> | string
+    syllabusId?: StringWithAggregatesFilter<"Module"> | string
     position?: FloatWithAggregatesFilter<"Module"> | number
     title?: StringWithAggregatesFilter<"Module"> | string
     description?: StringNullableWithAggregatesFilter<"Module"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"Module"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Module"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Module"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Module"> | Date | string
   }
 
   export type TopicWhereInput = {
@@ -17518,13 +20115,13 @@ export namespace Prisma {
     OR?: TopicWhereInput[]
     NOT?: TopicWhereInput | TopicWhereInput[]
     id?: StringFilter<"Topic"> | string
-    module_id?: StringFilter<"Topic"> | string
+    moduleId?: StringFilter<"Topic"> | string
     position?: FloatFilter<"Topic"> | number
     title?: StringFilter<"Topic"> | string
     content?: StringNullableFilter<"Topic"> | string | null
     goal?: StringNullableFilter<"Topic"> | string | null
-    created_at?: DateTimeFilter<"Topic"> | Date | string
-    updated_at?: DateTimeFilter<"Topic"> | Date | string
+    createdAt?: DateTimeFilter<"Topic"> | Date | string
+    updatedAt?: DateTimeFilter<"Topic"> | Date | string
     module?: XOR<ModuleScalarRelationFilter, ModuleWhereInput>
     resources?: TopicResourceListRelationFilter
     sessions?: SessionListRelationFilter
@@ -17532,13 +20129,13 @@ export namespace Prisma {
 
   export type TopicOrderByWithRelationInput = {
     id?: SortOrder
-    module_id?: SortOrder
+    moduleId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     content?: SortOrderInput | SortOrder
     goal?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     module?: ModuleOrderByWithRelationInput
     resources?: TopicResourceOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
@@ -17549,13 +20146,13 @@ export namespace Prisma {
     AND?: TopicWhereInput | TopicWhereInput[]
     OR?: TopicWhereInput[]
     NOT?: TopicWhereInput | TopicWhereInput[]
-    module_id?: StringFilter<"Topic"> | string
+    moduleId?: StringFilter<"Topic"> | string
     position?: FloatFilter<"Topic"> | number
     title?: StringFilter<"Topic"> | string
     content?: StringNullableFilter<"Topic"> | string | null
     goal?: StringNullableFilter<"Topic"> | string | null
-    created_at?: DateTimeFilter<"Topic"> | Date | string
-    updated_at?: DateTimeFilter<"Topic"> | Date | string
+    createdAt?: DateTimeFilter<"Topic"> | Date | string
+    updatedAt?: DateTimeFilter<"Topic"> | Date | string
     module?: XOR<ModuleScalarRelationFilter, ModuleWhereInput>
     resources?: TopicResourceListRelationFilter
     sessions?: SessionListRelationFilter
@@ -17563,13 +20160,13 @@ export namespace Prisma {
 
   export type TopicOrderByWithAggregationInput = {
     id?: SortOrder
-    module_id?: SortOrder
+    moduleId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     content?: SortOrderInput | SortOrder
     goal?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: TopicCountOrderByAggregateInput
     _avg?: TopicAvgOrderByAggregateInput
     _max?: TopicMaxOrderByAggregateInput
@@ -17582,13 +20179,13 @@ export namespace Prisma {
     OR?: TopicScalarWhereWithAggregatesInput[]
     NOT?: TopicScalarWhereWithAggregatesInput | TopicScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Topic"> | string
-    module_id?: StringWithAggregatesFilter<"Topic"> | string
+    moduleId?: StringWithAggregatesFilter<"Topic"> | string
     position?: FloatWithAggregatesFilter<"Topic"> | number
     title?: StringWithAggregatesFilter<"Topic"> | string
     content?: StringNullableWithAggregatesFilter<"Topic"> | string | null
     goal?: StringNullableWithAggregatesFilter<"Topic"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"Topic"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Topic"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Topic"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Topic"> | Date | string
   }
 
   export type ResourceWhereInput = {
@@ -17599,8 +20196,8 @@ export namespace Prisma {
     title?: StringFilter<"Resource"> | string
     description?: StringNullableFilter<"Resource"> | string | null
     url?: StringFilter<"Resource"> | string
-    created_at?: DateTimeFilter<"Resource"> | Date | string
-    updated_at?: DateTimeFilter<"Resource"> | Date | string
+    createdAt?: DateTimeFilter<"Resource"> | Date | string
+    updatedAt?: DateTimeFilter<"Resource"> | Date | string
     topicResources?: TopicResourceListRelationFilter
   }
 
@@ -17609,8 +20206,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrderInput | SortOrder
     url?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     topicResources?: TopicResourceOrderByRelationAggregateInput
   }
 
@@ -17622,8 +20219,8 @@ export namespace Prisma {
     title?: StringFilter<"Resource"> | string
     description?: StringNullableFilter<"Resource"> | string | null
     url?: StringFilter<"Resource"> | string
-    created_at?: DateTimeFilter<"Resource"> | Date | string
-    updated_at?: DateTimeFilter<"Resource"> | Date | string
+    createdAt?: DateTimeFilter<"Resource"> | Date | string
+    updatedAt?: DateTimeFilter<"Resource"> | Date | string
     topicResources?: TopicResourceListRelationFilter
   }, "id">
 
@@ -17632,8 +20229,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrderInput | SortOrder
     url?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ResourceCountOrderByAggregateInput
     _max?: ResourceMaxOrderByAggregateInput
     _min?: ResourceMinOrderByAggregateInput
@@ -17647,8 +20244,8 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Resource"> | string
     description?: StringNullableWithAggregatesFilter<"Resource"> | string | null
     url?: StringWithAggregatesFilter<"Resource"> | string
-    created_at?: DateTimeWithAggregatesFilter<"Resource"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Resource"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Resource"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Resource"> | Date | string
   }
 
   export type TopicResourceWhereInput = {
@@ -17656,20 +20253,20 @@ export namespace Prisma {
     OR?: TopicResourceWhereInput[]
     NOT?: TopicResourceWhereInput | TopicResourceWhereInput[]
     id?: StringFilter<"TopicResource"> | string
-    topic_id?: StringFilter<"TopicResource"> | string
-    resource_id?: StringNullableFilter<"TopicResource"> | string | null
-    created_at?: DateTimeFilter<"TopicResource"> | Date | string
-    updated_at?: DateTimeFilter<"TopicResource"> | Date | string
+    topicId?: StringFilter<"TopicResource"> | string
+    resourceId?: StringNullableFilter<"TopicResource"> | string | null
+    createdAt?: DateTimeFilter<"TopicResource"> | Date | string
+    updatedAt?: DateTimeFilter<"TopicResource"> | Date | string
     topic?: XOR<TopicScalarRelationFilter, TopicWhereInput>
     resource?: XOR<ResourceNullableScalarRelationFilter, ResourceWhereInput> | null
   }
 
   export type TopicResourceOrderByWithRelationInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    resource_id?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    topicId?: SortOrder
+    resourceId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     topic?: TopicOrderByWithRelationInput
     resource?: ResourceOrderByWithRelationInput
   }
@@ -17679,20 +20276,20 @@ export namespace Prisma {
     AND?: TopicResourceWhereInput | TopicResourceWhereInput[]
     OR?: TopicResourceWhereInput[]
     NOT?: TopicResourceWhereInput | TopicResourceWhereInput[]
-    topic_id?: StringFilter<"TopicResource"> | string
-    resource_id?: StringNullableFilter<"TopicResource"> | string | null
-    created_at?: DateTimeFilter<"TopicResource"> | Date | string
-    updated_at?: DateTimeFilter<"TopicResource"> | Date | string
+    topicId?: StringFilter<"TopicResource"> | string
+    resourceId?: StringNullableFilter<"TopicResource"> | string | null
+    createdAt?: DateTimeFilter<"TopicResource"> | Date | string
+    updatedAt?: DateTimeFilter<"TopicResource"> | Date | string
     topic?: XOR<TopicScalarRelationFilter, TopicWhereInput>
     resource?: XOR<ResourceNullableScalarRelationFilter, ResourceWhereInput> | null
   }, "id">
 
   export type TopicResourceOrderByWithAggregationInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    resource_id?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    topicId?: SortOrder
+    resourceId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: TopicResourceCountOrderByAggregateInput
     _max?: TopicResourceMaxOrderByAggregateInput
     _min?: TopicResourceMinOrderByAggregateInput
@@ -17703,10 +20300,10 @@ export namespace Prisma {
     OR?: TopicResourceScalarWhereWithAggregatesInput[]
     NOT?: TopicResourceScalarWhereWithAggregatesInput | TopicResourceScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"TopicResource"> | string
-    topic_id?: StringWithAggregatesFilter<"TopicResource"> | string
-    resource_id?: StringNullableWithAggregatesFilter<"TopicResource"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"TopicResource"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"TopicResource"> | Date | string
+    topicId?: StringWithAggregatesFilter<"TopicResource"> | string
+    resourceId?: StringNullableWithAggregatesFilter<"TopicResource"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TopicResource"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TopicResource"> | Date | string
   }
 
   export type SessionWhereInput = {
@@ -17714,29 +20311,29 @@ export namespace Prisma {
     OR?: SessionWhereInput[]
     NOT?: SessionWhereInput | SessionWhereInput[]
     id?: StringFilter<"Session"> | string
-    topic_id?: StringFilter<"Session"> | string
-    session_start?: DateTimeFilter<"Session"> | Date | string
-    session_end?: DateTimeFilter<"Session"> | Date | string
-    meeting_id?: StringFilter<"Session"> | string
-    meeting_password?: StringFilter<"Session"> | string
-    meeting_url?: StringFilter<"Session"> | string
-    meeting_recording?: StringNullableFilter<"Session"> | string | null
-    created_at?: DateTimeFilter<"Session"> | Date | string
-    updated_at?: DateTimeFilter<"Session"> | Date | string
+    topicId?: StringFilter<"Session"> | string
+    sessionStart?: DateTimeFilter<"Session"> | Date | string
+    sessionEnd?: DateTimeFilter<"Session"> | Date | string
+    meetingId?: StringFilter<"Session"> | string
+    meetingPassword?: StringFilter<"Session"> | string
+    meetingUrl?: StringFilter<"Session"> | string
+    meetingRecording?: StringNullableFilter<"Session"> | string | null
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
     topic?: XOR<TopicScalarRelationFilter, TopicWhereInput>
   }
 
   export type SessionOrderByWithRelationInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    session_start?: SortOrder
-    session_end?: SortOrder
-    meeting_id?: SortOrder
-    meeting_password?: SortOrder
-    meeting_url?: SortOrder
-    meeting_recording?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    topicId?: SortOrder
+    sessionStart?: SortOrder
+    sessionEnd?: SortOrder
+    meetingId?: SortOrder
+    meetingPassword?: SortOrder
+    meetingUrl?: SortOrder
+    meetingRecording?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     topic?: TopicOrderByWithRelationInput
   }
 
@@ -17745,29 +20342,29 @@ export namespace Prisma {
     AND?: SessionWhereInput | SessionWhereInput[]
     OR?: SessionWhereInput[]
     NOT?: SessionWhereInput | SessionWhereInput[]
-    topic_id?: StringFilter<"Session"> | string
-    session_start?: DateTimeFilter<"Session"> | Date | string
-    session_end?: DateTimeFilter<"Session"> | Date | string
-    meeting_id?: StringFilter<"Session"> | string
-    meeting_password?: StringFilter<"Session"> | string
-    meeting_url?: StringFilter<"Session"> | string
-    meeting_recording?: StringNullableFilter<"Session"> | string | null
-    created_at?: DateTimeFilter<"Session"> | Date | string
-    updated_at?: DateTimeFilter<"Session"> | Date | string
+    topicId?: StringFilter<"Session"> | string
+    sessionStart?: DateTimeFilter<"Session"> | Date | string
+    sessionEnd?: DateTimeFilter<"Session"> | Date | string
+    meetingId?: StringFilter<"Session"> | string
+    meetingPassword?: StringFilter<"Session"> | string
+    meetingUrl?: StringFilter<"Session"> | string
+    meetingRecording?: StringNullableFilter<"Session"> | string | null
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
     topic?: XOR<TopicScalarRelationFilter, TopicWhereInput>
   }, "id">
 
   export type SessionOrderByWithAggregationInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    session_start?: SortOrder
-    session_end?: SortOrder
-    meeting_id?: SortOrder
-    meeting_password?: SortOrder
-    meeting_url?: SortOrder
-    meeting_recording?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    topicId?: SortOrder
+    sessionStart?: SortOrder
+    sessionEnd?: SortOrder
+    meetingId?: SortOrder
+    meetingPassword?: SortOrder
+    meetingUrl?: SortOrder
+    meetingRecording?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: SessionCountOrderByAggregateInput
     _max?: SessionMaxOrderByAggregateInput
     _min?: SessionMinOrderByAggregateInput
@@ -17778,15 +20375,15 @@ export namespace Prisma {
     OR?: SessionScalarWhereWithAggregatesInput[]
     NOT?: SessionScalarWhereWithAggregatesInput | SessionScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Session"> | string
-    topic_id?: StringWithAggregatesFilter<"Session"> | string
-    session_start?: DateTimeWithAggregatesFilter<"Session"> | Date | string
-    session_end?: DateTimeWithAggregatesFilter<"Session"> | Date | string
-    meeting_id?: StringWithAggregatesFilter<"Session"> | string
-    meeting_password?: StringWithAggregatesFilter<"Session"> | string
-    meeting_url?: StringWithAggregatesFilter<"Session"> | string
-    meeting_recording?: StringNullableWithAggregatesFilter<"Session"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"Session"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    topicId?: StringWithAggregatesFilter<"Session"> | string
+    sessionStart?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    sessionEnd?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    meetingId?: StringWithAggregatesFilter<"Session"> | string
+    meetingPassword?: StringWithAggregatesFilter<"Session"> | string
+    meetingUrl?: StringWithAggregatesFilter<"Session"> | string
+    meetingRecording?: StringNullableWithAggregatesFilter<"Session"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Session"> | Date | string
   }
 
   export type ClassStudentWhereInput = {
@@ -17794,11 +20391,11 @@ export namespace Prisma {
     OR?: ClassStudentWhereInput[]
     NOT?: ClassStudentWhereInput | ClassStudentWhereInput[]
     id?: StringFilter<"ClassStudent"> | string
-    user_id?: StringFilter<"ClassStudent"> | string
-    class_id?: StringFilter<"ClassStudent"> | string
-    is_active?: BoolFilter<"ClassStudent"> | boolean
-    created_at?: DateTimeFilter<"ClassStudent"> | Date | string
-    updated_at?: DateTimeFilter<"ClassStudent"> | Date | string
+    userId?: StringFilter<"ClassStudent"> | string
+    classId?: StringFilter<"ClassStudent"> | string
+    isActive?: BoolFilter<"ClassStudent"> | boolean
+    createdAt?: DateTimeFilter<"ClassStudent"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassStudent"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
     attendance?: AttendanceListRelationFilter
@@ -17806,11 +20403,11 @@ export namespace Prisma {
 
   export type ClassStudentOrderByWithRelationInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
     attendance?: AttendanceOrderByRelationAggregateInput
@@ -17821,11 +20418,11 @@ export namespace Prisma {
     AND?: ClassStudentWhereInput | ClassStudentWhereInput[]
     OR?: ClassStudentWhereInput[]
     NOT?: ClassStudentWhereInput | ClassStudentWhereInput[]
-    user_id?: StringFilter<"ClassStudent"> | string
-    class_id?: StringFilter<"ClassStudent"> | string
-    is_active?: BoolFilter<"ClassStudent"> | boolean
-    created_at?: DateTimeFilter<"ClassStudent"> | Date | string
-    updated_at?: DateTimeFilter<"ClassStudent"> | Date | string
+    userId?: StringFilter<"ClassStudent"> | string
+    classId?: StringFilter<"ClassStudent"> | string
+    isActive?: BoolFilter<"ClassStudent"> | boolean
+    createdAt?: DateTimeFilter<"ClassStudent"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassStudent"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
     attendance?: AttendanceListRelationFilter
@@ -17833,11 +20430,11 @@ export namespace Prisma {
 
   export type ClassStudentOrderByWithAggregationInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ClassStudentCountOrderByAggregateInput
     _max?: ClassStudentMaxOrderByAggregateInput
     _min?: ClassStudentMinOrderByAggregateInput
@@ -17848,11 +20445,11 @@ export namespace Prisma {
     OR?: ClassStudentScalarWhereWithAggregatesInput[]
     NOT?: ClassStudentScalarWhereWithAggregatesInput | ClassStudentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ClassStudent"> | string
-    user_id?: StringWithAggregatesFilter<"ClassStudent"> | string
-    class_id?: StringWithAggregatesFilter<"ClassStudent"> | string
-    is_active?: BoolWithAggregatesFilter<"ClassStudent"> | boolean
-    created_at?: DateTimeWithAggregatesFilter<"ClassStudent"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"ClassStudent"> | Date | string
+    userId?: StringWithAggregatesFilter<"ClassStudent"> | string
+    classId?: StringWithAggregatesFilter<"ClassStudent"> | string
+    isActive?: BoolWithAggregatesFilter<"ClassStudent"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ClassStudent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ClassStudent"> | Date | string
   }
 
   export type ClassTeacherWhereInput = {
@@ -17860,22 +20457,22 @@ export namespace Prisma {
     OR?: ClassTeacherWhereInput[]
     NOT?: ClassTeacherWhereInput | ClassTeacherWhereInput[]
     id?: StringFilter<"ClassTeacher"> | string
-    user_id?: StringFilter<"ClassTeacher"> | string
-    class_id?: StringFilter<"ClassTeacher"> | string
-    is_active?: BoolFilter<"ClassTeacher"> | boolean
-    created_at?: DateTimeFilter<"ClassTeacher"> | Date | string
-    updated_at?: DateTimeFilter<"ClassTeacher"> | Date | string
+    userId?: StringFilter<"ClassTeacher"> | string
+    classId?: StringFilter<"ClassTeacher"> | string
+    isActive?: BoolFilter<"ClassTeacher"> | boolean
+    createdAt?: DateTimeFilter<"ClassTeacher"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassTeacher"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
   }
 
   export type ClassTeacherOrderByWithRelationInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
   }
@@ -17885,22 +20482,22 @@ export namespace Prisma {
     AND?: ClassTeacherWhereInput | ClassTeacherWhereInput[]
     OR?: ClassTeacherWhereInput[]
     NOT?: ClassTeacherWhereInput | ClassTeacherWhereInput[]
-    user_id?: StringFilter<"ClassTeacher"> | string
-    class_id?: StringFilter<"ClassTeacher"> | string
-    is_active?: BoolFilter<"ClassTeacher"> | boolean
-    created_at?: DateTimeFilter<"ClassTeacher"> | Date | string
-    updated_at?: DateTimeFilter<"ClassTeacher"> | Date | string
+    userId?: StringFilter<"ClassTeacher"> | string
+    classId?: StringFilter<"ClassTeacher"> | string
+    isActive?: BoolFilter<"ClassTeacher"> | boolean
+    createdAt?: DateTimeFilter<"ClassTeacher"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassTeacher"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
   }, "id">
 
   export type ClassTeacherOrderByWithAggregationInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ClassTeacherCountOrderByAggregateInput
     _max?: ClassTeacherMaxOrderByAggregateInput
     _min?: ClassTeacherMinOrderByAggregateInput
@@ -17911,11 +20508,11 @@ export namespace Prisma {
     OR?: ClassTeacherScalarWhereWithAggregatesInput[]
     NOT?: ClassTeacherScalarWhereWithAggregatesInput | ClassTeacherScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ClassTeacher"> | string
-    user_id?: StringWithAggregatesFilter<"ClassTeacher"> | string
-    class_id?: StringWithAggregatesFilter<"ClassTeacher"> | string
-    is_active?: BoolWithAggregatesFilter<"ClassTeacher"> | boolean
-    created_at?: DateTimeWithAggregatesFilter<"ClassTeacher"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"ClassTeacher"> | Date | string
+    userId?: StringWithAggregatesFilter<"ClassTeacher"> | string
+    classId?: StringWithAggregatesFilter<"ClassTeacher"> | string
+    isActive?: BoolWithAggregatesFilter<"ClassTeacher"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ClassTeacher"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ClassTeacher"> | Date | string
   }
 
   export type CompanyWhereInput = {
@@ -17927,8 +20524,8 @@ export namespace Prisma {
     address?: StringNullableFilter<"Company"> | string | null
     website?: StringNullableFilter<"Company"> | string | null
     logo?: StringNullableFilter<"Company"> | string | null
-    created_at?: DateTimeFilter<"Company"> | Date | string
-    updated_at?: DateTimeFilter<"Company"> | Date | string
+    createdAt?: DateTimeFilter<"Company"> | Date | string
+    updatedAt?: DateTimeFilter<"Company"> | Date | string
     users?: UserListRelationFilter
     classes?: ClassListRelationFilter
   }
@@ -17939,8 +20536,8 @@ export namespace Prisma {
     address?: SortOrderInput | SortOrder
     website?: SortOrderInput | SortOrder
     logo?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     users?: UserOrderByRelationAggregateInput
     classes?: ClassOrderByRelationAggregateInput
   }
@@ -17954,8 +20551,8 @@ export namespace Prisma {
     address?: StringNullableFilter<"Company"> | string | null
     website?: StringNullableFilter<"Company"> | string | null
     logo?: StringNullableFilter<"Company"> | string | null
-    created_at?: DateTimeFilter<"Company"> | Date | string
-    updated_at?: DateTimeFilter<"Company"> | Date | string
+    createdAt?: DateTimeFilter<"Company"> | Date | string
+    updatedAt?: DateTimeFilter<"Company"> | Date | string
     users?: UserListRelationFilter
     classes?: ClassListRelationFilter
   }, "id">
@@ -17966,8 +20563,8 @@ export namespace Prisma {
     address?: SortOrderInput | SortOrder
     website?: SortOrderInput | SortOrder
     logo?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: CompanyCountOrderByAggregateInput
     _max?: CompanyMaxOrderByAggregateInput
     _min?: CompanyMinOrderByAggregateInput
@@ -17982,8 +20579,8 @@ export namespace Prisma {
     address?: StringNullableWithAggregatesFilter<"Company"> | string | null
     website?: StringNullableWithAggregatesFilter<"Company"> | string | null
     logo?: StringNullableWithAggregatesFilter<"Company"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"Company"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Company"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Company"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Company"> | Date | string
   }
 
   export type ClassTypeWhereInput = {
@@ -17992,16 +20589,16 @@ export namespace Prisma {
     NOT?: ClassTypeWhereInput | ClassTypeWhereInput[]
     id?: StringFilter<"ClassType"> | string
     name?: StringFilter<"ClassType"> | string
-    created_at?: DateTimeFilter<"ClassType"> | Date | string
-    updated_at?: DateTimeFilter<"ClassType"> | Date | string
+    createdAt?: DateTimeFilter<"ClassType"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassType"> | Date | string
     classes?: ClassListRelationFilter
   }
 
   export type ClassTypeOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     classes?: ClassOrderByRelationAggregateInput
   }
 
@@ -18011,16 +20608,16 @@ export namespace Prisma {
     OR?: ClassTypeWhereInput[]
     NOT?: ClassTypeWhereInput | ClassTypeWhereInput[]
     name?: StringFilter<"ClassType"> | string
-    created_at?: DateTimeFilter<"ClassType"> | Date | string
-    updated_at?: DateTimeFilter<"ClassType"> | Date | string
+    createdAt?: DateTimeFilter<"ClassType"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassType"> | Date | string
     classes?: ClassListRelationFilter
   }, "id">
 
   export type ClassTypeOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: ClassTypeCountOrderByAggregateInput
     _max?: ClassTypeMaxOrderByAggregateInput
     _min?: ClassTypeMinOrderByAggregateInput
@@ -18032,8 +20629,8 @@ export namespace Prisma {
     NOT?: ClassTypeScalarWhereWithAggregatesInput | ClassTypeScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ClassType"> | string
     name?: StringWithAggregatesFilter<"ClassType"> | string
-    created_at?: DateTimeWithAggregatesFilter<"ClassType"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"ClassType"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"ClassType"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ClassType"> | Date | string
   }
 
   export type AttendanceWhereInput = {
@@ -18041,19 +20638,19 @@ export namespace Prisma {
     OR?: AttendanceWhereInput[]
     NOT?: AttendanceWhereInput | AttendanceWhereInput[]
     id?: StringFilter<"Attendance"> | string
-    class_student_id?: StringFilter<"Attendance"> | string
+    classStudentId?: StringFilter<"Attendance"> | string
     description?: EnumAttendanceStatusFilter<"Attendance"> | $Enums.AttendanceStatus
-    created_at?: DateTimeFilter<"Attendance"> | Date | string
-    updated_at?: DateTimeFilter<"Attendance"> | Date | string
+    createdAt?: DateTimeFilter<"Attendance"> | Date | string
+    updatedAt?: DateTimeFilter<"Attendance"> | Date | string
     classStudent?: XOR<ClassStudentScalarRelationFilter, ClassStudentWhereInput>
   }
 
   export type AttendanceOrderByWithRelationInput = {
     id?: SortOrder
-    class_student_id?: SortOrder
+    classStudentId?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     classStudent?: ClassStudentOrderByWithRelationInput
   }
 
@@ -18062,19 +20659,19 @@ export namespace Prisma {
     AND?: AttendanceWhereInput | AttendanceWhereInput[]
     OR?: AttendanceWhereInput[]
     NOT?: AttendanceWhereInput | AttendanceWhereInput[]
-    class_student_id?: StringFilter<"Attendance"> | string
+    classStudentId?: StringFilter<"Attendance"> | string
     description?: EnumAttendanceStatusFilter<"Attendance"> | $Enums.AttendanceStatus
-    created_at?: DateTimeFilter<"Attendance"> | Date | string
-    updated_at?: DateTimeFilter<"Attendance"> | Date | string
+    createdAt?: DateTimeFilter<"Attendance"> | Date | string
+    updatedAt?: DateTimeFilter<"Attendance"> | Date | string
     classStudent?: XOR<ClassStudentScalarRelationFilter, ClassStudentWhereInput>
   }, "id">
 
   export type AttendanceOrderByWithAggregationInput = {
     id?: SortOrder
-    class_student_id?: SortOrder
+    classStudentId?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: AttendanceCountOrderByAggregateInput
     _max?: AttendanceMaxOrderByAggregateInput
     _min?: AttendanceMinOrderByAggregateInput
@@ -18085,19 +20682,104 @@ export namespace Prisma {
     OR?: AttendanceScalarWhereWithAggregatesInput[]
     NOT?: AttendanceScalarWhereWithAggregatesInput | AttendanceScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Attendance"> | string
-    class_student_id?: StringWithAggregatesFilter<"Attendance"> | string
+    classStudentId?: StringWithAggregatesFilter<"Attendance"> | string
     description?: EnumAttendanceStatusWithAggregatesFilter<"Attendance"> | $Enums.AttendanceStatus
-    created_at?: DateTimeWithAggregatesFilter<"Attendance"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Attendance"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Attendance"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Attendance"> | Date | string
+  }
+
+  export type RefreshTokenWhereInput = {
+    AND?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    OR?: RefreshTokenWhereInput[]
+    NOT?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    id?: StringFilter<"RefreshToken"> | string
+    userId?: StringFilter<"RefreshToken"> | string
+    jti?: StringFilter<"RefreshToken"> | string
+    familyId?: StringFilter<"RefreshToken"> | string
+    hashedToken?: StringFilter<"RefreshToken"> | string
+    userAgent?: StringNullableFilter<"RefreshToken"> | string | null
+    ip?: StringNullableFilter<"RefreshToken"> | string | null
+    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    expiresAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    revokedAt?: DateTimeNullableFilter<"RefreshToken"> | Date | string | null
+    replacedById?: StringNullableFilter<"RefreshToken"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type RefreshTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jti?: SortOrder
+    familyId?: SortOrder
+    hashedToken?: SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    ip?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrderInput | SortOrder
+    replacedById?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type RefreshTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    jti?: string
+    AND?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    OR?: RefreshTokenWhereInput[]
+    NOT?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    userId?: StringFilter<"RefreshToken"> | string
+    familyId?: StringFilter<"RefreshToken"> | string
+    hashedToken?: StringFilter<"RefreshToken"> | string
+    userAgent?: StringNullableFilter<"RefreshToken"> | string | null
+    ip?: StringNullableFilter<"RefreshToken"> | string | null
+    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    expiresAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    revokedAt?: DateTimeNullableFilter<"RefreshToken"> | Date | string | null
+    replacedById?: StringNullableFilter<"RefreshToken"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "jti">
+
+  export type RefreshTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jti?: SortOrder
+    familyId?: SortOrder
+    hashedToken?: SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    ip?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrderInput | SortOrder
+    replacedById?: SortOrderInput | SortOrder
+    _count?: RefreshTokenCountOrderByAggregateInput
+    _max?: RefreshTokenMaxOrderByAggregateInput
+    _min?: RefreshTokenMinOrderByAggregateInput
+  }
+
+  export type RefreshTokenScalarWhereWithAggregatesInput = {
+    AND?: RefreshTokenScalarWhereWithAggregatesInput | RefreshTokenScalarWhereWithAggregatesInput[]
+    OR?: RefreshTokenScalarWhereWithAggregatesInput[]
+    NOT?: RefreshTokenScalarWhereWithAggregatesInput | RefreshTokenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RefreshToken"> | string
+    userId?: StringWithAggregatesFilter<"RefreshToken"> | string
+    jti?: StringWithAggregatesFilter<"RefreshToken"> | string
+    familyId?: StringWithAggregatesFilter<"RefreshToken"> | string
+    hashedToken?: StringWithAggregatesFilter<"RefreshToken"> | string
+    userAgent?: StringNullableWithAggregatesFilter<"RefreshToken"> | string | null
+    ip?: StringNullableWithAggregatesFilter<"RefreshToken"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
+    expiresAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
+    revokedAt?: DateTimeNullableWithAggregatesFilter<"RefreshToken"> | Date | string | null
+    replacedById?: StringNullableWithAggregatesFilter<"RefreshToken"> | string | null
   }
 
   export type ClassCreateInput = {
     id?: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     syllabus: SyllabusCreateNestedOneWithoutClassInput
     company: CompanyCreateNestedOneWithoutClassesInput
     type: ClassTypeCreateNestedOneWithoutClassesInput
@@ -18107,14 +20789,14 @@ export namespace Prisma {
 
   export type ClassUncheckedCreateInput = {
     id?: string
-    syllabus_id: string
-    company_id: string
-    type_id: string
+    syllabusId: string
+    companyId: string
+    typeId: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     students?: ClassStudentUncheckedCreateNestedManyWithoutClassInput
     teachers?: ClassTeacherUncheckedCreateNestedManyWithoutClassInput
   }
@@ -18123,9 +20805,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     syllabus?: SyllabusUpdateOneRequiredWithoutClassNestedInput
     company?: CompanyUpdateOneRequiredWithoutClassesNestedInput
     type?: ClassTypeUpdateOneRequiredWithoutClassesNestedInput
@@ -18135,176 +20817,260 @@ export namespace Prisma {
 
   export type ClassUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
-    company_id?: StringFieldUpdateOperationsInput | string
-    type_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    typeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     students?: ClassStudentUncheckedUpdateManyWithoutClassNestedInput
     teachers?: ClassTeacherUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassCreateManyInput = {
     id?: string
-    syllabus_id: string
-    company_id: string
-    type_id: string
+    syllabusId: string
+    companyId: string
+    typeId: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
-    company_id?: StringFieldUpdateOperationsInput | string
-    type_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    typeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateInput = {
     id?: string
-    first_name: string
-    last_name: string
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     company?: CompanyCreateNestedOneWithoutUsersInput
     classStudents?: ClassStudentCreateNestedManyWithoutUserInput
     classTeachers?: ClassTeacherCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
-    company_id?: string | null
-    first_name: string
-    last_name: string
+    companyId?: string | null
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classStudents?: ClassStudentUncheckedCreateNestedManyWithoutUserInput
     classTeachers?: ClassTeacherUncheckedCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneWithoutUsersNestedInput
     classStudents?: ClassStudentUpdateManyWithoutUserNestedInput
     classTeachers?: ClassTeacherUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    company_id?: NullableStringFieldUpdateOperationsInput | string | null
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classStudents?: ClassStudentUncheckedUpdateManyWithoutUserNestedInput
     classTeachers?: ClassTeacherUncheckedUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
-    company_id?: string | null
-    first_name: string
-    last_name: string
+    companyId?: string | null
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    company_id?: NullableStringFieldUpdateOperationsInput | string | null
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivateTokenCreateInput = {
+    id?: string
+    token: string
+    activatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutActivateTokensInput
+  }
+
+  export type ActivateTokenUncheckedCreateInput = {
+    id?: string
+    userId: string
+    token: string
+    activatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ActivateTokenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    activatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutActivateTokensNestedInput
+  }
+
+  export type ActivateTokenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    activatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivateTokenCreateManyInput = {
+    id?: string
+    userId: string
+    token: string
+    activatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ActivateTokenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    activatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivateTokenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    activatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SyllabusCreateInput = {
     id?: string
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     class?: ClassCreateNestedOneWithoutSyllabusInput
     modules?: ModuleCreateNestedManyWithoutSyllabusInput
   }
@@ -18313,8 +21079,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     class?: ClassUncheckedCreateNestedOneWithoutSyllabusInput
     modules?: ModuleUncheckedCreateNestedManyWithoutSyllabusInput
   }
@@ -18323,8 +21089,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneWithoutSyllabusNestedInput
     modules?: ModuleUpdateManyWithoutSyllabusNestedInput
   }
@@ -18333,8 +21099,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUncheckedUpdateOneWithoutSyllabusNestedInput
     modules?: ModuleUncheckedUpdateManyWithoutSyllabusNestedInput
   }
@@ -18343,24 +21109,24 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SyllabusUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SyllabusUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ModuleCreateInput = {
@@ -18368,20 +21134,20 @@ export namespace Prisma {
     position: number
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     syllabus: SyllabusCreateNestedOneWithoutModulesInput
     topics?: TopicCreateNestedManyWithoutModuleInput
   }
 
   export type ModuleUncheckedCreateInput = {
     id?: string
-    syllabus_id: string
+    syllabusId: string
     position: number
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     topics?: TopicUncheckedCreateNestedManyWithoutModuleInput
   }
 
@@ -18390,31 +21156,31 @@ export namespace Prisma {
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     syllabus?: SyllabusUpdateOneRequiredWithoutModulesNestedInput
     topics?: TopicUpdateManyWithoutModuleNestedInput
   }
 
   export type ModuleUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     topics?: TopicUncheckedUpdateManyWithoutModuleNestedInput
   }
 
   export type ModuleCreateManyInput = {
     id?: string
-    syllabus_id: string
+    syllabusId: string
     position: number
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ModuleUpdateManyMutationInput = {
@@ -18422,18 +21188,18 @@ export namespace Prisma {
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ModuleUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicCreateInput = {
@@ -18442,8 +21208,8 @@ export namespace Prisma {
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     module: ModuleCreateNestedOneWithoutTopicsInput
     resources?: TopicResourceCreateNestedManyWithoutTopicInput
     sessions?: SessionCreateNestedManyWithoutTopicInput
@@ -18451,13 +21217,13 @@ export namespace Prisma {
 
   export type TopicUncheckedCreateInput = {
     id?: string
-    module_id: string
+    moduleId: string
     position: number
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     resources?: TopicResourceUncheckedCreateNestedManyWithoutTopicInput
     sessions?: SessionUncheckedCreateNestedManyWithoutTopicInput
   }
@@ -18468,8 +21234,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     module?: ModuleUpdateOneRequiredWithoutTopicsNestedInput
     resources?: TopicResourceUpdateManyWithoutTopicNestedInput
     sessions?: SessionUpdateManyWithoutTopicNestedInput
@@ -18477,26 +21243,26 @@ export namespace Prisma {
 
   export type TopicUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    module_id?: StringFieldUpdateOperationsInput | string
+    moduleId?: StringFieldUpdateOperationsInput | string
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resources?: TopicResourceUncheckedUpdateManyWithoutTopicNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutTopicNestedInput
   }
 
   export type TopicCreateManyInput = {
     id?: string
-    module_id: string
+    moduleId: string
     position: number
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TopicUpdateManyMutationInput = {
@@ -18505,19 +21271,19 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    module_id?: StringFieldUpdateOperationsInput | string
+    moduleId?: StringFieldUpdateOperationsInput | string
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResourceCreateInput = {
@@ -18525,8 +21291,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     url: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     topicResources?: TopicResourceCreateNestedManyWithoutResourceInput
   }
 
@@ -18535,8 +21301,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     url: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     topicResources?: TopicResourceUncheckedCreateNestedManyWithoutResourceInput
   }
 
@@ -18545,8 +21311,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     topicResources?: TopicResourceUpdateManyWithoutResourceNestedInput
   }
 
@@ -18555,8 +21321,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     topicResources?: TopicResourceUncheckedUpdateManyWithoutResourceNestedInput
   }
 
@@ -18565,8 +21331,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     url: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ResourceUpdateManyMutationInput = {
@@ -18574,8 +21340,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResourceUncheckedUpdateManyInput = {
@@ -18583,159 +21349,159 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicResourceCreateInput = {
     id?: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     topic: TopicCreateNestedOneWithoutResourcesInput
     resource?: ResourceCreateNestedOneWithoutTopicResourcesInput
   }
 
   export type TopicResourceUncheckedCreateInput = {
     id?: string
-    topic_id: string
-    resource_id?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    topicId: string
+    resourceId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TopicResourceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     topic?: TopicUpdateOneRequiredWithoutResourcesNestedInput
     resource?: ResourceUpdateOneWithoutTopicResourcesNestedInput
   }
 
   export type TopicResourceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    resource_id?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    topicId?: StringFieldUpdateOperationsInput | string
+    resourceId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicResourceCreateManyInput = {
     id?: string
-    topic_id: string
-    resource_id?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    topicId: string
+    resourceId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TopicResourceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicResourceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    resource_id?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    topicId?: StringFieldUpdateOperationsInput | string
+    resourceId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateInput = {
     id?: string
-    session_start: Date | string
-    session_end: Date | string
-    meeting_id: string
-    meeting_password: string
-    meeting_url: string
-    meeting_recording?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    sessionStart: Date | string
+    sessionEnd: Date | string
+    meetingId: string
+    meetingPassword: string
+    meetingUrl: string
+    meetingRecording?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     topic: TopicCreateNestedOneWithoutSessionsInput
   }
 
   export type SessionUncheckedCreateInput = {
     id?: string
-    topic_id: string
-    session_start: Date | string
-    session_end: Date | string
-    meeting_id: string
-    meeting_password: string
-    meeting_url: string
-    meeting_recording?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    topicId: string
+    sessionStart: Date | string
+    sessionEnd: Date | string
+    meetingId: string
+    meetingPassword: string
+    meetingUrl: string
+    meetingRecording?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    session_start?: DateTimeFieldUpdateOperationsInput | Date | string
-    session_end?: DateTimeFieldUpdateOperationsInput | Date | string
-    meeting_id?: StringFieldUpdateOperationsInput | string
-    meeting_password?: StringFieldUpdateOperationsInput | string
-    meeting_url?: StringFieldUpdateOperationsInput | string
-    meeting_recording?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    meetingPassword?: StringFieldUpdateOperationsInput | string
+    meetingUrl?: StringFieldUpdateOperationsInput | string
+    meetingRecording?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     topic?: TopicUpdateOneRequiredWithoutSessionsNestedInput
   }
 
   export type SessionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    session_start?: DateTimeFieldUpdateOperationsInput | Date | string
-    session_end?: DateTimeFieldUpdateOperationsInput | Date | string
-    meeting_id?: StringFieldUpdateOperationsInput | string
-    meeting_password?: StringFieldUpdateOperationsInput | string
-    meeting_url?: StringFieldUpdateOperationsInput | string
-    meeting_recording?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    topicId?: StringFieldUpdateOperationsInput | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    meetingPassword?: StringFieldUpdateOperationsInput | string
+    meetingUrl?: StringFieldUpdateOperationsInput | string
+    meetingRecording?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionCreateManyInput = {
     id?: string
-    topic_id: string
-    session_start: Date | string
-    session_end: Date | string
-    meeting_id: string
-    meeting_password: string
-    meeting_url: string
-    meeting_recording?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    topicId: string
+    sessionStart: Date | string
+    sessionEnd: Date | string
+    meetingId: string
+    meetingPassword: string
+    meetingUrl: string
+    meetingRecording?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    session_start?: DateTimeFieldUpdateOperationsInput | Date | string
-    session_end?: DateTimeFieldUpdateOperationsInput | Date | string
-    meeting_id?: StringFieldUpdateOperationsInput | string
-    meeting_password?: StringFieldUpdateOperationsInput | string
-    meeting_url?: StringFieldUpdateOperationsInput | string
-    meeting_recording?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    meetingPassword?: StringFieldUpdateOperationsInput | string
+    meetingUrl?: StringFieldUpdateOperationsInput | string
+    meetingRecording?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    session_start?: DateTimeFieldUpdateOperationsInput | Date | string
-    session_end?: DateTimeFieldUpdateOperationsInput | Date | string
-    meeting_id?: StringFieldUpdateOperationsInput | string
-    meeting_password?: StringFieldUpdateOperationsInput | string
-    meeting_url?: StringFieldUpdateOperationsInput | string
-    meeting_recording?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    topicId?: StringFieldUpdateOperationsInput | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    meetingPassword?: StringFieldUpdateOperationsInput | string
+    meetingUrl?: StringFieldUpdateOperationsInput | string
+    meetingRecording?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassStudentCreateInput = {
     id?: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutClassStudentsInput
     class: ClassCreateNestedOneWithoutStudentsInput
     attendance?: AttendanceCreateNestedManyWithoutClassStudentInput
@@ -18743,19 +21509,19 @@ export namespace Prisma {
 
   export type ClassStudentUncheckedCreateInput = {
     id?: string
-    user_id: string
-    class_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    userId: string
+    classId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     attendance?: AttendanceUncheckedCreateNestedManyWithoutClassStudentInput
   }
 
   export type ClassStudentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutClassStudentsNestedInput
     class?: ClassUpdateOneRequiredWithoutStudentsNestedInput
     attendance?: AttendanceUpdateManyWithoutClassStudentNestedInput
@@ -18763,98 +21529,98 @@ export namespace Prisma {
 
   export type ClassStudentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendance?: AttendanceUncheckedUpdateManyWithoutClassStudentNestedInput
   }
 
   export type ClassStudentCreateManyInput = {
     id?: string
-    user_id: string
-    class_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    userId: string
+    classId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassStudentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassStudentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTeacherCreateInput = {
     id?: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutClassTeachersInput
     class: ClassCreateNestedOneWithoutTeachersInput
   }
 
   export type ClassTeacherUncheckedCreateInput = {
     id?: string
-    user_id: string
-    class_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    userId: string
+    classId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassTeacherUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutClassTeachersNestedInput
     class?: ClassUpdateOneRequiredWithoutTeachersNestedInput
   }
 
   export type ClassTeacherUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTeacherCreateManyInput = {
     id?: string
-    user_id: string
-    class_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    userId: string
+    classId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassTeacherUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTeacherUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CompanyCreateInput = {
@@ -18863,8 +21629,8 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     logo?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutCompanyInput
     classes?: ClassCreateNestedManyWithoutCompanyInput
   }
@@ -18875,8 +21641,8 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     logo?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutCompanyInput
     classes?: ClassUncheckedCreateNestedManyWithoutCompanyInput
   }
@@ -18887,8 +21653,8 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutCompanyNestedInput
     classes?: ClassUpdateManyWithoutCompanyNestedInput
   }
@@ -18899,8 +21665,8 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutCompanyNestedInput
     classes?: ClassUncheckedUpdateManyWithoutCompanyNestedInput
   }
@@ -18911,8 +21677,8 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     logo?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type CompanyUpdateManyMutationInput = {
@@ -18921,8 +21687,8 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CompanyUncheckedUpdateManyInput = {
@@ -18931,116 +21697,213 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTypeCreateInput = {
     id?: string
     name: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classes?: ClassCreateNestedManyWithoutTypeInput
   }
 
   export type ClassTypeUncheckedCreateInput = {
     id?: string
     name: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classes?: ClassUncheckedCreateNestedManyWithoutTypeInput
   }
 
   export type ClassTypeUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classes?: ClassUpdateManyWithoutTypeNestedInput
   }
 
   export type ClassTypeUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classes?: ClassUncheckedUpdateManyWithoutTypeNestedInput
   }
 
   export type ClassTypeCreateManyInput = {
     id?: string
     name: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassTypeUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTypeUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceCreateInput = {
     id?: string
     description: $Enums.AttendanceStatus
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classStudent: ClassStudentCreateNestedOneWithoutAttendanceInput
   }
 
   export type AttendanceUncheckedCreateInput = {
     id?: string
-    class_student_id: string
+    classStudentId: string
     description: $Enums.AttendanceStatus
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AttendanceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classStudent?: ClassStudentUpdateOneRequiredWithoutAttendanceNestedInput
   }
 
   export type AttendanceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_student_id?: StringFieldUpdateOperationsInput | string
+    classStudentId?: StringFieldUpdateOperationsInput | string
     description?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceCreateManyInput = {
     id?: string
-    class_student_id: string
+    classStudentId: string
     description: $Enums.AttendanceStatus
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AttendanceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_student_id?: StringFieldUpdateOperationsInput | string
+    classStudentId?: StringFieldUpdateOperationsInput | string
     description?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenCreateInput = {
+    id?: string
+    jti: string
+    familyId: string
+    hashedToken: string
+    userAgent?: string | null
+    ip?: string | null
+    createdAt?: Date | string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    replacedById?: string | null
+    user: UserCreateNestedOneWithoutRefreshTokensInput
+  }
+
+  export type RefreshTokenUncheckedCreateInput = {
+    id?: string
+    userId: string
+    jti: string
+    familyId: string
+    hashedToken: string
+    userAgent?: string | null
+    ip?: string | null
+    createdAt?: Date | string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    replacedById?: string | null
+  }
+
+  export type RefreshTokenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jti?: StringFieldUpdateOperationsInput | string
+    familyId?: StringFieldUpdateOperationsInput | string
+    hashedToken?: StringFieldUpdateOperationsInput | string
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    replacedById?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutRefreshTokensNestedInput
+  }
+
+  export type RefreshTokenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    jti?: StringFieldUpdateOperationsInput | string
+    familyId?: StringFieldUpdateOperationsInput | string
+    hashedToken?: StringFieldUpdateOperationsInput | string
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    replacedById?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RefreshTokenCreateManyInput = {
+    id?: string
+    userId: string
+    jti: string
+    familyId: string
+    hashedToken: string
+    userAgent?: string | null
+    ip?: string | null
+    createdAt?: Date | string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    replacedById?: string | null
+  }
+
+  export type RefreshTokenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jti?: StringFieldUpdateOperationsInput | string
+    familyId?: StringFieldUpdateOperationsInput | string
+    hashedToken?: StringFieldUpdateOperationsInput | string
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    replacedById?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RefreshTokenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    jti?: StringFieldUpdateOperationsInput | string
+    familyId?: StringFieldUpdateOperationsInput | string
+    hashedToken?: StringFieldUpdateOperationsInput | string
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    replacedById?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -19131,38 +21994,38 @@ export namespace Prisma {
 
   export type ClassCountOrderByAggregateInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
-    company_id?: SortOrder
-    type_id?: SortOrder
+    syllabusId?: SortOrder
+    companyId?: SortOrder
+    typeId?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassMaxOrderByAggregateInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
-    company_id?: SortOrder
-    type_id?: SortOrder
+    syllabusId?: SortOrder
+    companyId?: SortOrder
+    typeId?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassMinOrderByAggregateInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
-    company_id?: SortOrder
-    type_id?: SortOrder
+    syllabusId?: SortOrder
+    companyId?: SortOrder
+    typeId?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -19242,52 +22105,78 @@ export namespace Prisma {
     isNot?: CompanyWhereInput | null
   }
 
+  export type ActivateTokenListRelationFilter = {
+    every?: ActivateTokenWhereInput
+    some?: ActivateTokenWhereInput
+    none?: ActivateTokenWhereInput
+  }
+
+  export type RefreshTokenListRelationFilter = {
+    every?: RefreshTokenWhereInput
+    some?: RefreshTokenWhereInput
+    none?: RefreshTokenWhereInput
+  }
+
+  export type ActivateTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RefreshTokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
-    company_id?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    companyId?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
+    password?: SortOrder
     photo?: SortOrder
     gender?: SortOrder
     address?: SortOrder
     role?: SortOrder
-    is_email_verified?: SortOrder
-    is_phone_verified?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isEmailVerified?: SortOrder
+    isPhoneVerified?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
-    company_id?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    companyId?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
+    password?: SortOrder
     photo?: SortOrder
     gender?: SortOrder
     address?: SortOrder
     role?: SortOrder
-    is_email_verified?: SortOrder
-    is_phone_verified?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isEmailVerified?: SortOrder
+    isPhoneVerified?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
-    company_id?: SortOrder
-    first_name?: SortOrder
-    last_name?: SortOrder
+    companyId?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
     email?: SortOrder
+    phone?: SortOrder
+    password?: SortOrder
     photo?: SortOrder
     gender?: SortOrder
     address?: SortOrder
     role?: SortOrder
-    is_email_verified?: SortOrder
-    is_phone_verified?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    isEmailVerified?: SortOrder
+    isPhoneVerified?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumGenderWithAggregatesFilter<$PrismaModel = never> = {
@@ -19310,6 +22199,63 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type ActivateTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    token?: SortOrder
+    activatedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ActivateTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    token?: SortOrder
+    activatedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ActivateTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    token?: SortOrder
+    activatedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type ClassNullableScalarRelationFilter = {
     is?: ClassWhereInput | null
     isNot?: ClassWhereInput | null
@@ -19329,24 +22275,24 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SyllabusMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SyllabusMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -19372,12 +22318,12 @@ export namespace Prisma {
 
   export type ModuleCountOrderByAggregateInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
+    syllabusId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ModuleAvgOrderByAggregateInput = {
@@ -19386,22 +22332,22 @@ export namespace Prisma {
 
   export type ModuleMaxOrderByAggregateInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
+    syllabusId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ModuleMinOrderByAggregateInput = {
     id?: SortOrder
-    syllabus_id?: SortOrder
+    syllabusId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ModuleSumOrderByAggregateInput = {
@@ -19451,13 +22397,13 @@ export namespace Prisma {
 
   export type TopicCountOrderByAggregateInput = {
     id?: SortOrder
-    module_id?: SortOrder
+    moduleId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     content?: SortOrder
     goal?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type TopicAvgOrderByAggregateInput = {
@@ -19466,24 +22412,24 @@ export namespace Prisma {
 
   export type TopicMaxOrderByAggregateInput = {
     id?: SortOrder
-    module_id?: SortOrder
+    moduleId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     content?: SortOrder
     goal?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type TopicMinOrderByAggregateInput = {
     id?: SortOrder
-    module_id?: SortOrder
+    moduleId?: SortOrder
     position?: SortOrder
     title?: SortOrder
     content?: SortOrder
     goal?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type TopicSumOrderByAggregateInput = {
@@ -19495,8 +22441,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     url?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ResourceMaxOrderByAggregateInput = {
@@ -19504,8 +22450,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     url?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ResourceMinOrderByAggregateInput = {
@@ -19513,8 +22459,8 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     url?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type TopicScalarRelationFilter = {
@@ -19529,70 +22475,65 @@ export namespace Prisma {
 
   export type TopicResourceCountOrderByAggregateInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    resource_id?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    topicId?: SortOrder
+    resourceId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type TopicResourceMaxOrderByAggregateInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    resource_id?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    topicId?: SortOrder
+    resourceId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type TopicResourceMinOrderByAggregateInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    resource_id?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    topicId?: SortOrder
+    resourceId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SessionCountOrderByAggregateInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    session_start?: SortOrder
-    session_end?: SortOrder
-    meeting_id?: SortOrder
-    meeting_password?: SortOrder
-    meeting_url?: SortOrder
-    meeting_recording?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    topicId?: SortOrder
+    sessionStart?: SortOrder
+    sessionEnd?: SortOrder
+    meetingId?: SortOrder
+    meetingPassword?: SortOrder
+    meetingUrl?: SortOrder
+    meetingRecording?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SessionMaxOrderByAggregateInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    session_start?: SortOrder
-    session_end?: SortOrder
-    meeting_id?: SortOrder
-    meeting_password?: SortOrder
-    meeting_url?: SortOrder
-    meeting_recording?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    topicId?: SortOrder
+    sessionStart?: SortOrder
+    sessionEnd?: SortOrder
+    meetingId?: SortOrder
+    meetingPassword?: SortOrder
+    meetingUrl?: SortOrder
+    meetingRecording?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type SessionMinOrderByAggregateInput = {
     id?: SortOrder
-    topic_id?: SortOrder
-    session_start?: SortOrder
-    session_end?: SortOrder
-    meeting_id?: SortOrder
-    meeting_password?: SortOrder
-    meeting_url?: SortOrder
-    meeting_recording?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
+    topicId?: SortOrder
+    sessionStart?: SortOrder
+    sessionEnd?: SortOrder
+    meetingId?: SortOrder
+    meetingPassword?: SortOrder
+    meetingUrl?: SortOrder
+    meetingRecording?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassScalarRelationFilter = {
@@ -19612,56 +22553,56 @@ export namespace Prisma {
 
   export type ClassStudentCountOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassStudentMaxOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassStudentMinOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassTeacherCountOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassTeacherMaxOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassTeacherMinOrderByAggregateInput = {
     id?: SortOrder
-    user_id?: SortOrder
-    class_id?: SortOrder
-    is_active?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    userId?: SortOrder
+    classId?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserListRelationFilter = {
@@ -19690,8 +22631,8 @@ export namespace Prisma {
     address?: SortOrder
     website?: SortOrder
     logo?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type CompanyMaxOrderByAggregateInput = {
@@ -19700,8 +22641,8 @@ export namespace Prisma {
     address?: SortOrder
     website?: SortOrder
     logo?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type CompanyMinOrderByAggregateInput = {
@@ -19710,29 +22651,29 @@ export namespace Prisma {
     address?: SortOrder
     website?: SortOrder
     logo?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassTypeCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassTypeMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type ClassTypeMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumAttendanceStatusFilter<$PrismaModel = never> = {
@@ -19749,26 +22690,26 @@ export namespace Prisma {
 
   export type AttendanceCountOrderByAggregateInput = {
     id?: SortOrder
-    class_student_id?: SortOrder
+    classStudentId?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type AttendanceMaxOrderByAggregateInput = {
     id?: SortOrder
-    class_student_id?: SortOrder
+    classStudentId?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type AttendanceMinOrderByAggregateInput = {
     id?: SortOrder
-    class_student_id?: SortOrder
+    classStudentId?: SortOrder
     description?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumAttendanceStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -19779,6 +22720,48 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAttendanceStatusFilter<$PrismaModel>
     _max?: NestedEnumAttendanceStatusFilter<$PrismaModel>
+  }
+
+  export type RefreshTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jti?: SortOrder
+    familyId?: SortOrder
+    hashedToken?: SortOrder
+    userAgent?: SortOrder
+    ip?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrder
+    replacedById?: SortOrder
+  }
+
+  export type RefreshTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jti?: SortOrder
+    familyId?: SortOrder
+    hashedToken?: SortOrder
+    userAgent?: SortOrder
+    ip?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrder
+    replacedById?: SortOrder
+  }
+
+  export type RefreshTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    jti?: SortOrder
+    familyId?: SortOrder
+    hashedToken?: SortOrder
+    userAgent?: SortOrder
+    ip?: SortOrder
+    createdAt?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrder
+    replacedById?: SortOrder
   }
 
   export type SyllabusCreateNestedOneWithoutClassInput = {
@@ -19943,6 +22926,20 @@ export namespace Prisma {
     connect?: ClassTeacherWhereUniqueInput | ClassTeacherWhereUniqueInput[]
   }
 
+  export type ActivateTokenCreateNestedManyWithoutUserInput = {
+    create?: XOR<ActivateTokenCreateWithoutUserInput, ActivateTokenUncheckedCreateWithoutUserInput> | ActivateTokenCreateWithoutUserInput[] | ActivateTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ActivateTokenCreateOrConnectWithoutUserInput | ActivateTokenCreateOrConnectWithoutUserInput[]
+    createMany?: ActivateTokenCreateManyUserInputEnvelope
+    connect?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+  }
+
+  export type RefreshTokenCreateNestedManyWithoutUserInput = {
+    create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
+    createMany?: RefreshTokenCreateManyUserInputEnvelope
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+  }
+
   export type ClassStudentUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ClassStudentCreateWithoutUserInput, ClassStudentUncheckedCreateWithoutUserInput> | ClassStudentCreateWithoutUserInput[] | ClassStudentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ClassStudentCreateOrConnectWithoutUserInput | ClassStudentCreateOrConnectWithoutUserInput[]
@@ -19955,6 +22952,20 @@ export namespace Prisma {
     connectOrCreate?: ClassTeacherCreateOrConnectWithoutUserInput | ClassTeacherCreateOrConnectWithoutUserInput[]
     createMany?: ClassTeacherCreateManyUserInputEnvelope
     connect?: ClassTeacherWhereUniqueInput | ClassTeacherWhereUniqueInput[]
+  }
+
+  export type ActivateTokenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ActivateTokenCreateWithoutUserInput, ActivateTokenUncheckedCreateWithoutUserInput> | ActivateTokenCreateWithoutUserInput[] | ActivateTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ActivateTokenCreateOrConnectWithoutUserInput | ActivateTokenCreateOrConnectWithoutUserInput[]
+    createMany?: ActivateTokenCreateManyUserInputEnvelope
+    connect?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+  }
+
+  export type RefreshTokenUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
+    createMany?: RefreshTokenCreateManyUserInputEnvelope
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
   }
 
   export type EnumGenderFieldUpdateOperationsInput = {
@@ -20003,6 +23014,34 @@ export namespace Prisma {
     deleteMany?: ClassTeacherScalarWhereInput | ClassTeacherScalarWhereInput[]
   }
 
+  export type ActivateTokenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ActivateTokenCreateWithoutUserInput, ActivateTokenUncheckedCreateWithoutUserInput> | ActivateTokenCreateWithoutUserInput[] | ActivateTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ActivateTokenCreateOrConnectWithoutUserInput | ActivateTokenCreateOrConnectWithoutUserInput[]
+    upsert?: ActivateTokenUpsertWithWhereUniqueWithoutUserInput | ActivateTokenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ActivateTokenCreateManyUserInputEnvelope
+    set?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+    disconnect?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+    delete?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+    connect?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+    update?: ActivateTokenUpdateWithWhereUniqueWithoutUserInput | ActivateTokenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ActivateTokenUpdateManyWithWhereWithoutUserInput | ActivateTokenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ActivateTokenScalarWhereInput | ActivateTokenScalarWhereInput[]
+  }
+
+  export type RefreshTokenUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
+    upsert?: RefreshTokenUpsertWithWhereUniqueWithoutUserInput | RefreshTokenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RefreshTokenCreateManyUserInputEnvelope
+    set?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    disconnect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    delete?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    update?: RefreshTokenUpdateWithWhereUniqueWithoutUserInput | RefreshTokenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RefreshTokenUpdateManyWithWhereWithoutUserInput | RefreshTokenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+  }
+
   export type ClassStudentUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ClassStudentCreateWithoutUserInput, ClassStudentUncheckedCreateWithoutUserInput> | ClassStudentCreateWithoutUserInput[] | ClassStudentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ClassStudentCreateOrConnectWithoutUserInput | ClassStudentCreateOrConnectWithoutUserInput[]
@@ -20029,6 +23068,52 @@ export namespace Prisma {
     update?: ClassTeacherUpdateWithWhereUniqueWithoutUserInput | ClassTeacherUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ClassTeacherUpdateManyWithWhereWithoutUserInput | ClassTeacherUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ClassTeacherScalarWhereInput | ClassTeacherScalarWhereInput[]
+  }
+
+  export type ActivateTokenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ActivateTokenCreateWithoutUserInput, ActivateTokenUncheckedCreateWithoutUserInput> | ActivateTokenCreateWithoutUserInput[] | ActivateTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ActivateTokenCreateOrConnectWithoutUserInput | ActivateTokenCreateOrConnectWithoutUserInput[]
+    upsert?: ActivateTokenUpsertWithWhereUniqueWithoutUserInput | ActivateTokenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ActivateTokenCreateManyUserInputEnvelope
+    set?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+    disconnect?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+    delete?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+    connect?: ActivateTokenWhereUniqueInput | ActivateTokenWhereUniqueInput[]
+    update?: ActivateTokenUpdateWithWhereUniqueWithoutUserInput | ActivateTokenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ActivateTokenUpdateManyWithWhereWithoutUserInput | ActivateTokenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ActivateTokenScalarWhereInput | ActivateTokenScalarWhereInput[]
+  }
+
+  export type RefreshTokenUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput> | RefreshTokenCreateWithoutUserInput[] | RefreshTokenUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: RefreshTokenCreateOrConnectWithoutUserInput | RefreshTokenCreateOrConnectWithoutUserInput[]
+    upsert?: RefreshTokenUpsertWithWhereUniqueWithoutUserInput | RefreshTokenUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: RefreshTokenCreateManyUserInputEnvelope
+    set?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    disconnect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    delete?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    connect?: RefreshTokenWhereUniqueInput | RefreshTokenWhereUniqueInput[]
+    update?: RefreshTokenUpdateWithWhereUniqueWithoutUserInput | RefreshTokenUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: RefreshTokenUpdateManyWithWhereWithoutUserInput | RefreshTokenUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutActivateTokensInput = {
+    create?: XOR<UserCreateWithoutActivateTokensInput, UserUncheckedCreateWithoutActivateTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutActivateTokensInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type UserUpdateOneRequiredWithoutActivateTokensNestedInput = {
+    create?: XOR<UserCreateWithoutActivateTokensInput, UserUncheckedCreateWithoutActivateTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutActivateTokensInput
+    upsert?: UserUpsertWithoutActivateTokensInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutActivateTokensInput, UserUpdateWithoutActivateTokensInput>, UserUncheckedUpdateWithoutActivateTokensInput>
   }
 
   export type ClassCreateNestedOneWithoutSyllabusInput = {
@@ -20595,6 +23680,20 @@ export namespace Prisma {
     update?: XOR<XOR<ClassStudentUpdateToOneWithWhereWithoutAttendanceInput, ClassStudentUpdateWithoutAttendanceInput>, ClassStudentUncheckedUpdateWithoutAttendanceInput>
   }
 
+  export type UserCreateNestedOneWithoutRefreshTokensInput = {
+    create?: XOR<UserCreateWithoutRefreshTokensInput, UserUncheckedCreateWithoutRefreshTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRefreshTokensInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutRefreshTokensNestedInput = {
+    create?: XOR<UserCreateWithoutRefreshTokensInput, UserUncheckedCreateWithoutRefreshTokensInput>
+    connectOrCreate?: UserCreateOrConnectWithoutRefreshTokensInput
+    upsert?: UserUpsertWithoutRefreshTokensInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutRefreshTokensInput, UserUpdateWithoutRefreshTokensInput>, UserUncheckedUpdateWithoutRefreshTokensInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -20751,6 +23850,31 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -20799,8 +23923,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     modules?: ModuleCreateNestedManyWithoutSyllabusInput
   }
 
@@ -20808,8 +23932,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     modules?: ModuleUncheckedCreateNestedManyWithoutSyllabusInput
   }
 
@@ -20824,8 +23948,8 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     logo?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutCompanyInput
   }
 
@@ -20835,8 +23959,8 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     logo?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutCompanyInput
   }
 
@@ -20848,15 +23972,15 @@ export namespace Prisma {
   export type ClassTypeCreateWithoutClassesInput = {
     id?: string
     name: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassTypeUncheckedCreateWithoutClassesInput = {
     id?: string
     name: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassTypeCreateOrConnectWithoutClassesInput = {
@@ -20866,19 +23990,19 @@ export namespace Prisma {
 
   export type ClassStudentCreateWithoutClassInput = {
     id?: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutClassStudentsInput
     attendance?: AttendanceCreateNestedManyWithoutClassStudentInput
   }
 
   export type ClassStudentUncheckedCreateWithoutClassInput = {
     id?: string
-    user_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    userId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     attendance?: AttendanceUncheckedCreateNestedManyWithoutClassStudentInput
   }
 
@@ -20894,18 +24018,18 @@ export namespace Prisma {
 
   export type ClassTeacherCreateWithoutClassInput = {
     id?: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutClassTeachersInput
   }
 
   export type ClassTeacherUncheckedCreateWithoutClassInput = {
     id?: string
-    user_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    userId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassTeacherCreateOrConnectWithoutClassInput = {
@@ -20933,8 +24057,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     modules?: ModuleUpdateManyWithoutSyllabusNestedInput
   }
 
@@ -20942,8 +24066,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     modules?: ModuleUncheckedUpdateManyWithoutSyllabusNestedInput
   }
 
@@ -20964,8 +24088,8 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutCompanyNestedInput
   }
 
@@ -20975,8 +24099,8 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
@@ -20994,15 +24118,15 @@ export namespace Prisma {
   export type ClassTypeUpdateWithoutClassesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTypeUncheckedUpdateWithoutClassesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassStudentUpsertWithWhereUniqueWithoutClassInput = {
@@ -21026,11 +24150,11 @@ export namespace Prisma {
     OR?: ClassStudentScalarWhereInput[]
     NOT?: ClassStudentScalarWhereInput | ClassStudentScalarWhereInput[]
     id?: StringFilter<"ClassStudent"> | string
-    user_id?: StringFilter<"ClassStudent"> | string
-    class_id?: StringFilter<"ClassStudent"> | string
-    is_active?: BoolFilter<"ClassStudent"> | boolean
-    created_at?: DateTimeFilter<"ClassStudent"> | Date | string
-    updated_at?: DateTimeFilter<"ClassStudent"> | Date | string
+    userId?: StringFilter<"ClassStudent"> | string
+    classId?: StringFilter<"ClassStudent"> | string
+    isActive?: BoolFilter<"ClassStudent"> | boolean
+    createdAt?: DateTimeFilter<"ClassStudent"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassStudent"> | Date | string
   }
 
   export type ClassTeacherUpsertWithWhereUniqueWithoutClassInput = {
@@ -21054,11 +24178,11 @@ export namespace Prisma {
     OR?: ClassTeacherScalarWhereInput[]
     NOT?: ClassTeacherScalarWhereInput | ClassTeacherScalarWhereInput[]
     id?: StringFilter<"ClassTeacher"> | string
-    user_id?: StringFilter<"ClassTeacher"> | string
-    class_id?: StringFilter<"ClassTeacher"> | string
-    is_active?: BoolFilter<"ClassTeacher"> | boolean
-    created_at?: DateTimeFilter<"ClassTeacher"> | Date | string
-    updated_at?: DateTimeFilter<"ClassTeacher"> | Date | string
+    userId?: StringFilter<"ClassTeacher"> | string
+    classId?: StringFilter<"ClassTeacher"> | string
+    isActive?: BoolFilter<"ClassTeacher"> | boolean
+    createdAt?: DateTimeFilter<"ClassTeacher"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassTeacher"> | Date | string
   }
 
   export type CompanyCreateWithoutUsersInput = {
@@ -21067,8 +24191,8 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     logo?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classes?: ClassCreateNestedManyWithoutCompanyInput
   }
 
@@ -21078,8 +24202,8 @@ export namespace Prisma {
     address?: string | null
     website?: string | null
     logo?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classes?: ClassUncheckedCreateNestedManyWithoutCompanyInput
   }
 
@@ -21090,19 +24214,19 @@ export namespace Prisma {
 
   export type ClassStudentCreateWithoutUserInput = {
     id?: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     class: ClassCreateNestedOneWithoutStudentsInput
     attendance?: AttendanceCreateNestedManyWithoutClassStudentInput
   }
 
   export type ClassStudentUncheckedCreateWithoutUserInput = {
     id?: string
-    class_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    classId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     attendance?: AttendanceUncheckedCreateNestedManyWithoutClassStudentInput
   }
 
@@ -21118,18 +24242,18 @@ export namespace Prisma {
 
   export type ClassTeacherCreateWithoutUserInput = {
     id?: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     class: ClassCreateNestedOneWithoutTeachersInput
   }
 
   export type ClassTeacherUncheckedCreateWithoutUserInput = {
     id?: string
-    class_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    classId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassTeacherCreateOrConnectWithoutUserInput = {
@@ -21139,6 +24263,68 @@ export namespace Prisma {
 
   export type ClassTeacherCreateManyUserInputEnvelope = {
     data: ClassTeacherCreateManyUserInput | ClassTeacherCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ActivateTokenCreateWithoutUserInput = {
+    id?: string
+    token: string
+    activatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ActivateTokenUncheckedCreateWithoutUserInput = {
+    id?: string
+    token: string
+    activatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ActivateTokenCreateOrConnectWithoutUserInput = {
+    where: ActivateTokenWhereUniqueInput
+    create: XOR<ActivateTokenCreateWithoutUserInput, ActivateTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type ActivateTokenCreateManyUserInputEnvelope = {
+    data: ActivateTokenCreateManyUserInput | ActivateTokenCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RefreshTokenCreateWithoutUserInput = {
+    id?: string
+    jti: string
+    familyId: string
+    hashedToken: string
+    userAgent?: string | null
+    ip?: string | null
+    createdAt?: Date | string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    replacedById?: string | null
+  }
+
+  export type RefreshTokenUncheckedCreateWithoutUserInput = {
+    id?: string
+    jti: string
+    familyId: string
+    hashedToken: string
+    userAgent?: string | null
+    ip?: string | null
+    createdAt?: Date | string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    replacedById?: string | null
+  }
+
+  export type RefreshTokenCreateOrConnectWithoutUserInput = {
+    where: RefreshTokenWhereUniqueInput
+    create: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type RefreshTokenCreateManyUserInputEnvelope = {
+    data: RefreshTokenCreateManyUserInput | RefreshTokenCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -21159,8 +24345,8 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classes?: ClassUpdateManyWithoutCompanyNestedInput
   }
 
@@ -21170,8 +24356,8 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     website?: NullableStringFieldUpdateOperationsInput | string | null
     logo?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classes?: ClassUncheckedUpdateManyWithoutCompanyNestedInput
   }
 
@@ -21207,13 +24393,174 @@ export namespace Prisma {
     data: XOR<ClassTeacherUpdateManyMutationInput, ClassTeacherUncheckedUpdateManyWithoutUserInput>
   }
 
+  export type ActivateTokenUpsertWithWhereUniqueWithoutUserInput = {
+    where: ActivateTokenWhereUniqueInput
+    update: XOR<ActivateTokenUpdateWithoutUserInput, ActivateTokenUncheckedUpdateWithoutUserInput>
+    create: XOR<ActivateTokenCreateWithoutUserInput, ActivateTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type ActivateTokenUpdateWithWhereUniqueWithoutUserInput = {
+    where: ActivateTokenWhereUniqueInput
+    data: XOR<ActivateTokenUpdateWithoutUserInput, ActivateTokenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ActivateTokenUpdateManyWithWhereWithoutUserInput = {
+    where: ActivateTokenScalarWhereInput
+    data: XOR<ActivateTokenUpdateManyMutationInput, ActivateTokenUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ActivateTokenScalarWhereInput = {
+    AND?: ActivateTokenScalarWhereInput | ActivateTokenScalarWhereInput[]
+    OR?: ActivateTokenScalarWhereInput[]
+    NOT?: ActivateTokenScalarWhereInput | ActivateTokenScalarWhereInput[]
+    id?: StringFilter<"ActivateToken"> | string
+    userId?: StringFilter<"ActivateToken"> | string
+    token?: StringFilter<"ActivateToken"> | string
+    activatedAt?: DateTimeNullableFilter<"ActivateToken"> | Date | string | null
+    createdAt?: DateTimeFilter<"ActivateToken"> | Date | string
+    updatedAt?: DateTimeFilter<"ActivateToken"> | Date | string
+  }
+
+  export type RefreshTokenUpsertWithWhereUniqueWithoutUserInput = {
+    where: RefreshTokenWhereUniqueInput
+    update: XOR<RefreshTokenUpdateWithoutUserInput, RefreshTokenUncheckedUpdateWithoutUserInput>
+    create: XOR<RefreshTokenCreateWithoutUserInput, RefreshTokenUncheckedCreateWithoutUserInput>
+  }
+
+  export type RefreshTokenUpdateWithWhereUniqueWithoutUserInput = {
+    where: RefreshTokenWhereUniqueInput
+    data: XOR<RefreshTokenUpdateWithoutUserInput, RefreshTokenUncheckedUpdateWithoutUserInput>
+  }
+
+  export type RefreshTokenUpdateManyWithWhereWithoutUserInput = {
+    where: RefreshTokenScalarWhereInput
+    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type RefreshTokenScalarWhereInput = {
+    AND?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+    OR?: RefreshTokenScalarWhereInput[]
+    NOT?: RefreshTokenScalarWhereInput | RefreshTokenScalarWhereInput[]
+    id?: StringFilter<"RefreshToken"> | string
+    userId?: StringFilter<"RefreshToken"> | string
+    jti?: StringFilter<"RefreshToken"> | string
+    familyId?: StringFilter<"RefreshToken"> | string
+    hashedToken?: StringFilter<"RefreshToken"> | string
+    userAgent?: StringNullableFilter<"RefreshToken"> | string | null
+    ip?: StringNullableFilter<"RefreshToken"> | string | null
+    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    expiresAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    revokedAt?: DateTimeNullableFilter<"RefreshToken"> | Date | string | null
+    replacedById?: StringNullableFilter<"RefreshToken"> | string | null
+  }
+
+  export type UserCreateWithoutActivateTokensInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    password: string
+    photo?: string | null
+    gender: $Enums.Gender
+    address: string
+    role: $Enums.Role
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    company?: CompanyCreateNestedOneWithoutUsersInput
+    classStudents?: ClassStudentCreateNestedManyWithoutUserInput
+    classTeachers?: ClassTeacherCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutActivateTokensInput = {
+    id?: string
+    companyId?: string | null
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    password: string
+    photo?: string | null
+    gender: $Enums.Gender
+    address: string
+    role: $Enums.Role
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    classStudents?: ClassStudentUncheckedCreateNestedManyWithoutUserInput
+    classTeachers?: ClassTeacherUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutActivateTokensInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutActivateTokensInput, UserUncheckedCreateWithoutActivateTokensInput>
+  }
+
+  export type UserUpsertWithoutActivateTokensInput = {
+    update: XOR<UserUpdateWithoutActivateTokensInput, UserUncheckedUpdateWithoutActivateTokensInput>
+    create: XOR<UserCreateWithoutActivateTokensInput, UserUncheckedCreateWithoutActivateTokensInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutActivateTokensInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutActivateTokensInput, UserUncheckedUpdateWithoutActivateTokensInput>
+  }
+
+  export type UserUpdateWithoutActivateTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    address?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneWithoutUsersNestedInput
+    classStudents?: ClassStudentUpdateManyWithoutUserNestedInput
+    classTeachers?: ClassTeacherUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutActivateTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    address?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    classStudents?: ClassStudentUncheckedUpdateManyWithoutUserNestedInput
+    classTeachers?: ClassTeacherUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type ClassCreateWithoutSyllabusInput = {
     id?: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     company: CompanyCreateNestedOneWithoutClassesInput
     type: ClassTypeCreateNestedOneWithoutClassesInput
     students?: ClassStudentCreateNestedManyWithoutClassInput
@@ -21222,13 +24569,13 @@ export namespace Prisma {
 
   export type ClassUncheckedCreateWithoutSyllabusInput = {
     id?: string
-    company_id: string
-    type_id: string
+    companyId: string
+    typeId: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     students?: ClassStudentUncheckedCreateNestedManyWithoutClassInput
     teachers?: ClassTeacherUncheckedCreateNestedManyWithoutClassInput
   }
@@ -21243,8 +24590,8 @@ export namespace Prisma {
     position: number
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     topics?: TopicCreateNestedManyWithoutModuleInput
   }
 
@@ -21253,8 +24600,8 @@ export namespace Prisma {
     position: number
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     topics?: TopicUncheckedCreateNestedManyWithoutModuleInput
   }
 
@@ -21283,9 +24630,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutClassesNestedInput
     type?: ClassTypeUpdateOneRequiredWithoutClassesNestedInput
     students?: ClassStudentUpdateManyWithoutClassNestedInput
@@ -21294,13 +24641,13 @@ export namespace Prisma {
 
   export type ClassUncheckedUpdateWithoutSyllabusInput = {
     id?: StringFieldUpdateOperationsInput | string
-    company_id?: StringFieldUpdateOperationsInput | string
-    type_id?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    typeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     students?: ClassStudentUncheckedUpdateManyWithoutClassNestedInput
     teachers?: ClassTeacherUncheckedUpdateManyWithoutClassNestedInput
   }
@@ -21326,20 +24673,20 @@ export namespace Prisma {
     OR?: ModuleScalarWhereInput[]
     NOT?: ModuleScalarWhereInput | ModuleScalarWhereInput[]
     id?: StringFilter<"Module"> | string
-    syllabus_id?: StringFilter<"Module"> | string
+    syllabusId?: StringFilter<"Module"> | string
     position?: FloatFilter<"Module"> | number
     title?: StringFilter<"Module"> | string
     description?: StringNullableFilter<"Module"> | string | null
-    created_at?: DateTimeFilter<"Module"> | Date | string
-    updated_at?: DateTimeFilter<"Module"> | Date | string
+    createdAt?: DateTimeFilter<"Module"> | Date | string
+    updatedAt?: DateTimeFilter<"Module"> | Date | string
   }
 
   export type SyllabusCreateWithoutModulesInput = {
     id?: string
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     class?: ClassCreateNestedOneWithoutSyllabusInput
   }
 
@@ -21347,8 +24694,8 @@ export namespace Prisma {
     id?: string
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     class?: ClassUncheckedCreateNestedOneWithoutSyllabusInput
   }
 
@@ -21363,8 +24710,8 @@ export namespace Prisma {
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     resources?: TopicResourceCreateNestedManyWithoutTopicInput
     sessions?: SessionCreateNestedManyWithoutTopicInput
   }
@@ -21375,8 +24722,8 @@ export namespace Prisma {
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     resources?: TopicResourceUncheckedCreateNestedManyWithoutTopicInput
     sessions?: SessionUncheckedCreateNestedManyWithoutTopicInput
   }
@@ -21406,8 +24753,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneWithoutSyllabusNestedInput
   }
 
@@ -21415,8 +24762,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUncheckedUpdateOneWithoutSyllabusNestedInput
   }
 
@@ -21441,13 +24788,13 @@ export namespace Prisma {
     OR?: TopicScalarWhereInput[]
     NOT?: TopicScalarWhereInput | TopicScalarWhereInput[]
     id?: StringFilter<"Topic"> | string
-    module_id?: StringFilter<"Topic"> | string
+    moduleId?: StringFilter<"Topic"> | string
     position?: FloatFilter<"Topic"> | number
     title?: StringFilter<"Topic"> | string
     content?: StringNullableFilter<"Topic"> | string | null
     goal?: StringNullableFilter<"Topic"> | string | null
-    created_at?: DateTimeFilter<"Topic"> | Date | string
-    updated_at?: DateTimeFilter<"Topic"> | Date | string
+    createdAt?: DateTimeFilter<"Topic"> | Date | string
+    updatedAt?: DateTimeFilter<"Topic"> | Date | string
   }
 
   export type ModuleCreateWithoutTopicsInput = {
@@ -21455,19 +24802,19 @@ export namespace Prisma {
     position: number
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     syllabus: SyllabusCreateNestedOneWithoutModulesInput
   }
 
   export type ModuleUncheckedCreateWithoutTopicsInput = {
     id?: string
-    syllabus_id: string
+    syllabusId: string
     position: number
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ModuleCreateOrConnectWithoutTopicsInput = {
@@ -21477,16 +24824,16 @@ export namespace Prisma {
 
   export type TopicResourceCreateWithoutTopicInput = {
     id?: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     resource?: ResourceCreateNestedOneWithoutTopicResourcesInput
   }
 
   export type TopicResourceUncheckedCreateWithoutTopicInput = {
     id?: string
-    resource_id?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    resourceId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TopicResourceCreateOrConnectWithoutTopicInput = {
@@ -21501,26 +24848,26 @@ export namespace Prisma {
 
   export type SessionCreateWithoutTopicInput = {
     id?: string
-    session_start: Date | string
-    session_end: Date | string
-    meeting_id: string
-    meeting_password: string
-    meeting_url: string
-    meeting_recording?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    sessionStart: Date | string
+    sessionEnd: Date | string
+    meetingId: string
+    meetingPassword: string
+    meetingUrl: string
+    meetingRecording?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionUncheckedCreateWithoutTopicInput = {
     id?: string
-    session_start: Date | string
-    session_end: Date | string
-    meeting_id: string
-    meeting_password: string
-    meeting_url: string
-    meeting_recording?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    sessionStart: Date | string
+    sessionEnd: Date | string
+    meetingId: string
+    meetingPassword: string
+    meetingUrl: string
+    meetingRecording?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionCreateOrConnectWithoutTopicInput = {
@@ -21549,19 +24896,19 @@ export namespace Prisma {
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     syllabus?: SyllabusUpdateOneRequiredWithoutModulesNestedInput
   }
 
   export type ModuleUncheckedUpdateWithoutTopicsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicResourceUpsertWithWhereUniqueWithoutTopicInput = {
@@ -21585,10 +24932,10 @@ export namespace Prisma {
     OR?: TopicResourceScalarWhereInput[]
     NOT?: TopicResourceScalarWhereInput | TopicResourceScalarWhereInput[]
     id?: StringFilter<"TopicResource"> | string
-    topic_id?: StringFilter<"TopicResource"> | string
-    resource_id?: StringNullableFilter<"TopicResource"> | string | null
-    created_at?: DateTimeFilter<"TopicResource"> | Date | string
-    updated_at?: DateTimeFilter<"TopicResource"> | Date | string
+    topicId?: StringFilter<"TopicResource"> | string
+    resourceId?: StringNullableFilter<"TopicResource"> | string | null
+    createdAt?: DateTimeFilter<"TopicResource"> | Date | string
+    updatedAt?: DateTimeFilter<"TopicResource"> | Date | string
   }
 
   export type SessionUpsertWithWhereUniqueWithoutTopicInput = {
@@ -21612,29 +24959,29 @@ export namespace Prisma {
     OR?: SessionScalarWhereInput[]
     NOT?: SessionScalarWhereInput | SessionScalarWhereInput[]
     id?: StringFilter<"Session"> | string
-    topic_id?: StringFilter<"Session"> | string
-    session_start?: DateTimeFilter<"Session"> | Date | string
-    session_end?: DateTimeFilter<"Session"> | Date | string
-    meeting_id?: StringFilter<"Session"> | string
-    meeting_password?: StringFilter<"Session"> | string
-    meeting_url?: StringFilter<"Session"> | string
-    meeting_recording?: StringNullableFilter<"Session"> | string | null
-    created_at?: DateTimeFilter<"Session"> | Date | string
-    updated_at?: DateTimeFilter<"Session"> | Date | string
+    topicId?: StringFilter<"Session"> | string
+    sessionStart?: DateTimeFilter<"Session"> | Date | string
+    sessionEnd?: DateTimeFilter<"Session"> | Date | string
+    meetingId?: StringFilter<"Session"> | string
+    meetingPassword?: StringFilter<"Session"> | string
+    meetingUrl?: StringFilter<"Session"> | string
+    meetingRecording?: StringNullableFilter<"Session"> | string | null
+    createdAt?: DateTimeFilter<"Session"> | Date | string
+    updatedAt?: DateTimeFilter<"Session"> | Date | string
   }
 
   export type TopicResourceCreateWithoutResourceInput = {
     id?: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     topic: TopicCreateNestedOneWithoutResourcesInput
   }
 
   export type TopicResourceUncheckedCreateWithoutResourceInput = {
     id?: string
-    topic_id: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    topicId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TopicResourceCreateOrConnectWithoutResourceInput = {
@@ -21669,21 +25016,21 @@ export namespace Prisma {
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     module: ModuleCreateNestedOneWithoutTopicsInput
     sessions?: SessionCreateNestedManyWithoutTopicInput
   }
 
   export type TopicUncheckedCreateWithoutResourcesInput = {
     id?: string
-    module_id: string
+    moduleId: string
     position: number
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutTopicInput
   }
 
@@ -21697,8 +25044,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     url: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ResourceUncheckedCreateWithoutTopicResourcesInput = {
@@ -21706,8 +25053,8 @@ export namespace Prisma {
     title: string
     description?: string | null
     url: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ResourceCreateOrConnectWithoutTopicResourcesInput = {
@@ -21732,21 +25079,21 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     module?: ModuleUpdateOneRequiredWithoutTopicsNestedInput
     sessions?: SessionUpdateManyWithoutTopicNestedInput
   }
 
   export type TopicUncheckedUpdateWithoutResourcesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    module_id?: StringFieldUpdateOperationsInput | string
+    moduleId?: StringFieldUpdateOperationsInput | string
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutTopicNestedInput
   }
 
@@ -21766,8 +25113,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResourceUncheckedUpdateWithoutTopicResourcesInput = {
@@ -21775,8 +25122,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     url?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicCreateWithoutSessionsInput = {
@@ -21785,21 +25132,21 @@ export namespace Prisma {
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     module: ModuleCreateNestedOneWithoutTopicsInput
     resources?: TopicResourceCreateNestedManyWithoutTopicInput
   }
 
   export type TopicUncheckedCreateWithoutSessionsInput = {
     id?: string
-    module_id: string
+    moduleId: string
     position: number
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     resources?: TopicResourceUncheckedCreateNestedManyWithoutTopicInput
   }
 
@@ -21825,56 +25172,64 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     module?: ModuleUpdateOneRequiredWithoutTopicsNestedInput
     resources?: TopicResourceUpdateManyWithoutTopicNestedInput
   }
 
   export type TopicUncheckedUpdateWithoutSessionsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    module_id?: StringFieldUpdateOperationsInput | string
+    moduleId?: StringFieldUpdateOperationsInput | string
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resources?: TopicResourceUncheckedUpdateManyWithoutTopicNestedInput
   }
 
   export type UserCreateWithoutClassStudentsInput = {
     id?: string
-    first_name: string
-    last_name: string
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     company?: CompanyCreateNestedOneWithoutUsersInput
     classTeachers?: ClassTeacherCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutClassStudentsInput = {
     id?: string
-    company_id?: string | null
-    first_name: string
-    last_name: string
+    companyId?: string | null
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classTeachers?: ClassTeacherUncheckedCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutClassStudentsInput = {
@@ -21886,9 +25241,9 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     syllabus: SyllabusCreateNestedOneWithoutClassInput
     company: CompanyCreateNestedOneWithoutClassesInput
     type: ClassTypeCreateNestedOneWithoutClassesInput
@@ -21897,14 +25252,14 @@ export namespace Prisma {
 
   export type ClassUncheckedCreateWithoutStudentsInput = {
     id?: string
-    syllabus_id: string
-    company_id: string
-    type_id: string
+    syllabusId: string
+    companyId: string
+    typeId: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     teachers?: ClassTeacherUncheckedCreateNestedManyWithoutClassInput
   }
 
@@ -21916,15 +25271,15 @@ export namespace Prisma {
   export type AttendanceCreateWithoutClassStudentInput = {
     id?: string
     description: $Enums.AttendanceStatus
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AttendanceUncheckedCreateWithoutClassStudentInput = {
     id?: string
     description: $Enums.AttendanceStatus
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AttendanceCreateOrConnectWithoutClassStudentInput = {
@@ -21950,36 +25305,44 @@ export namespace Prisma {
 
   export type UserUpdateWithoutClassStudentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneWithoutUsersNestedInput
     classTeachers?: ClassTeacherUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutClassStudentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    company_id?: NullableStringFieldUpdateOperationsInput | string | null
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classTeachers?: ClassTeacherUncheckedUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ClassUpsertWithoutStudentsInput = {
@@ -21997,9 +25360,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     syllabus?: SyllabusUpdateOneRequiredWithoutClassNestedInput
     company?: CompanyUpdateOneRequiredWithoutClassesNestedInput
     type?: ClassTypeUpdateOneRequiredWithoutClassesNestedInput
@@ -22008,14 +25371,14 @@ export namespace Prisma {
 
   export type ClassUncheckedUpdateWithoutStudentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
-    company_id?: StringFieldUpdateOperationsInput | string
-    type_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    typeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teachers?: ClassTeacherUncheckedUpdateManyWithoutClassNestedInput
   }
 
@@ -22040,44 +25403,52 @@ export namespace Prisma {
     OR?: AttendanceScalarWhereInput[]
     NOT?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
     id?: StringFilter<"Attendance"> | string
-    class_student_id?: StringFilter<"Attendance"> | string
+    classStudentId?: StringFilter<"Attendance"> | string
     description?: EnumAttendanceStatusFilter<"Attendance"> | $Enums.AttendanceStatus
-    created_at?: DateTimeFilter<"Attendance"> | Date | string
-    updated_at?: DateTimeFilter<"Attendance"> | Date | string
+    createdAt?: DateTimeFilter<"Attendance"> | Date | string
+    updatedAt?: DateTimeFilter<"Attendance"> | Date | string
   }
 
   export type UserCreateWithoutClassTeachersInput = {
     id?: string
-    first_name: string
-    last_name: string
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     company?: CompanyCreateNestedOneWithoutUsersInput
     classStudents?: ClassStudentCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutClassTeachersInput = {
     id?: string
-    company_id?: string | null
-    first_name: string
-    last_name: string
+    companyId?: string | null
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classStudents?: ClassStudentUncheckedCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutClassTeachersInput = {
@@ -22089,9 +25460,9 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     syllabus: SyllabusCreateNestedOneWithoutClassInput
     company: CompanyCreateNestedOneWithoutClassesInput
     type: ClassTypeCreateNestedOneWithoutClassesInput
@@ -22100,14 +25471,14 @@ export namespace Prisma {
 
   export type ClassUncheckedCreateWithoutTeachersInput = {
     id?: string
-    syllabus_id: string
-    company_id: string
-    type_id: string
+    syllabusId: string
+    companyId: string
+    typeId: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     students?: ClassStudentUncheckedCreateNestedManyWithoutClassInput
   }
 
@@ -22129,36 +25500,44 @@ export namespace Prisma {
 
   export type UserUpdateWithoutClassTeachersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneWithoutUsersNestedInput
     classStudents?: ClassStudentUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutClassTeachersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    company_id?: NullableStringFieldUpdateOperationsInput | string | null
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classStudents?: ClassStudentUncheckedUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ClassUpsertWithoutTeachersInput = {
@@ -22176,9 +25555,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     syllabus?: SyllabusUpdateOneRequiredWithoutClassNestedInput
     company?: CompanyUpdateOneRequiredWithoutClassesNestedInput
     type?: ClassTypeUpdateOneRequiredWithoutClassesNestedInput
@@ -22187,49 +25566,57 @@ export namespace Prisma {
 
   export type ClassUncheckedUpdateWithoutTeachersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
-    company_id?: StringFieldUpdateOperationsInput | string
-    type_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
+    typeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     students?: ClassStudentUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type UserCreateWithoutCompanyInput = {
     id?: string
-    first_name: string
-    last_name: string
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classStudents?: ClassStudentCreateNestedManyWithoutUserInput
     classTeachers?: ClassTeacherCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCompanyInput = {
     id?: string
-    first_name: string
-    last_name: string
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     classStudents?: ClassStudentUncheckedCreateNestedManyWithoutUserInput
     classTeachers?: ClassTeacherUncheckedCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenUncheckedCreateNestedManyWithoutUserInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCompanyInput = {
@@ -22246,9 +25633,9 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     syllabus: SyllabusCreateNestedOneWithoutClassInput
     type: ClassTypeCreateNestedOneWithoutClassesInput
     students?: ClassStudentCreateNestedManyWithoutClassInput
@@ -22257,13 +25644,13 @@ export namespace Prisma {
 
   export type ClassUncheckedCreateWithoutCompanyInput = {
     id?: string
-    syllabus_id: string
-    type_id: string
+    syllabusId: string
+    typeId: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     students?: ClassStudentUncheckedCreateNestedManyWithoutClassInput
     teachers?: ClassTeacherUncheckedCreateNestedManyWithoutClassInput
   }
@@ -22299,18 +25686,20 @@ export namespace Prisma {
     OR?: UserScalarWhereInput[]
     NOT?: UserScalarWhereInput | UserScalarWhereInput[]
     id?: StringFilter<"User"> | string
-    company_id?: StringNullableFilter<"User"> | string | null
-    first_name?: StringFilter<"User"> | string
-    last_name?: StringFilter<"User"> | string
+    companyId?: StringNullableFilter<"User"> | string | null
+    firstName?: StringFilter<"User"> | string
+    lastName?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
+    phone?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
     photo?: StringNullableFilter<"User"> | string | null
     gender?: EnumGenderFilter<"User"> | $Enums.Gender
     address?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
-    is_email_verified?: BoolFilter<"User"> | boolean
-    is_phone_verified?: BoolFilter<"User"> | boolean
-    created_at?: DateTimeFilter<"User"> | Date | string
-    updated_at?: DateTimeFilter<"User"> | Date | string
+    isEmailVerified?: BoolFilter<"User"> | boolean
+    isPhoneVerified?: BoolFilter<"User"> | boolean
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
   }
 
   export type ClassUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -22334,23 +25723,23 @@ export namespace Prisma {
     OR?: ClassScalarWhereInput[]
     NOT?: ClassScalarWhereInput | ClassScalarWhereInput[]
     id?: StringFilter<"Class"> | string
-    syllabus_id?: StringFilter<"Class"> | string
-    company_id?: StringFilter<"Class"> | string
-    type_id?: StringFilter<"Class"> | string
+    syllabusId?: StringFilter<"Class"> | string
+    companyId?: StringFilter<"Class"> | string
+    typeId?: StringFilter<"Class"> | string
     name?: StringFilter<"Class"> | string
     description?: StringNullableFilter<"Class"> | string | null
-    is_active?: BoolFilter<"Class"> | boolean
-    created_at?: DateTimeFilter<"Class"> | Date | string
-    updated_at?: DateTimeFilter<"Class"> | Date | string
+    isActive?: BoolFilter<"Class"> | boolean
+    createdAt?: DateTimeFilter<"Class"> | Date | string
+    updatedAt?: DateTimeFilter<"Class"> | Date | string
   }
 
   export type ClassCreateWithoutTypeInput = {
     id?: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     syllabus: SyllabusCreateNestedOneWithoutClassInput
     company: CompanyCreateNestedOneWithoutClassesInput
     students?: ClassStudentCreateNestedManyWithoutClassInput
@@ -22359,13 +25748,13 @@ export namespace Prisma {
 
   export type ClassUncheckedCreateWithoutTypeInput = {
     id?: string
-    syllabus_id: string
-    company_id: string
+    syllabusId: string
+    companyId: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     students?: ClassStudentUncheckedCreateNestedManyWithoutClassInput
     teachers?: ClassTeacherUncheckedCreateNestedManyWithoutClassInput
   }
@@ -22398,20 +25787,20 @@ export namespace Prisma {
 
   export type ClassStudentCreateWithoutAttendanceInput = {
     id?: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutClassStudentsInput
     class: ClassCreateNestedOneWithoutStudentsInput
   }
 
   export type ClassStudentUncheckedCreateWithoutAttendanceInput = {
     id?: string
-    user_id: string
-    class_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    userId: string
+    classId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassStudentCreateOrConnectWithoutAttendanceInput = {
@@ -22432,152 +25821,336 @@ export namespace Prisma {
 
   export type ClassStudentUpdateWithoutAttendanceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutClassStudentsNestedInput
     class?: ClassUpdateOneRequiredWithoutStudentsNestedInput
   }
 
   export type ClassStudentUncheckedUpdateWithoutAttendanceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateWithoutRefreshTokensInput = {
+    id?: string
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    password: string
+    photo?: string | null
+    gender: $Enums.Gender
+    address: string
+    role: $Enums.Role
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    company?: CompanyCreateNestedOneWithoutUsersInput
+    classStudents?: ClassStudentCreateNestedManyWithoutUserInput
+    classTeachers?: ClassTeacherCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutRefreshTokensInput = {
+    id?: string
+    companyId?: string | null
+    firstName: string
+    lastName: string
+    email: string
+    phone: string
+    password: string
+    photo?: string | null
+    gender: $Enums.Gender
+    address: string
+    role: $Enums.Role
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    classStudents?: ClassStudentUncheckedCreateNestedManyWithoutUserInput
+    classTeachers?: ClassTeacherUncheckedCreateNestedManyWithoutUserInput
+    activateTokens?: ActivateTokenUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutRefreshTokensInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutRefreshTokensInput, UserUncheckedCreateWithoutRefreshTokensInput>
+  }
+
+  export type UserUpsertWithoutRefreshTokensInput = {
+    update: XOR<UserUpdateWithoutRefreshTokensInput, UserUncheckedUpdateWithoutRefreshTokensInput>
+    create: XOR<UserCreateWithoutRefreshTokensInput, UserUncheckedCreateWithoutRefreshTokensInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutRefreshTokensInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutRefreshTokensInput, UserUncheckedUpdateWithoutRefreshTokensInput>
+  }
+
+  export type UserUpdateWithoutRefreshTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    address?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    company?: CompanyUpdateOneWithoutUsersNestedInput
+    classStudents?: ClassStudentUpdateManyWithoutUserNestedInput
+    classTeachers?: ClassTeacherUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutRefreshTokensInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyId?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    photo?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
+    address?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    classStudents?: ClassStudentUncheckedUpdateManyWithoutUserNestedInput
+    classTeachers?: ClassTeacherUncheckedUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ClassStudentCreateManyClassInput = {
     id?: string
-    user_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    userId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassTeacherCreateManyClassInput = {
     id?: string
-    user_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    userId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassStudentUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutClassStudentsNestedInput
     attendance?: AttendanceUpdateManyWithoutClassStudentNestedInput
   }
 
   export type ClassStudentUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendance?: AttendanceUncheckedUpdateManyWithoutClassStudentNestedInput
   }
 
   export type ClassStudentUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTeacherUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutClassTeachersNestedInput
   }
 
   export type ClassTeacherUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTeacherUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassStudentCreateManyUserInput = {
     id?: string
-    class_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    classId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassTeacherCreateManyUserInput = {
     id?: string
-    class_id: string
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    classId: string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ActivateTokenCreateManyUserInput = {
+    id?: string
+    token: string
+    activatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenCreateManyUserInput = {
+    id?: string
+    jti: string
+    familyId: string
+    hashedToken: string
+    userAgent?: string | null
+    ip?: string | null
+    createdAt?: Date | string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    replacedById?: string | null
   }
 
   export type ClassStudentUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutStudentsNestedInput
     attendance?: AttendanceUpdateManyWithoutClassStudentNestedInput
   }
 
   export type ClassStudentUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    classId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attendance?: AttendanceUncheckedUpdateManyWithoutClassStudentNestedInput
   }
 
   export type ClassStudentUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    classId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTeacherUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     class?: ClassUpdateOneRequiredWithoutTeachersNestedInput
   }
 
   export type ClassTeacherUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    classId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassTeacherUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    class_id?: StringFieldUpdateOperationsInput | string
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    classId?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivateTokenUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    activatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivateTokenUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    activatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ActivateTokenUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    activatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jti?: StringFieldUpdateOperationsInput | string
+    familyId?: StringFieldUpdateOperationsInput | string
+    hashedToken?: StringFieldUpdateOperationsInput | string
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    replacedById?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RefreshTokenUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jti?: StringFieldUpdateOperationsInput | string
+    familyId?: StringFieldUpdateOperationsInput | string
+    hashedToken?: StringFieldUpdateOperationsInput | string
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    replacedById?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type RefreshTokenUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    jti?: StringFieldUpdateOperationsInput | string
+    familyId?: StringFieldUpdateOperationsInput | string
+    hashedToken?: StringFieldUpdateOperationsInput | string
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    ip?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    replacedById?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ModuleCreateManySyllabusInput = {
@@ -22585,8 +26158,8 @@ export namespace Prisma {
     position: number
     title: string
     description?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ModuleUpdateWithoutSyllabusInput = {
@@ -22594,8 +26167,8 @@ export namespace Prisma {
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     topics?: TopicUpdateManyWithoutModuleNestedInput
   }
 
@@ -22604,8 +26177,8 @@ export namespace Prisma {
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     topics?: TopicUncheckedUpdateManyWithoutModuleNestedInput
   }
 
@@ -22614,8 +26187,8 @@ export namespace Prisma {
     position?: FloatFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicCreateManyModuleInput = {
@@ -22624,8 +26197,8 @@ export namespace Prisma {
     title: string
     content?: string | null
     goal?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TopicUpdateWithoutModuleInput = {
@@ -22634,8 +26207,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resources?: TopicResourceUpdateManyWithoutTopicNestedInput
     sessions?: SessionUpdateManyWithoutTopicNestedInput
   }
@@ -22646,8 +26219,8 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resources?: TopicResourceUncheckedUpdateManyWithoutTopicNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutTopicNestedInput
   }
@@ -22658,224 +26231,236 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     content?: NullableStringFieldUpdateOperationsInput | string | null
     goal?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicResourceCreateManyTopicInput = {
     id?: string
-    resource_id?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    resourceId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionCreateManyTopicInput = {
     id?: string
-    session_start: Date | string
-    session_end: Date | string
-    meeting_id: string
-    meeting_password: string
-    meeting_url: string
-    meeting_recording?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
+    sessionStart: Date | string
+    sessionEnd: Date | string
+    meetingId: string
+    meetingPassword: string
+    meetingUrl: string
+    meetingRecording?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TopicResourceUpdateWithoutTopicInput = {
     id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resource?: ResourceUpdateOneWithoutTopicResourcesNestedInput
   }
 
   export type TopicResourceUncheckedUpdateWithoutTopicInput = {
     id?: StringFieldUpdateOperationsInput | string
-    resource_id?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    resourceId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicResourceUncheckedUpdateManyWithoutTopicInput = {
     id?: StringFieldUpdateOperationsInput | string
-    resource_id?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    resourceId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUpdateWithoutTopicInput = {
     id?: StringFieldUpdateOperationsInput | string
-    session_start?: DateTimeFieldUpdateOperationsInput | Date | string
-    session_end?: DateTimeFieldUpdateOperationsInput | Date | string
-    meeting_id?: StringFieldUpdateOperationsInput | string
-    meeting_password?: StringFieldUpdateOperationsInput | string
-    meeting_url?: StringFieldUpdateOperationsInput | string
-    meeting_recording?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    meetingPassword?: StringFieldUpdateOperationsInput | string
+    meetingUrl?: StringFieldUpdateOperationsInput | string
+    meetingRecording?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateWithoutTopicInput = {
     id?: StringFieldUpdateOperationsInput | string
-    session_start?: DateTimeFieldUpdateOperationsInput | Date | string
-    session_end?: DateTimeFieldUpdateOperationsInput | Date | string
-    meeting_id?: StringFieldUpdateOperationsInput | string
-    meeting_password?: StringFieldUpdateOperationsInput | string
-    meeting_url?: StringFieldUpdateOperationsInput | string
-    meeting_recording?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    meetingPassword?: StringFieldUpdateOperationsInput | string
+    meetingUrl?: StringFieldUpdateOperationsInput | string
+    meetingRecording?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUncheckedUpdateManyWithoutTopicInput = {
     id?: StringFieldUpdateOperationsInput | string
-    session_start?: DateTimeFieldUpdateOperationsInput | Date | string
-    session_end?: DateTimeFieldUpdateOperationsInput | Date | string
-    meeting_id?: StringFieldUpdateOperationsInput | string
-    meeting_password?: StringFieldUpdateOperationsInput | string
-    meeting_url?: StringFieldUpdateOperationsInput | string
-    meeting_recording?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessionEnd?: DateTimeFieldUpdateOperationsInput | Date | string
+    meetingId?: StringFieldUpdateOperationsInput | string
+    meetingPassword?: StringFieldUpdateOperationsInput | string
+    meetingUrl?: StringFieldUpdateOperationsInput | string
+    meetingRecording?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicResourceCreateManyResourceInput = {
     id?: string
-    topic_id: string
-    created_at?: Date | string
-    updated_at?: Date | string
+    topicId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TopicResourceUpdateWithoutResourceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     topic?: TopicUpdateOneRequiredWithoutResourcesNestedInput
   }
 
   export type TopicResourceUncheckedUpdateWithoutResourceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    topicId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TopicResourceUncheckedUpdateManyWithoutResourceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    topic_id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    topicId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceCreateManyClassStudentInput = {
     id?: string
     description: $Enums.AttendanceStatus
-    created_at?: Date | string
-    updated_at?: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AttendanceUpdateWithoutClassStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceUncheckedUpdateWithoutClassStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AttendanceUncheckedUpdateManyWithoutClassStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: EnumAttendanceStatusFieldUpdateOperationsInput | $Enums.AttendanceStatus
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateManyCompanyInput = {
     id?: string
-    first_name: string
-    last_name: string
+    firstName: string
+    lastName: string
     email: string
+    phone: string
+    password: string
     photo?: string | null
     gender: $Enums.Gender
     address: string
     role: $Enums.Role
-    is_email_verified?: boolean
-    is_phone_verified?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isEmailVerified?: boolean
+    isPhoneVerified?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassCreateManyCompanyInput = {
     id?: string
-    syllabus_id: string
-    type_id: string
+    syllabusId: string
+    typeId: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classStudents?: ClassStudentUpdateManyWithoutUserNestedInput
     classTeachers?: ClassTeacherUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     classStudents?: ClassStudentUncheckedUpdateManyWithoutUserNestedInput
     classTeachers?: ClassTeacherUncheckedUpdateManyWithoutUserNestedInput
+    activateTokens?: ActivateTokenUncheckedUpdateManyWithoutUserNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    last_name?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
     gender?: EnumGenderFieldUpdateOperationsInput | $Enums.Gender
     address?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    is_email_verified?: BoolFieldUpdateOperationsInput | boolean
-    is_phone_verified?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isEmailVerified?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     syllabus?: SyllabusUpdateOneRequiredWithoutClassNestedInput
     type?: ClassTypeUpdateOneRequiredWithoutClassesNestedInput
     students?: ClassStudentUpdateManyWithoutClassNestedInput
@@ -22884,46 +26469,46 @@ export namespace Prisma {
 
   export type ClassUncheckedUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
-    type_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
+    typeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     students?: ClassStudentUncheckedUpdateManyWithoutClassNestedInput
     teachers?: ClassTeacherUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateManyWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
-    type_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
+    typeId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ClassCreateManyTypeInput = {
     id?: string
-    syllabus_id: string
-    company_id: string
+    syllabusId: string
+    companyId: string
     name: string
     description?: string | null
-    is_active?: boolean
-    created_at?: Date | string
-    updated_at?: Date | string
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ClassUpdateWithoutTypeInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     syllabus?: SyllabusUpdateOneRequiredWithoutClassNestedInput
     company?: CompanyUpdateOneRequiredWithoutClassesNestedInput
     students?: ClassStudentUpdateManyWithoutClassNestedInput
@@ -22932,26 +26517,26 @@ export namespace Prisma {
 
   export type ClassUncheckedUpdateWithoutTypeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
-    company_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     students?: ClassStudentUncheckedUpdateManyWithoutClassNestedInput
     teachers?: ClassTeacherUncheckedUpdateManyWithoutClassNestedInput
   }
 
   export type ClassUncheckedUpdateManyWithoutTypeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    syllabus_id?: StringFieldUpdateOperationsInput | string
-    company_id?: StringFieldUpdateOperationsInput | string
+    syllabusId?: StringFieldUpdateOperationsInput | string
+    companyId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    is_active?: BoolFieldUpdateOperationsInput | boolean
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

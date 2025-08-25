@@ -6,7 +6,18 @@
 }
 
 @theme {
-  --color-brand: rgb(249 102 58);
+  --color-brand-950: #190a06;
+  --color-brand-900: #4b1f11;
+  --color-brand-800: #7d341d;
+  --color-brand-700: #ae4829;
+  --color-brand-600: #e05d34;
+  --color-brand: #f9673a;
+  --color-brand-500: #f9673a;
+  --color-brand-400: #fa8561;
+  --color-brand-300: #fba489;
+  --color-brand-200: #fdc2b0;
+  --color-brand-100: #fee1d8;
+  --color-brand-50: #ffffff;
 }
 
 @theme inline {

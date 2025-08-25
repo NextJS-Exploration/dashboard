@@ -35,8 +35,6 @@ export default function SignUpForm() {
     return <EmailRegisteredScreen />
   }
 
-  return <EmailRegisteredScreen />
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-brand">
       <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl w-full max-w-md p-8 text-gray-800 dark:text-gray-100">

@@ -1,0 +1,199 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../src/app/lib/prisma-client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url = env("POSTGRES_PRISMA_URL") // use connection
+    directUrl = env("DIRECT_POSTGRES_PRISMA_URL") // uses a direct connection
+}
+
+model Class {
+  id          String      @id @default(uuid())
+  syllabus_id String      @unique
+  company_id  String
+  type_id     String
+  name        String
+  description String? 
+  is_active   Boolean     @default(true)
+  created_at  DateTime    @default(now())
+  updated_at  DateTime    @updatedAt
+
+  syllabus    Syllabus    @relation(fields: [syllabus_id], references: [id])
+  company     Company     @relation(fields: [company_id], references: [id])
+  type        ClassType   @relation(fields: [type_id], references: [id])
+  students    ClassStudent[]
+  teachers    ClassTeacher[]
+}
+
+model User {
+  id              String      @id @default(uuid())
+  company_id      String?
+  first_name      String
+  last_name       String
+  email           String      @unique
+  photo           String?
+  gender          Gender
+  address         String
+  role            Role
+  is_email_verified Boolean   @default(true)
+  is_phone_verified Boolean   @default(true)
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
+
+  company         Company?    @relation(fields: [company_id], references: [id])
+  classStudents   ClassStudent[]
+  classTeachers   ClassTeacher[]
+}
+
+model Syllabus {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  class       Class?
+  modules     Module[]
+}
+
+model Module {
+  id          String   @id @default(uuid())
+  syllabus_id String
+  position    Float
+  title       String
+  description String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  syllabus    Syllabus @relation(fields: [syllabus_id], references: [id])
+  topics      Topic[]
+}
+
+model Topic {
+  id          String   @id @default(uuid())
+  module_id   String
+  position    Float
+  title       String
+  content     String?
+  goal        String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  module      Module   @relation(fields: [module_id], references: [id])
+  resources   TopicResource[]
+  sessions    Session[]
+}
+
+model Resource {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  url         String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  topicResources TopicResource[]
+}
+
+model TopicResource {
+  id          String   @id @default(uuid())
+  topic_id    String
+  resource_id String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  topic       Topic    @relation(fields: [topic_id], references: [id])
+  resource    Resource? @relation(fields: [resource_id], references: [id])
+}
+
+model Session {
+  id                String   @id @default(uuid())
+  topic_id          String
+  session_start     DateTime
+  session_end       DateTime
+  meeting_id        String
+  meeting_password  String
+  meeting_url       String
+  meeting_recording String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  topic             Topic    @relation(fields: [topic_id], references: [id])
+}
+
+model ClassStudent {
+  id          String   @id @default(uuid())
+  user_id     String
+  class_id    String
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  user        User     @relation(fields: [user_id], references: [id])
+  class       Class    @relation(fields: [class_id], references: [id])
+  attendance  Attendance[]
+}
+
+model ClassTeacher {
+  id          String   @id @default(uuid())
+  user_id     String
+  class_id    String
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  user        User     @relation(fields: [user_id], references: [id])
+  class       Class    @relation(fields: [class_id], references: [id])
+}
+
+model Company {
+  id        String   @id @default(uuid())
+  name      String
+  address   String?
+  website   String?
+  logo      String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  users     User[]
+  classes   Class[]
+}
+
+model ClassType {
+  id        String   @id @default(uuid())
+  name      String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  classes   Class[]
+}
+
+model Attendance {
+  id              String   @id @default(uuid())
+  class_student_id String
+  description      AttendanceStatus
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  classStudent     ClassStudent @relation(fields: [class_student_id], references: [id])
+}
+
+enum Gender {
+  Male
+  Female
+}
+
+enum Role {
+  Student
+  Teacher
+  Admin
+  Company
+}
+
+enum AttendanceStatus {
+  Present
+  Not_present
+  Unknown
+}

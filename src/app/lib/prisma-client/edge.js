@@ -308,7 +308,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/vikriyuwi/Documents/Development/Website/dashboard/src/app/lib/prisma-client",
+      "value": "/Users/vikriyuwi/Documents/Development/Website/learn-front-end/src/app/lib/prisma-client",
       "fromEnvVar": null
     },
     "config": {
@@ -322,12 +322,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/vikriyuwi/Documents/Development/Website/dashboard/prisma/schema.prisma",
+    "sourceFilePath": "/Users/vikriyuwi/Documents/Development/Website/learn-front-end/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../../prisma",
   "clientVersion": "6.14.0",
@@ -336,7 +335,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {

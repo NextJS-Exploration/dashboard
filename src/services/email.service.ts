@@ -16,7 +16,7 @@ export async function sendActivationEmail(to: string, firstName: string, lastNam
                 text-decoration: none;
                 border-radius: 5px;
             " href="${process.env.ROOT_URL}/activate/${token}">Confirm my email</a><br>
-            <a href="${process.env.ROOT_URL}/activate/${token}">http://localhost:3000/activate/${token}</a>
+            <a href="${process.env.ROOT_URL}/activate/${token}">${process.env.ROOT_URL}/activate/${token}</a>
         `,
         headers: {
             "X-Entity-Ref-ID": "newmail",

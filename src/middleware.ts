@@ -24,40 +24,44 @@ export default async function middleware(request: NextRequest) {
   // normalize path (remove trailing slash if present)
   const pathname = request.nextUrl.pathname.replace(/\/$/, '')
 
-  if (pathname.startsWith("/refresh-redirect")) {
+  // allow refresh redirect route
+  if (pathname.startsWith('/refresh-redirect')) {
     return NextResponse.next()
   }
 
+  // allow refresh API
   if (pathname === '/api/refresh') {
     return NextResponse.next()
   }
 
-  // prevent authenticated users from accessing auth pages
+  // prevent authenticated users from accessing signin/signup pages
   if ((pathname === '/signin' || pathname === '/signup') && userId) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
   if ((pathname === '/api/signin' || pathname === '/api/signup') && userId) {
-    return errorResponse(409, "Access denied!")
+    return errorResponse(409, 'Access denied!')
   }
 
   // protect dashboard routes
-  if (pathname.startsWith("/dashboard")) {
+  if (pathname.startsWith('/dashboard')) {
     if (!userId) {
-        return NextResponse.redirect(
-            new URL(`/refresh-redirect${pathname}`, request.url)
-        )
+      return NextResponse.redirect(
+        new URL(`/refresh-redirect${pathname}`, request.url)
+      )
     }
   }
 
-  // protect API routes except /api/login and /api/logout
+  // protect API routes except public ones
   if (pathname.startsWith('/api')) {
     const isPublicApi =
-      pathname === '/api/refresh' ||
-      pathname === '/api/signin'
+      pathname.startsWith('/api/signup') ||
+      pathname.startsWith('/api/signin') ||
+      pathname.startsWith('/api/signout') ||
+      pathname.startsWith('/api/refresh')
 
     if (!userId && !isPublicApi) {
-      return errorResponse(409, "Access token expired")
+      return errorResponse(409, 'Access token expired')
     }
   }
 
@@ -72,6 +76,6 @@ export const config = {
     '/signout',
     '/signin',
     '/signup',
-    '/api/:path*'
+    '/api/:path*',
   ],
 }

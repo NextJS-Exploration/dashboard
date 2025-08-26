@@ -8,6 +8,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { signupAction } from "@/app/(auth)/signup/signUpAction";
 import EmailRegisteredScreen from "./EmailRegisteredScreen";
+import clsx from "clsx";
 
 export default function SignUpForm() {
 
@@ -219,8 +220,10 @@ export default function SignUpForm() {
           {/* Submit */}
           <button
             type="submit"
-            disabled={isDisabled || pending}
-            className="w-full bg-brand text-white font-semibold py-2 px-4 rounded-lg hover:bg-orange-600 transition"
+            className={clsx("w-full text-white font-semibold py-2 px-4 rounded-lg transition",
+                pending || isDisabled ? "bg-gray-500" : "bg-brand hover:bg-orange-600"
+            )}
+            disabled={pending || isDisabled}
           >
             { pending ? "Signing up.." : "Sign up" }
           </button>

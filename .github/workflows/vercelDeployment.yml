@@ -1,4 +1,4 @@
-name: Build & Deploy application to vercel
+name: Build & Deploy application to Vercel
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -10,28 +10,30 @@ on:
       - main
 
 jobs:
-  link:
+  lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: npm install
       - run: npm run lint
+
   build:
     name: Build
     runs-on: ubuntu-latest
+    needs: lint
     steps:
       - uses: actions/checkout@v3
       - run: npm install
       - run: npm run build
-  
+
   deploy-production:
     name: Deploy (Production)
-    needs: []
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Intall Vercel CLI
+      - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}

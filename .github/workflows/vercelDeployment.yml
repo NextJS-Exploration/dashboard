@@ -15,7 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: npm install
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10 # match your package.json packageManager
+      - run: pnpm install
 
   build:
     name: Build
@@ -23,8 +26,11 @@ jobs:
     needs: lint
     steps:
       - uses: actions/checkout@v3
-      - run: npm install
-      - run: npm run build
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - run: pnpm install
+      - run: pnpm build
 
   deploy-production:
     name: Deploy (Production)
@@ -32,6 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information

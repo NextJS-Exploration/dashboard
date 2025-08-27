@@ -1,19 +1,19 @@
 "use client"
 
 import { useEffect } from "react"
-import { useRouter, useParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 export default function RefreshRedirectPage() {
   const router = useRouter()
-  const params = useParams()
-  const next = `/${params.next || ""}` // e.g. /dashboard
+  const searchParams = useSearchParams()
+  const next = searchParams.get("next") || "/"
 
   useEffect(() => {
     const doRefresh = async () => {
       try {
         const res = await fetch("/api/refresh", { method: "POST" })
         if (res.ok) {
-          router.replace(next)
+          router.replace(next) // go back where user was
         } else {
           router.replace("/signin")
         }

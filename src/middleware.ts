@@ -19,27 +19,36 @@ export default async function middleware(request: NextRequest) {
   const access = request.cookies.get('AccessToken')?.value
   const payload = await verifyAccess(access)
   const userId = payload?.sub as string | undefined
-  const roles = (payload?.roles as { id: string; role: string }[]) || []
 
   // normalize path (remove trailing slash if present)
   const pathname = request.nextUrl.pathname.replace(/\/$/, '')
 
-  // allow refresh redirect route
-  if (pathname.startsWith('/refresh-redirect')) {
+  const isPublicUrl = pathname.startsWith('/refresh')
+    || pathname.startsWith('/activate')
+    || pathname.startsWith('/api/activate')
+
+  if(isPublicUrl) {
     return NextResponse.next()
   }
 
-  // allow refresh API
-  if (pathname === '/api/refresh') {
+  const isUrlWithoutUser = pathname.startsWith('/refresh-redirect')
+
+  if(isUrlWithoutUser && !userId) {
     return NextResponse.next()
   }
+
+  const isURLAuthNotAllowed = pathname.startsWith('/signin')
+    || pathname.startsWith('/signup')
 
   // prevent authenticated users from accessing signin/signup pages
-  if ((pathname === '/signin' || pathname === '/signup') && userId) {
+  if (isURLAuthNotAllowed && userId) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
-  if ((pathname === '/api/signin' || pathname === '/api/signup') && userId) {
+  const isAPIAuthNotAllowed = pathname.startsWith('/signin')
+    || pathname.startsWith('/signup')
+
+  if (isAPIAuthNotAllowed && userId) {
     return errorResponse(409, 'Access denied!')
   }
 
@@ -47,7 +56,7 @@ export default async function middleware(request: NextRequest) {
   if (pathname.startsWith('/dashboard')) {
     if (!userId) {
       return NextResponse.redirect(
-        new URL(`/refresh-redirect${pathname}`, request.url)
+        new URL(`/refresh-redirect?next=${pathname}`, request.url)
       )
     }
   }

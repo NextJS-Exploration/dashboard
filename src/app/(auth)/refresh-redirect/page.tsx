@@ -2,8 +2,9 @@
 
 import { useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 
-export default function RefreshRedirectPage() {
+function RefreshRedirectContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const next = searchParams.get("next") || "/"
@@ -30,5 +31,21 @@ export default function RefreshRedirectPage() {
         Refreshing token...
       </div>
     </div>
+  )
+}
+
+export default function RefreshRedirectPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen bg-brand">
+          <div className="bg-white animate-pulse dark:bg-gray-800 shadow-xl rounded-2xl w-full max-w-xl p-8 text-gray-800 dark:text-gray-100">
+            Loading...
+          </div>
+        </div>
+      }
+    >
+      <RefreshRedirectContent />
+    </Suspense>
   )
 }
